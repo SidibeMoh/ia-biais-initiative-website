@@ -1,0 +1,54 @@
+﻿@import "tailwindcss";
+
+@theme {
+  /* ═══ Couleurs officielles IA BIAIS INITIATIVE ═══ */
+  --color-ibi-deep:        #1A2BCC;
+  --color-ibi-primary:     #2D46F5;
+  --color-ibi-violet:      #6B1EE8;
+  --color-ibi-light:       #9B47FF;
+  --color-ibi-night:       #070C24;
+  --color-ibi-marine:      #0D1336;
+  --color-ibi-border:      #1C2454;
+  --color-ibi-arctic:      #F4F5FB;
+  --color-ibi-surface:     #FFFFFF;
+  --color-ibi-fg:          #08102E;
+  --color-ibi-fg2:         #3D4878;
+  --color-ibi-fg3:         #8E96C4;
+  --color-ibi-muted:       #6B7DBB;
+
+  /* ═══ Typographie ═══ */
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+
+  /* ═══ Rayons ═══ */
+  --radius-ibi: 12px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-ibi-arctic);
+  color: var(--color-ibi-fg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ═══ Gradient signature PRISM ═══ */
+.gradient-ibi {
+  background: linear-gradient(135deg, #1A2BCC 0%, #2D46F5 33%, #6B1EE8 66%, #9B47FF 100%);
+}
+
+.text-gradient-ibi {
+  background: linear-gradient(135deg, #2D46F5 0%, #9B47FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

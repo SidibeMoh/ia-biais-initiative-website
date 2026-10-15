@@ -1,0 +1,63 @@
+﻿---
+interface Props {
+  class?: string;
+  variant?: "light" | "dark";
+  showDomain?: boolean;
+}
+
+const { class: className = "", variant = "light", showDomain = false } = Astro.props;
+
+const textColor = variant === "light" ? "#FFFFFF" : "#08102E";
+const subColor = variant === "light" ? "#8E99DD" : "#3D4878";
+const domainColor = variant === "light" ? "#3D4878" : "#8E96C4";
+---
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 90" class={className} aria-label="IA BIAIS INITIATIVE">
+  <defs>
+    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2BCC"/>
+      <stop offset="55%" stop-color="#2D46F5"/>
+      <stop offset="100%" stop-color="#7B3FE4"/>
+    </linearGradient>
+    <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9B47FF" stop-opacity=".95"/>
+      <stop offset="45%" stop-color="#2D46F5"/>
+      <stop offset="100%" stop-color="#1A2BCC"/>
+    </radialGradient>
+    <clipPath id="irisClip"><circle cx="45" cy="45" r="24"/></clipPath>
+  </defs>
+
+  <path d="M 6,45 C 15,22 75,22 84,45 C 75,68 15,68 6,45 Z"
+        fill="none" stroke="url(#eyeGrad)" stroke-width="2.2" stroke-linecap="round"/>
+
+  <circle cx="45" cy="45" r="24" fill="url(#irisGrad)"/>
+
+  <g clip-path="url(#irisClip)" opacity="0.28" stroke="white" stroke-width="0.85" fill="none">
+    <ellipse cx="45" cy="45" rx="24" ry="9"/>
+    <ellipse cx="45" cy="45" rx="24" ry="16"/>
+    <ellipse cx="45" cy="45" rx="9" ry="24"/>
+    <ellipse cx="45" cy="45" rx="16" ry="24"/>
+    <line x1="21" y1="45" x2="69" y2="45"/>
+    <line x1="45" y1="21" x2="45" y2="69"/>
+  </g>
+
+  <line x1="10" y1="45" x2="80" y2="45" stroke="white" stroke-width="0.5" opacity="0.35" stroke-dasharray="2 3"/>
+
+  <circle cx="19" cy="45" r="1.2" fill="#5C7AFF" opacity="0.7"/>
+  <circle cx="71" cy="45" r="1.2" fill="#5C7AFF" opacity="0.7"/>
+
+  <circle cx="45" cy="45" r="7" fill="none" stroke="white" stroke-width="1" opacity="0.6"/>
+  <circle cx="45" cy="45" r="4.5" fill="white" opacity="0.95"/>
+  <circle cx="45" cy="45" r="2.2" fill="#6B1EE8"/>
+  <circle cx="47" cy="43" r="0.9" fill="white" opacity="0.8"/>
+
+  <text x="102" y="38" font-family="'Space Grotesk', system-ui, sans-serif"
+        font-weight="800" font-size="26" fill={textColor} letter-spacing="-0.5">IA BIAIS</text>
+  <rect x="102" y="44" width="172" height="2" rx="1" fill="url(#eyeGrad)" opacity="0.6"/>
+  <text x="103" y="64" font-family="'Space Grotesk', system-ui, sans-serif"
+        font-weight="500" font-size="14" fill={subColor} letter-spacing="3.5">INITIATIVE</text>
+  {showDomain && (
+    <text x="103" y="78" font-family="'Space Grotesk', system-ui, sans-serif"
+          font-weight="400" font-size="10" fill={domainColor} letter-spacing="1.5">ia-biais-initiative.org</text>
+  )}
+</svg>

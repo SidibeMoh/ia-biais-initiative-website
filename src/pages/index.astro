@@ -1,0 +1,193 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Logo from "../components/Logo.astro";
+
+const bibtex = `@software{sidibe_2026_ia_biais,
+  author    = {SIDIBE, Mohamadou},
+  title     = {IA Biais Initiative - API REST},
+  year      = 2026,
+  publisher = {Zenodo},
+  version   = {1.0.0},
+  doi       = {10.5281/zenodo.23400341}
+}`;
+---
+
+<BaseLayout>
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden bg-ibi-night text-white">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #2D46F5 0%, transparent 70%)"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style="background: radial-gradient(circle, #6B1EE8 0%, transparent 70%)"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">
+          Initiative citoyenne mondiale · DOI 10.5281/zenodo.23400341
+        </p>
+        
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
+          Le referentiel mondial des <span class="text-gradient-ibi">biais algorithmiques</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed mb-8">
+          Une base de connaissances scientifique, rigoureuse et citable pour repondre aux inquietudes mondiales sur les biais de l'IA — aux cotes de l'ONU, l'UNESCO, l'OCDE et du Vatican.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
+            Explorer les 250 biais
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
+            Documentation API
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHIFFRES CLES ═══ -->
+  <section class="max-w-7xl mx-auto px-6 -mt-12 relative z-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">250</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Biais documentes</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">68</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Reglementations</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">21</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Vues analytiques</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">17</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Fonctions RPC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MISSION ═══ -->
+  <section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">
+          Repondre aux inquietudes <span class="text-gradient-ibi">mondiales</span>
+        </h2>
+        <p class="text-ibi-fg2 leading-relaxed mb-4">
+          Les dirigeants des grands laboratoires d'IA, les chercheurs, le Pape, les ONG et les institutions internationales alertent depuis plusieurs annees sur les dangers des developpements actuels de l'intelligence artificielle.
+        </p>
+        <p class="text-ibi-fg2 leading-relaxed mb-4">
+          Cette initiative est une reponse citoyenne a ces alertes : une base de connaissances structuree, citable et ouverte, pour donner aux chercheurs, decideurs, regulateurs et developpeurs un <strong class="text-ibi-fg">referentiel commun</strong> sur les biais de l'IA.
+        </p>
+        <p class="text-ibi-fg2 leading-relaxed">
+          Chaque biais est classe selon la <strong class="text-ibi-fg">taxonomie TriAxis</strong> (Origine × Lifecycle × Specifique) et associe aux reglementations applicables.
+        </p>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold">O</div>
+            <div>
+              <h3 class="font-display font-semibold mb-1">Axe Origine</h3>
+              <p class="text-sm text-ibi-fg2">D'ou vient le biais ? Systemique (O1), computationnel (O2) ou humain-cognitif (O3).</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold">L</div>
+            <div>
+              <h3 class="font-display font-semibold mb-1">Axe Lifecycle</h3>
+              <p class="text-sm text-ibi-fg2">A quelle etape ? De L1_historique (collecte) a L6_deploiement (production).</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold">S</div>
+            <div>
+              <h3 class="font-display font-semibold mb-1">Axe Specifique</h3>
+              <p class="text-sm text-ibi-fg2">Nature precise : proxy, feedback, sampling, annotation... (28 categories).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AEXIA ═══ -->
+  <section class="bg-ibi-night text-white py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-12">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-4">Framework de gouvernance</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">AEXIA — Gouvernance de l'IA explicable</h2>
+        <p class="text-ibi-fg3 leading-relaxed mb-6">
+          AEXIA (Accountable, Ethical, eXplainable, Interpretable, Auditable AI) est un cadre integre qui articule la dimension methodologique de l'explicabilite, la maturite organisationnelle et la maturite individuelle des systemes deployes.
+        </p>
+        <a href="/aexia" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
+          Decouvrir AEXIA
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-ibi-marine rounded-xl border border-ibi-border p-6">
+          <div class="text-2xl mb-3">🧭</div>
+          <h3 class="font-display font-semibold mb-2">Double axe</h3>
+          <p class="text-sm text-ibi-fg3">AEXIA-O (organisation) et AEXIA-S (systeme), croises en matrice de decision.</p>
+        </div>
+        <div class="bg-ibi-marine rounded-xl border border-ibi-border p-6">
+          <div class="text-2xl mb-3">🧩</div>
+          <h3 class="font-display font-semibold mb-2">DCME, ECS, RAD</h3>
+          <p class="text-sm text-ibi-fg3">Trois contributions originales : explication causale multi-echelle, score de consistance, dette de responsabilite.</p>
+        </div>
+        <div class="bg-ibi-marine rounded-xl border border-ibi-border p-6">
+          <div class="text-2xl mb-3">🛡️</div>
+          <h3 class="font-display font-semibold mb-2">4 mecanismes</h3>
+          <p class="text-sm text-ibi-fg3">Maillon faible, portes probantes, retrogradation specifique a l'IA, proportionnalite au risque.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CITATION ═══ -->
+  <section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="bg-white rounded-2xl border border-ibi-border p-8 md:p-12">
+      <div class="max-w-3xl">
+        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Citer ce travail</h2>
+        <p class="text-ibi-fg2 mb-6">
+          Si vous utilisez cette API ou ces donnees dans vos travaux scientifiques, merci de citer :
+        </p>
+        <pre class="bg-ibi-arctic border border-ibi-border rounded-lg p-6 text-xs font-mono overflow-x-auto text-ibi-fg2">{bibtex}</pre>
+        <div class="mt-6">
+          <a href="https://doi.org/10.5281/zenodo.23400341" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ibi-primary font-display font-semibold hover:underline">
+            Voir la page Zenodo
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Rejoignez l'initiative</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">
+        Chercheurs, decideurs, ONG, institutions — cette base est ouverte. Contribuez, citez, critiquez. Ensemble, faisons de l'IA un outil equitable pour tous.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="mailto:contact@ia-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95 transition-colors">
+          Nous contacter
+        </a>
+        <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10 transition-colors">
+          Explorer la base
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
