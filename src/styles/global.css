@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 @theme {
   /* ═══ Couleurs officielles IA BIAIS INITIATIVE ═══ */
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* ═══ Gradient signature PRISM ═══ */
+/* ═══ Gradient signature AI BIAIS ═══ */
 .gradient-ibi {
   background: linear-gradient(135deg, #1A2BCC 0%, #2D46F5 33%, #6B1EE8 66%, #9B47FF 100%);
 }

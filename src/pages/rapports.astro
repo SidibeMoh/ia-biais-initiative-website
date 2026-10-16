@@ -30,6 +30,17 @@ const typesRapports = [
     color: "#1A2BCC"
   }
 ];
+
+const bibtexExemple = `@techreport{aibiais2026barometre1,
+  author      = {AI BIAIS INITIATIVE},
+  title       = {Baromètre #1 — Top 10 des biais IA en 2026},
+  institution = {AI BIAIS INITIATIVE},
+  year        = 2026,
+  month       = nov,
+  type        = {Rapport scientifique},
+  doi         = {10.5281/zenodo.XXXXXXX},
+  url         = {https://ai-biais-initiative.org/rapports}
+}`;
 ---
 
 <BaseLayout
@@ -225,7 +236,7 @@ const typesRapports = [
                 <span class="text-xs font-display font-bold px-2 py-1 rounded bg-ibi-primary/30 text-white">📚 Rapport annuel</span>
                 <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-white/10 text-ibi-fg3">Édition 2027</span>
               </div>
-              <h3 class="font-display font-bold text-xl mb-2">PRISM AI BIAS INDEX 2027 — État mondial des biais de l'IA</h3>
+              <h3 class="font-display font-bold text-xl mb-2">IBI INDEX 2027 — État mondial des biais de l'IA</h3>
               <p class="text-sm text-ibi-fg3 leading-relaxed">
                 Rapport de référence rassemblant l'ensemble des analyses de l'année. Contributions d'experts invités, projections 2028-2030, recommandations pour les décideurs publics et les institutions internationales.
               </p>
@@ -272,16 +283,7 @@ const typesRapports = [
         </div>
         <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8">
           <div class="text-xs font-display font-semibold tracking-wider uppercase text-ibi-primary mb-4">Exemple de citation</div>
-          <pre class="bg-black/40 rounded-lg p-5 text-xs font-mono text-ibi-fg3 overflow-x-auto leading-relaxed">@techreport{aibiais2026barometre1,
-  author      = {AI BIAIS INITIATIVE},
-  title       = {Baromètre \#1 — Top 10 des biais IA en 2026},
-  institution = {AI BIAIS INITIATIVE},
-  year        = 2026,
-  month       = nov,
-  type        = {Rapport scientifique},
-  doi         = {10.5281/zenodo.XXXXXXX},
-  url         = {https://ai-biais-initiative.org/rapports}
-}</pre>
+                    <pre class="bg-black/40 rounded-lg p-5 text-xs font-mono text-ibi-fg3 overflow-x-auto leading-relaxed">{bibtexExemple}</pre>
           <div class="mt-6 text-sm text-ibi-fg3 leading-relaxed">
             <strong class="text-white">NB :</strong> le DOI exact sera attribué à la publication. En attendant, vous pouvez citer l'API :
             <div class="mt-2 font-mono text-xs text-ibi-primary">10.5281/zenodo.23400341</div>
