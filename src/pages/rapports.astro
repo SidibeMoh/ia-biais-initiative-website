@@ -1,0 +1,347 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const typesRapports = [
+  {
+    icon: "📈",
+    titre: "Baromètre mensuel",
+    frequence: "Mensuel",
+    format: "2-3 pages",
+    desc: "Synthèse rapide et visuelle de l'actualité des biais algorithmiques. Top 10 des biais émergents, incidents marquants du mois, évolutions réglementaires.",
+    public: "Presse, LinkedIn, décideurs",
+    color: "#2D46F5"
+  },
+  {
+    icon: "📊",
+    titre: "Rapport sectoriel",
+    frequence: "Trimestriel",
+    format: "20-25 pages",
+    desc: "Analyse approfondie des biais propres à un secteur d'activité. Étude de cas, cartographie des risques, recommandations opérationnelles et obligations AI Act.",
+    public: "Entreprises, cabinets de conseil",
+    color: "#6B1EE8"
+  },
+  {
+    icon: "📚",
+    titre: "Rapport annuel",
+    frequence: "Annuel",
+    format: "50-80 pages",
+    desc: "État des lieux complet des biais de l'IA sur l'année écoulée. Analyse longitudinale, contributions d'experts invités, projections et recommandations stratégiques.",
+    public: "Institutions, académique, ONG",
+    color: "#1A2BCC"
+  }
+];
+---
+
+<BaseLayout
+  title="Rapports & analyses — AI BIAIS INITIATIVE"
+  description="Rapports périodiques sur les biais algorithmiques : baromètres mensuels, analyses sectorielles et rapport annuel."
+>
+  <!-- HERO -->
+  <section class="relative overflow-hidden bg-ibi-night text-white">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #2D46F5 0%, transparent 70%)"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style="background: radial-gradient(circle, #6B1EE8 0%, transparent 70%)"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">
+          Publications · Analyses périodiques
+        </p>
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
+          Rapports <span class="text-gradient-ibi">scientifiques</span>
+        </h1>
+        <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed mb-8">
+          Des analyses régulières sur les biais algorithmiques, conçues pour la communauté scientifique, les entreprises, les institutions et les décideurs publics. Citables via DOI Zenodo.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="#types" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
+            Découvrir les rapports
+            <span aria-hidden="true">↓</span>
+          </a>
+          <a href="mailto:contact@ai-biais-initiative.org?subject=Information%20Rapports" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
+            Nous contacter
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A VENIR -->
+  <section class="max-w-7xl mx-auto px-6 -mt-12 relative z-10">
+    <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl border-2 border-amber-200 p-8 md:p-10">
+      <div class="flex items-start gap-4">
+        <div class="text-4xl shrink-0">🚀</div>
+        <div class="flex-1">
+          <h2 class="font-display font-bold text-2xl md:text-3xl mb-3 text-amber-900">
+            Les premiers rapports arrivent bientôt
+          </h2>
+          <p class="text-amber-800 leading-relaxed mb-4">
+            La base de connaissances est en ligne. Les premiers rapports scientifiques seront publiés progressivement à partir de novembre 2026. Chaque rapport sera :
+          </p>
+          <ul class="grid md:grid-cols-2 gap-2 text-sm text-amber-800">
+            <li class="flex items-center gap-2"><span class="text-amber-600 font-bold">✓</span> Téléchargeable gratuitement en PDF</li>
+            <li class="flex items-center gap-2"><span class="text-amber-600 font-bold">✓</span> Citable via un DOI Zenodo dédié</li>
+            <li class="flex items-center gap-2"><span class="text-amber-600 font-bold">✓</span> Sous licence ouverte CC-BY 4.0</li>
+            <li class="flex items-center gap-2"><span class="text-amber-600 font-bold">✓</span> Fondé sur les 250 biais documentés</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES DE RAPPORTS -->
+  <section id="types" class="max-w-7xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mb-12">
+      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Trois formats</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Une gamme complète de publications</h2>
+      <p class="text-ibi-fg2 leading-relaxed">
+        Trois niveaux de profondeur pour répondre aux besoins de tous les publics : veille rapide, analyse sectorielle approfondie et synthèse annuelle de référence.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      {typesRapports.map((r) => (
+        <div class="bg-white rounded-2xl border border-ibi-border p-8 hover:shadow-lg hover:border-ibi-primary transition-all">
+          <div class="text-5xl mb-5">{r.icon}</div>
+          <h3 class="font-display font-bold text-xl mb-2">{r.titre}</h3>
+          <div class="flex flex-wrap gap-2 mb-5">
+            <span class="text-xs font-display font-semibold px-2 py-1 rounded" style={`background: ${r.color}20; color: ${r.color}`}>
+              {r.frequence}
+            </span>
+            <span class="text-xs font-display font-medium px-2 py-1 rounded bg-ibi-arctic text-ibi-fg2">
+              {r.format}
+            </span>
+          </div>
+          <p class="text-sm text-ibi-fg2 leading-relaxed mb-5">{r.desc}</p>
+          <div class="pt-4 border-t border-ibi-border">
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Public cible</div>
+            <div class="text-sm text-ibi-fg font-medium">{r.public}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+  <!-- PROCHAINS RAPPORTS -->
+  <section class="bg-ibi-arctic py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-12">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Roadmap</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Calendrier de publication</h2>
+        <p class="text-ibi-fg2 leading-relaxed">
+          Voici le calendrier indicatif des prochains rapports. Chaque publication sera accompagnée d'un DOI Zenodo et d'un communiqué de presse.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Novembre 2026 -->
+        <div class="bg-white rounded-2xl border border-ibi-border p-6 md:p-8 hover:shadow-lg transition-all">
+          <div class="flex flex-wrap items-start gap-6">
+            <div class="w-20 h-20 rounded-xl gradient-ibi flex flex-col items-center justify-center text-white shrink-0">
+              <div class="text-xs font-display font-semibold">NOV</div>
+              <div class="text-2xl font-display font-bold">2026</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-display font-bold px-2 py-1 rounded bg-blue-100 text-blue-800">📈 Baromètre</span>
+                <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800">À paraître</span>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-2">Baromètre #1 — Top 10 des biais IA en 2026</h3>
+              <p class="text-sm text-ibi-fg2 leading-relaxed">
+                Classement des 10 biais algorithmiques les plus critiques identifiés dans la base. Analyse des tendances 2026, incidents marquants et évolutions réglementaires.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Décembre 2026 -->
+        <div class="bg-white rounded-2xl border border-ibi-border p-6 md:p-8 hover:shadow-lg transition-all">
+          <div class="flex flex-wrap items-start gap-6">
+            <div class="w-20 h-20 rounded-xl gradient-ibi flex flex-col items-center justify-center text-white shrink-0">
+              <div class="text-xs font-display font-semibold">DÉC</div>
+              <div class="text-2xl font-display font-bold">2026</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-display font-bold px-2 py-1 rounded bg-purple-100 text-purple-800">📊 Rapport sectoriel</span>
+                <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800">À paraître</span>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-2">Rapport Finance 2026 — Biais algorithmiques dans les services financiers</h3>
+              <p class="text-sm text-ibi-fg2 leading-relaxed">
+                Analyse approfondie des biais dans le scoring de crédit, la détection de fraude et la gestion d'actifs. Cartographie des risques, obligations AI Act, recommandations opérationnelles.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Janvier 2027 -->
+        <div class="bg-white rounded-2xl border border-ibi-border p-6 md:p-8 hover:shadow-lg transition-all">
+          <div class="flex flex-wrap items-start gap-6">
+            <div class="w-20 h-20 rounded-xl gradient-ibi flex flex-col items-center justify-center text-white shrink-0">
+              <div class="text-xs font-display font-semibold">JAN</div>
+              <div class="text-2xl font-display font-bold">2027</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-display font-bold px-2 py-1 rounded bg-purple-100 text-purple-800">📊 Rapport sectoriel</span>
+                <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800">À paraître</span>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-2">Rapport Santé 2027 — IA médicale et équité d'accès aux soins</h3>
+              <p class="text-sm text-ibi-fg2 leading-relaxed">
+                Biais dans les systèmes d'aide au diagnostic, la télémédecine et la priorisation des patients. Enjeux éthiques, cas documentés et cadre réglementaire européen.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Février 2027 -->
+        <div class="bg-white rounded-2xl border border-ibi-border p-6 md:p-8 hover:shadow-lg transition-all">
+          <div class="flex flex-wrap items-start gap-6">
+            <div class="w-20 h-20 rounded-xl gradient-ibi flex flex-col items-center justify-center text-white shrink-0">
+              <div class="text-xs font-display font-semibold">FÉV</div>
+              <div class="text-2xl font-display font-bold">2027</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-display font-bold px-2 py-1 rounded bg-purple-100 text-purple-800">📊 Rapport sectoriel</span>
+                <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-amber-100 text-amber-800">À paraître</span>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-2">Rapport RH 2027 — Biais dans le recrutement algorithmique</h3>
+              <p class="text-sm text-ibi-fg2 leading-relaxed">
+                Biais de sélection, proxy discriminatoires et amplification des stéréotypes dans les outils de tri de CV. Conformité avec la directive européenne sur l'égalité de traitement.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rapport annuel -->
+        <div class="bg-gradient-to-r from-ibi-night to-ibi-marine rounded-2xl border border-ibi-primary/30 p-6 md:p-8 text-white">
+          <div class="flex flex-wrap items-start gap-6">
+            <div class="w-20 h-20 rounded-xl bg-white/10 backdrop-blur flex flex-col items-center justify-center shrink-0">
+              <div class="text-xs font-display font-semibold text-ibi-fg3">ÉTÉ</div>
+              <div class="text-2xl font-display font-bold">2027</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <span class="text-xs font-display font-bold px-2 py-1 rounded bg-ibi-primary/30 text-white">📚 Rapport annuel</span>
+                <span class="text-xs font-display font-semibold px-2 py-1 rounded bg-white/10 text-ibi-fg3">Édition 2027</span>
+              </div>
+              <h3 class="font-display font-bold text-xl mb-2">PRISM AI BIAS INDEX 2027 — État mondial des biais de l'IA</h3>
+              <p class="text-sm text-ibi-fg3 leading-relaxed">
+                Rapport de référence rassemblant l'ensemble des analyses de l'année. Contributions d'experts invités, projections 2028-2030, recommandations pour les décideurs publics et les institutions internationales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT CITER -->
+  <section class="bg-ibi-night text-white py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Citation académique</p>
+          <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">Comment citer nos rapports</h2>
+          <p class="text-ibi-fg3 leading-relaxed mb-6">
+            Chaque rapport publié recevra un <strong class="text-white">DOI Zenodo</strong> unique, ce qui permet aux chercheurs, universitaires et institutions de le citer de manière standardisée dans leurs travaux.
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-ibi-primary/20 flex items-center justify-center text-ibi-primary font-bold text-sm shrink-0">1</div>
+              <div>
+                <div class="font-display font-semibold mb-1">Le DOI est attribué automatiquement</div>
+                <div class="text-sm text-ibi-fg3">Dès la publication sur Zenodo</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-ibi-primary/20 flex items-center justify-center text-ibi-primary font-bold text-sm shrink-0">2</div>
+              <div>
+                <div class="font-display font-semibold mb-1">Un format BibTeX est fourni</div>
+                <div class="text-sm text-ibi-fg3">Copiez-collez directement dans LaTeX, Word ou Zotero</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-ibi-primary/20 flex items-center justify-center text-ibi-primary font-bold text-sm shrink-0">3</div>
+              <div>
+                <div class="font-display font-semibold mb-1">Les rapports sont CC-BY 4.0</div>
+                <div class="text-sm text-ibi-fg3">Réutilisables librement avec attribution</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8">
+          <div class="text-xs font-display font-semibold tracking-wider uppercase text-ibi-primary mb-4">Exemple de citation</div>
+          <pre class="bg-black/40 rounded-lg p-5 text-xs font-mono text-ibi-fg3 overflow-x-auto leading-relaxed">@techreport{aibiais2026barometre1,
+  author      = {AI BIAIS INITIATIVE},
+  title       = {Baromètre \#1 — Top 10 des biais IA en 2026},
+  institution = {AI BIAIS INITIATIVE},
+  year        = 2026,
+  month       = nov,
+  type        = {Rapport scientifique},
+  doi         = {10.5281/zenodo.XXXXXXX},
+  url         = {https://ai-biais-initiative.org/rapports}
+}</pre>
+          <div class="mt-6 text-sm text-ibi-fg3 leading-relaxed">
+            <strong class="text-white">NB :</strong> le DOI exact sera attribué à la publication. En attendant, vous pouvez citer l'API :
+            <div class="mt-2 font-mono text-xs text-ibi-primary">10.5281/zenodo.23400341</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="bg-white rounded-2xl border border-ibi-border p-8 md:p-12">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Restez informé</p>
+          <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Soyez alerté à chaque publication</h2>
+          <p class="text-ibi-fg2 leading-relaxed mb-6">
+            Pour être notifié dès la sortie d'un nouveau rapport, écrivez-nous à l'adresse ci-dessous. Vous recevrez un email à chaque publication.
+          </p>
+          <a href="mailto:contact@ai-biais-initiative.org?subject=Alerte%20Rapports%20-%20Inscription" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">
+            <span>📧</span>
+            S'inscrire aux alertes
+          </a>
+        </div>
+        <div class="bg-ibi-arctic rounded-xl p-6 border border-ibi-border">
+          <div class="text-xs font-display font-semibold tracking-wider uppercase text-ibi-fg3 mb-4">Résumé de la roadmap</div>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between items-center py-2 border-b border-ibi-border">
+              <span class="text-ibi-fg2">📈 Baromètre mensuel</span>
+              <span class="font-display font-semibold text-ibi-primary">Dès Nov 2026</span>
+            </div>
+            <div class="flex justify-between items-center py-2 border-b border-ibi-border">
+              <span class="text-ibi-fg2">📊 Rapports sectoriels</span>
+              <span class="font-display font-semibold text-ibi-primary">1 / trimestre</span>
+            </div>
+            <div class="flex justify-between items-center py-2">
+              <span class="text-ibi-fg2">📚 Rapport annuel</span>
+              <span class="font-display font-semibold text-ibi-primary">Été 2027</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Contribuer aux rapports</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">
+        Vous êtes chercheur, expert ou institution et souhaitez contribuer à un rapport ? Nous sommes ouverts aux co-publications et contributions d'experts invités.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="mailto:contact@ai-biais-initiative.org?subject=Contribution%20Rapports" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95 transition-colors">
+          Proposer une contribution
+        </a>
+        <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10 transition-colors">
+          Explorer la base
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

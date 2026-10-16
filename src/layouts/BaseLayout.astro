@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  title = "IA BIAIS INITIATIVE — Le référentiel mondial des biais algorithmiques",
+  title = "AI BIAIS INITIATIVE — Le référentiel mondial des biais algorithmiques",
   description = "API REST ouverte documentant 250 biais, 68 réglementations mondiales et 21 vues analytiques pour la gouvernance éthique de l'IA.",
 } = Astro.props;
 
@@ -18,6 +18,7 @@ const navLinks = [
   { href: "/reglementations", label: "Réglementations" },
   { href: "/methodologie", label: "Methodologie" },
   { href: "/aexia", label: "AEXIA" },
+  { href: "/rapports", label: "Rapports" },
   { href: "/api", label: "API" },
   { href: "/a-propos", label: "A propos" },
 ];
@@ -30,7 +31,7 @@ const navLinks = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="Mohamadou SIDIBE — IA BIAIS INITIATIVE" />
+    <meta name="author" content="AI BIAIS INITIATIVE" />
     <meta name="theme-color" content="#070C24" />
     
     <!-- Open Graph -->
@@ -61,17 +62,17 @@ const navLinks = [
 
     <!-- Header -->
     <header class="sticky top-0 z-40 backdrop-blur-lg bg-ibi-night/80 border-b border-ibi-border">
-      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8" aria-label="Navigation principale">
-        <a href="/" class="flex items-center shrink-0" aria-label="Accueil IA BIAIS INITIATIVE">
+      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4" aria-label="Navigation principale">
+        <a href="/" class="flex items-center shrink-0" aria-label="Accueil AI BIAIS INITIATIVE">
           <Logo class="h-16 md:h-20 w-auto" variant="light" />
         </a>
         
-        <ul class="hidden md:flex items-center gap-1">
+        <ul class="hidden md:flex items-center gap-0.5">
           {navLinks.map((link) => (
             <li>
               <a
                 href={link.href}
-                class="px-3 py-2 text-sm font-medium text-ibi-fg3 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+                class="px-2.5 py-2 text-xs font-medium text-ibi-fg3 hover:text-white transition-colors rounded-lg hover:bg-white/5 whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -119,6 +120,7 @@ const navLinks = [
         <div>
           <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-4">Ressources</h3>
           <ul class="space-y-2 text-sm">
+            <li><a href="/rapports" class="hover:text-white transition-colors">Rapports & analyses</a></li>
             <li><a href="/api" class="hover:text-white transition-colors">Documentation API</a></li>
             <li><a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub</a></li>
             <li><a href="https://doi.org/10.5281/zenodo.23400341" target="_blank" rel="noopener" class="hover:text-white transition-colors">DOI Zenodo</a></li>
@@ -129,7 +131,7 @@ const navLinks = [
       
       <div class="border-t border-ibi-border">
         <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-          <p>© 2026 Mohamadou SIDIBE — IA BIAIS INITIATIVE. Licence CC-BY 4.0.</p>
+          <p>© 2026 AI BIAIS INITIATIVE. Licence CC-BY 4.0.</p>
           <p>Fait avec rigueur scientifique et citoyenne.</p>
         </div>
       </div>
