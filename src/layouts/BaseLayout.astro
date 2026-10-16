@@ -8,14 +8,14 @@ interface Props {
 }
 
 const {
-  title = "IA BIAIS INITIATIVE — Le referentiel mondial des biais algorithmiques",
-  description = "API REST ouverte documentant 250 biais, 68 reglementations mondiales et 21 vues analytiques pour la gouvernance ethique de l'IA.",
+  title = "IA BIAIS INITIATIVE — Le référentiel mondial des biais algorithmiques",
+  description = "API REST ouverte documentant 250 biais, 68 réglementations mondiales et 21 vues analytiques pour la gouvernance éthique de l'IA.",
 } = Astro.props;
 
 const navLinks = [
   { href: "/", label: "Accueil" },
   { href: "/biais", label: "Biais" },
-  { href: "/reglementations", label: "Reglementations" },
+  { href: "/reglementations", label: "Réglementations" },
   { href: "/methodologie", label: "Methodologie" },
   { href: "/aexia", label: "AEXIA" },
   { href: "/api", label: "API" },
@@ -102,7 +102,7 @@ const navLinks = [
         <div class="md:col-span-2">
           <Logo class="h-14 w-auto mb-4" variant="light" showDomain />
           <p class="text-sm leading-relaxed max-w-md">
-            Le referentiel mondial des biais algorithmiques. Une initiative citoyenne pour une IA ethique, explicable et responsable.
+            Le référentiel mondial des biais algorithmiques. Une initiative citoyenne pour une IA éthique, explicable et responsable.
           </p>
         </div>
         
@@ -110,7 +110,7 @@ const navLinks = [
           <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-4">Explorer</h3>
           <ul class="space-y-2 text-sm">
             <li><a href="/biais" class="hover:text-white transition-colors">Les 250 biais</a></li>
-            <li><a href="/reglementations" class="hover:text-white transition-colors">68 reglementations</a></li>
+            <li><a href="/reglementations" class="hover:text-white transition-colors">68 réglementations</a></li>
             <li><a href="/methodologie" class="hover:text-white transition-colors">Taxonomie TriAxis</a></li>
             <li><a href="/aexia" class="hover:text-white transition-colors">Framework AEXIA</a></li>
           </ul>
