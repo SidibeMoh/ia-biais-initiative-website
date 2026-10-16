@@ -1,0 +1,386 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const API_URL = "https://ibi-postgrest.onrender.com";
+const BIAIS_PAR_PAGE = 24;
+---
+
+<BaseLayout
+  title="Les 250 biais de l'IA — IA BIAIS INITIATIVE"
+  description="Explorateur interactif des 250 biais algorithmiques documentés. Recherche, filtres TriAxis, tri par score."
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden bg-ibi-night text-white">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #2D46F5 0%, transparent 70%)"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Explorateur · 250 biais</p>
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
+          Les 250 biais <span class="text-gradient-ibi">de l'IA</span>
+        </h1>
+        <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed">
+          Recherchez, filtrez et explorez la base de connaissances. Chaque biais est classé selon la taxonomie TriAxis et documenté avec ses métriques de détection.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FILTRES + RECHERCHE ═══ -->
+  <section class="bg-white border-b border-ibi-border sticky top-16 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+        
+        <!-- Recherche -->
+        <div class="md:col-span-6">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Recherche</label>
+          <input
+            id="search-input"
+            type="text"
+            placeholder="Ex: proxy, LLM, discrimination..."
+            class="w-full px-4 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none focus:ring-2 focus:ring-ibi-primary/20 transition-all"
+          />
+        </div>
+
+        <!-- Tri -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Trier par</label>
+          <select id="sort-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="score_ibi.desc">Score (élevé → faible)</option>
+            <option value="score_ibi.asc">Score (faible → élevé)</option>
+            <option value="ibi_id.asc">Identifiant IBI (A→Z)</option>
+            <option value="nom_fr.asc">Nom (A→Z)</option>
+          </select>
+        </div>
+
+        <!-- Limite -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📄 Par page</label>
+          <select id="limit-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="12">12</option>
+            <option value="24" selected>24</option>
+            <option value="48">48</option>
+            <option value="96">96</option>
+          </select>
+        </div>
+
+        <!-- Axe O -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🧭 Axe Origine</label>
+          <select id="filter-o" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="">Tous</option>
+            <option value="O1_systemique">O1 — Systémique</option>
+            <option value="O2_computationnel">O2 — Computationnel</option>
+            <option value="O3_humain_cognitif">O3 — Humain-cognitif</option>
+          </select>
+        </div>
+
+        <!-- Axe L -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔄 Axe Lifecycle</label>
+          <select id="filter-l" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="">Tous</option>
+            <option value="L1_historique">L1 — Historique</option>
+            <option value="L2_representation">L2 — Représentation</option>
+            <option value="L3_mesure">L3 — Mesure</option>
+            <option value="L4_agregation">L4 — Agrégation</option>
+            <option value="L5_evaluation">L5 — Évaluation</option>
+            <option value="L6_deploiement">L6 — Déploiement</option>
+          </select>
+        </div>
+
+        <!-- Sévérité -->
+        <div class="md:col-span-3">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚠ Sévérité</label>
+          <select id="filter-sev" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="">Toutes</option>
+            <option value="5_critique">5 — Critique</option>
+            <option value="4_grave">4 — Grave</option>
+            <option value="3_modere">3 — Modéré</option>
+            <option value="1_faible">1-2 — Faible</option>
+          </select>
+        </div>
+
+        <!-- Reset -->
+        <div class="md:col-span-3 flex items-end">
+          <button id="reset-btn" class="w-full px-4 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic transition-colors">
+            ↺ Réinitialiser
+          </button>
+        </div>
+      </div>
+
+      <!-- Compteur -->
+      <div class="mt-4 flex items-center justify-between text-sm">
+        <div class="text-ibi-fg2">
+          <span id="results-count" class="font-display font-semibold text-ibi-primary">—</span>
+          <span> biais trouvés</span>
+        </div>
+        <div id="loading-indicator" class="hidden text-ibi-fg3">
+          <span class="inline-block animate-spin">⏳</span> Chargement...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ GRILLE DE BIAIS ═══ -->
+  <section class="bg-ibi-arctic py-12 min-h-[600px]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Les cartes seront injectées ici par JavaScript -->
+      </div>
+
+      <!-- Message vide -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">🔍</div>
+        <h3 class="font-display font-semibold text-xl mb-2">Aucun biais trouvé</h3>
+        <p class="text-ibi-fg2">Essayez d'autres critères de recherche.</p>
+      </div>
+
+      <!-- Message d'erreur -->
+      <div id="error-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">⚠️</div>
+        <h3 class="font-display font-semibold text-xl mb-2">Erreur de chargement</h3>
+        <p class="text-ibi-fg2 mb-4">Impossible de contacter l'API. Réessayez dans quelques instants.</p>
+        <button onclick="location.reload()" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white">
+          Réessayer
+        </button>
+      </div>
+
+      <!-- Pagination -->
+      <div id="pagination" class="hidden mt-12 flex items-center justify-center gap-2">
+        <button id="prev-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">
+          ← Précédent
+        </button>
+        <div id="page-info" class="px-4 py-2 text-sm text-ibi-fg2">Page 1</div>
+        <button id="next-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">
+          Suivant →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Contribuer à la base</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">
+        Un biais manque ? Une source à ajouter ? Cette base est ouverte et évolutive. Contribuez via l'API ou par email.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
+          Documentation API
+        </a>
+        <a href="mailto:contact@ia-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SCRIPT ═══ -->
+  <script define:vars={{ API_URL, BIAIS_PAR_PAGE }}>
+    (function() {
+      // État
+      let state = {
+        search: '',
+        sort: 'score_ibi.desc',
+        limit: BIAIS_PAR_PAGE,
+        offset: 0,
+        axeO: '',
+        axeL: '',
+        severite: '',
+        total: 0,
+      };
+
+      // Éléments
+      const $ = (id) => document.getElementById(id);
+      const searchInput = $('search-input');
+      const sortSelect = $('sort-select');
+      const limitSelect = $('limit-select');
+      const filterO = $('filter-o');
+      const filterL = $('filter-l');
+      const filterSev = $('filter-sev');
+      const resetBtn = $('reset-btn');
+      const grid = $('results-grid');
+      const emptyState = $('empty-state');
+      const errorState = $('error-state');
+      const pagination = $('pagination');
+      const prevBtn = $('prev-btn');
+      const nextBtn = $('next-btn');
+      const pageInfo = $('page-info');
+      const resultsCount = $('results-count');
+      const loadingIndicator = $('loading-indicator');
+
+      // Échappement HTML
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      // Troncature
+      function truncate(str, max) {
+        if (!str) return '';
+        return str.length > max ? str.slice(0, max) + '…' : str;
+      }
+
+      // Couleur sévérité
+      function severityBadge(sev) {
+        const map = {
+          '5_critique': { label: '5 Critique', color: 'bg-red-100 text-red-800 border-red-200' },
+          '4_grave':    { label: '4 Grave',    color: 'bg-amber-100 text-amber-800 border-amber-200' },
+          '3_modere':   { label: '3 Modéré',   color: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
+          '1_faible':   { label: '1-2 Faible', color: 'bg-green-100 text-green-800 border-green-200' },
+        };
+        return map[sev] || { label: sev || '—', color: 'bg-gray-100 text-gray-700 border-gray-200' };
+      }
+
+      // Rendu d'une carte
+      function renderCard(b) {
+        const sev = severityBadge(b.severite);
+        const score = b.score_ibi ? Number(b.score_ibi).toFixed(1) : '—';
+        return `
+          <a href="/biais/${escapeHtml(b.ibi_id)}"
+             class="group bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-arctic text-ibi-primary">${escapeHtml(b.ibi_id)}</span>
+              <span class="text-xs font-display font-bold text-gradient-ibi">${score}</span>
+            </div>
+            <h3 class="font-display font-semibold text-base mb-2 group-hover:text-ibi-primary transition-colors leading-snug">
+              ${escapeHtml(b.nom_fr)}
+            </h3>
+            <p class="text-xs text-ibi-fg3 italic mb-3">${escapeHtml(b.nom_en)}</p>
+            <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(b.definition_fr, 120))}</p>
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(b.axe_o || '')}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(b.axe_l || '')}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(b.axe_s || '')}</span>
+            </div>
+            <span class="inline-block text-[10px] font-display font-semibold px-2 py-1 rounded border ${sev.color}">
+              ${escapeHtml(sev.label)}
+            </span>
+          </a>
+        `;
+      }
+
+      // Construction de l'URL
+      function buildUrl() {
+        const params = new URLSearchParams();
+        params.set('select', '*');
+        params.set('order', state.sort);
+        params.set('limit', state.limit);
+        params.set('offset', state.offset);
+        params.set('actif', 'eq.true');
+        params.set('statut', 'eq.publie');
+
+        if (state.axeO)    params.set('axe_o', 'eq.' + state.axeO);
+        if (state.axeL)    params.set('axe_l', 'eq.' + state.axeL);
+        if (state.severite) params.set('severite', 'eq.' + state.severite);
+
+        // Recherche : on utilise la vue v_api_recherche si recherche active
+        // Sinon on utilise v_api_biais_liste
+        let url;
+        if (state.search) {
+          const searchParams = new URLSearchParams();
+          searchParams.set('q', 'ilike.*' + state.search + '*');
+          searchParams.set('limit', state.limit);
+          searchParams.set('offset', state.offset);
+          if (state.axeO)    searchParams.set('axe_o', 'eq.' + state.axeO);
+          if (state.axeL)    searchParams.set('axe_l', 'eq.' + state.axeL);
+          if (state.severite) searchParams.set('severite', 'eq.' + state.severite);
+          url = API_URL + '/v_api_biais_liste?' + searchParams.toString();
+        } else {
+          url = API_URL + '/v_api_biais_liste?' + params.toString();
+        }
+        return url;
+      }
+
+      // Chargement
+      async function load() {
+        loadingIndicator.classList.remove('hidden');
+        errorState.classList.add('hidden');
+        try {
+          const url = buildUrl();
+          const countUrl = url.replace(/[&?]limit=[^&]*/, ').replace(/[&?]offset=[^&]*/, ');
+          const res = await fetch(url, {
+            headers: { 'Prefer': 'count=exact' }
+          });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const data = await res.json();
+          const range = res.headers.get('Content-Range') || ';
+          const totalMatch = range.match(/\/(\d+)/);
+          state.total = totalMatch ? parseInt(totalMatch[1]) : data.length;
+
+          // Rendu
+          if (!data || data.length === 0) {
+            grid.innerHTML = ';
+            emptyState.classList.remove('hidden');
+            pagination.classList.add('hidden');
+          } else {
+            grid.innerHTML = data.map(renderCard).join(');
+            emptyState.classList.add('hidden');
+            pagination.classList.remove('hidden');
+            pagination.classList.add('flex');
+          }
+
+          // Compteur
+          resultsCount.textContent = state.total;
+
+          // Pagination
+          const currentPage = Math.floor(state.offset / state.limit) + 1;
+          const totalPages = Math.max(1, Math.ceil(state.total / state.limit));
+          pageInfo.textContent = 'Page ' + currentPage + ' / ' + totalPages;
+          prevBtn.disabled = state.offset === 0;
+          nextBtn.disabled = state.offset + state.limit >= state.total;
+
+        } catch (err) {
+          console.error('Erreur:', err);
+          grid.innerHTML = ';
+          errorState.classList.remove('hidden');
+          pagination.classList.add('hidden');
+        } finally {
+          loadingIndicator.classList.add('hidden');
+        }
+      }
+
+      // Debounce
+      let searchTimer;
+      function debouncedSearch() {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+          state.search = searchInput.value.trim();
+          state.offset = 0;
+          load();
+        }, 400);
+      }
+
+      // Événements
+      searchInput.addEventListener('input', debouncedSearch);
+      sortSelect.addEventListener('change', () => { state.sort = sortSelect.value; state.offset = 0; load(); });
+      limitSelect.addEventListener('change', () => { state.limit = parseInt(limitSelect.value); state.offset = 0; load(); });
+      filterO.addEventListener('change', () => { state.axeO = filterO.value; state.offset = 0; load(); });
+      filterL.addEventListener('change', () => { state.axeL = filterL.value; state.offset = 0; load(); });
+      filterSev.addEventListener('change', () => { state.severite = filterSev.value; state.offset = 0; load(); });
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = ';
+        sortSelect.value = 'score_ibi.desc';
+        limitSelect.value = String(BIAIS_PAR_PAGE);
+        filterO.value = ';
+        filterL.value = ';
+        filterSev.value = ';
+        state = { search: '', sort: 'score_ibi.desc', limit: BIAIS_PAR_PAGE, offset: 0, axeO: '', axeL: '', severite: '', total: 0 };
+        load();
+      });
+      prevBtn.addEventListener('click', () => { state.offset = Math.max(0, state.offset - state.limit); load(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+      nextBtn.addEventListener('click', () => { state.offset += state.limit; load(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+      // Chargement initial
+      load();
+    })();
+  </script>
+</BaseLayout>
