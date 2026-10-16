@@ -1,0 +1,259 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const API_URL = "https://ibi-postgrest.onrender.com";
+const REGL_PAR_PAGE = 20;
+---
+
+<BaseLayout
+  title="Les 68 réglementations mondiales — IA BIAIS INITIATIVE"
+  description="Référentiel des réglementations mondiales sur l'IA : EU AI Act, UNESCO, OCDE, RGPD et 64 autres."
+>
+  <section class="relative overflow-hidden bg-ibi-night text-white">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #6B1EE8 0%, transparent 70%)"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Référentiel · 68 réglementations</p>
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
+          Les réglementations <span class="text-gradient-ibi">mondiales</span> de l'IA
+        </h1>
+        <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed">
+          EU AI Act, UNESCO, OCDE, RGPD, NIST AI RMF et 63 autres cadres réglementaires mondiaux. Filtrez par juridiction, type d'obligation et consultez les sanctions applicables.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white border-b border-ibi-border sticky top-16 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <div class="flex flex-wrap items-end gap-3">
+        <div class="flex-1 min-w-[200px]">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Recherche</label>
+          <input id="search-input" type="text" placeholder="Ex: AI Act, RGPD, transparence..."
+            class="w-full px-4 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none focus:ring-2 focus:ring-ibi-primary/20 transition-all" />
+        </div>
+        <div class="w-36">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚖ Juridiction</label>
+          <select id="filter-juridiction" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="">Toutes</option>
+          </select>
+        </div>
+        <div class="w-36">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📋 Type</label>
+          <select id="filter-type" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="">Tous</option>
+          </select>
+        </div>
+        <button id="reset-btn" class="px-3 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic transition-colors" title="Réinitialiser">↺</button>
+        <div class="w-32">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Tri</label>
+          <select id="sort-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="code.asc">Code</option>
+            <option value="juridiction.asc">Juridiction</option>
+            <option value="texte.asc">Texte</option>
+          </select>
+        </div>
+        <div class="w-24">
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📄 Par page</label>
+          <select id="limit-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="68">68</option>
+          </select>
+        </div>
+      </div>
+      <div class="mt-4 flex items-center justify-between text-sm">
+        <div class="text-ibi-fg2">
+          <span id="results-count" class="font-display font-semibold text-ibi-primary">—</span>
+          <span> réglementations trouvées</span>
+        </div>
+        <div id="loading-indicator" class="hidden text-ibi-fg3">
+          <span class="inline-block animate-spin">⏳</span> Chargement...
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-ibi-arctic py-12 min-h-[600px]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">🔍</div>
+        <h3 class="font-display font-semibold text-xl mb-2">Aucune réglementation trouvée</h3>
+        <p class="text-ibi-fg2">Essayez d'autres critères de recherche.</p>
+      </div>
+      <div id="error-state" class="hidden text-center py-20">
+        <div class="text-6xl mb-4">⚠️</div>
+        <h3 class="font-display font-semibold text-xl mb-2">Erreur de chargement</h3>
+        <p class="text-ibi-fg2 mb-4">Impossible de contacter l'API.</p>
+        <button onclick="location.reload()" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white">Réessayer</button>
+      </div>
+      <div id="pagination" class="hidden mt-12 flex items-center justify-center gap-2">
+        <button id="prev-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">← Précédent</button>
+        <div id="page-info" class="px-4 py-2 text-sm text-ibi-fg2">Page 1</div>
+        <button id="next-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">Suivant →</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Conformité et gouvernance</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">
+        Les réglementations évoluent. Cette base est mise à jour en continu pour refléter l'état du droit mondial sur l'IA.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/aexia" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">Framework AEXIA</a>
+        <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Accès API</a>
+      </div>
+    </div>
+  </section>
+
+  <script define:vars={{ API_URL, REGL_PAR_PAGE }}>
+    (function() {
+      let state = { search: "", sort: "code.asc", limit: REGL_PAR_PAGE, offset: 0, juridiction: "", type: "", total: 0 };
+
+      const $ = (id) => document.getElementById(id);
+      const searchInput = $("search-input");
+      const sortSelect = $("sort-select");
+      const limitSelect = $("limit-select");
+      const filterJuridiction = $("filter-juridiction");
+      const filterType = $("filter-type");
+      const resetBtn = $("reset-btn");
+      const grid = $("results-grid");
+      const emptyState = $("empty-state");
+      const errorState = $("error-state");
+      const pagination = $("pagination");
+      const prevBtn = $("prev-btn");
+      const nextBtn = $("next-btn");
+      const pageInfo = $("page-info");
+      const resultsCount = $("results-count");
+      const loadingIndicator = $("loading-indicator");
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return "";
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      function truncate(str, max) {
+        if (!str) return "";
+        return str.length > max ? str.slice(0, max) + "..." : str;
+      }
+
+      function renderCard(r) {
+        return `
+          <div class="bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
+            <div class="flex flex-wrap items-center gap-2 mb-4">
+              <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-primary/10 text-ibi-primary font-semibold">${escapeHtml(r.code || "")}</span>
+              <span class="text-xs font-display font-medium px-2 py-1 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(r.juridiction || "—")}</span>
+              ${r.type_obligation ? `<span class="text-xs font-display font-medium px-2 py-1 rounded bg-violet-100 text-violet-800">${escapeHtml(r.type_obligation)}</span>` : ""}
+            </div>
+            <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "—")}</h3>
+            ${r.article ? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.article)}</strong></p>` : ""}
+            <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(r.obligation, 180))}</p>
+            ${r.deadline ? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}
+            ${r.sanction ? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Sanction :</strong> ${escapeHtml(truncate(r.sanction, 120))}</div>` : ""}
+          </div>
+        `;
+      }
+
+      function buildUrl() {
+        const params = new URLSearchParams();
+        params.set("select", "*");
+        params.set("order", state.sort);
+        params.set("limit", state.limit);
+        params.set("offset", state.offset);
+        if (state.juridiction) params.set("juridiction", "eq." + state.juridiction);
+        if (state.type) params.set("type_obligation", "eq." + state.type);
+        if (state.search) params.set("or", "(texte.ilike.*" + state.search + "*,code.ilike.*" + state.search + "*,obligation.ilike.*" + state.search + "*)");
+        return API_URL + "/v_api_regulations?" + params.toString();
+      }
+
+      async function load() {
+        loadingIndicator.classList.remove("hidden");
+        errorState.classList.add("hidden");
+        try {
+          const url = buildUrl();
+          const res = await fetch(url, { headers: { "Prefer": "count=exact" } });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const data = await res.json();
+          const range = res.headers.get("Content-Range") || "";
+          const totalMatch = range.match(/\/(\d+)/);
+          state.total = totalMatch ? parseInt(totalMatch[1]) : (data ? data.length : 0);
+
+          if (!data || data.length === 0) {
+            grid.innerHTML = "";
+            emptyState.classList.remove("hidden");
+            pagination.classList.add("hidden");
+          } else {
+            grid.innerHTML = data.map(renderCard).join("");
+            emptyState.classList.add("hidden");
+            pagination.classList.remove("hidden");
+            pagination.classList.add("flex");
+          }
+          resultsCount.textContent = state.total;
+          const currentPage = Math.floor(state.offset / state.limit) + 1;
+          const totalPages = Math.max(1, Math.ceil(state.total / state.limit));
+          pageInfo.textContent = "Page " + currentPage + " / " + totalPages;
+          prevBtn.disabled = state.offset === 0;
+          nextBtn.disabled = state.offset + state.limit >= state.total;
+        } catch (err) {
+          console.error("Erreur:", err);
+          grid.innerHTML = "";
+          errorState.classList.remove("hidden");
+          pagination.classList.add("hidden");
+        } finally {
+          loadingIndicator.classList.add("hidden");
+        }
+      }
+
+      async function loadFilters() {
+        try {
+          const url = API_URL + "/v_api_regulations?select=juridiction,type_obligation";
+          const res = await fetch(url);
+          const data = await res.json();
+          const jurisdictions = [...new Set(data.map(d => d.juridiction).filter(Boolean))].sort();
+          const types = [...new Set(data.map(d => d.type_obligation).filter(Boolean))].sort();
+          jurisdictions.forEach(j => {
+            const opt = document.createElement("option");
+            opt.value = j; opt.textContent = j;
+            filterJuridiction.appendChild(opt);
+          });
+          types.forEach(t => {
+            const opt = document.createElement("option");
+            opt.value = t; opt.textContent = t;
+            filterType.appendChild(opt);
+          });
+        } catch (err) {
+          console.error("Erreur chargement filtres:", err);
+        }
+      }
+
+      let searchTimer;
+      searchInput.addEventListener("input", () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => { state.search = searchInput.value.trim(); state.offset = 0; load(); }, 400);
+      });
+      sortSelect.addEventListener("change", () => { state.sort = sortSelect.value; state.offset = 0; load(); });
+      limitSelect.addEventListener("change", () => { state.limit = parseInt(limitSelect.value); state.offset = 0; load(); });
+      filterJuridiction.addEventListener("change", () => { state.juridiction = filterJuridiction.value; state.offset = 0; load(); });
+      filterType.addEventListener("change", () => { state.type = filterType.value; state.offset = 0; load(); });
+      resetBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        sortSelect.value = "code.asc";
+        limitSelect.value = String(REGL_PAR_PAGE);
+        filterJuridiction.value = "";
+        filterType.value = "";
+        state = { search: "", sort: "code.asc", limit: REGL_PAR_PAGE, offset: 0, juridiction: "", type: "", total: 0 };
+        load();
+      });
+      prevBtn.addEventListener("click", () => { state.offset = Math.max(0, state.offset - state.limit); load(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+      nextBtn.addEventListener("click", () => { state.offset += state.limit; load(); window.scrollTo({ top: 0, behavior: "smooth" }); });
+
+      loadFilters();
+      load();
+    })();
+  </script>
+</BaseLayout>
