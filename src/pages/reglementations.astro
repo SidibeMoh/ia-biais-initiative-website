@@ -29,25 +29,25 @@ const REGL_PAR_PAGE = 20;
   <section class="bg-white border-b border-ibi-border sticky top-16 z-30 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-6">
       <div class="flex flex-wrap items-end gap-3">
-        <div class="flex-1 min-w-[200px]">
+        <div class="flex-1 min-w-[240px]">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Recherche</label>
           <input id="search-input" type="text" placeholder="Ex: AI Act, RGPD, transparence..."
             class="w-full px-4 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none focus:ring-2 focus:ring-ibi-primary/20 transition-all" />
         </div>
-        <div class="w-36">
+        <div class="w-44">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚖ Juridiction</label>
           <select id="filter-juridiction" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Toutes</option>
           </select>
         </div>
-        <div class="w-36">
+        <div class="w-40">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📋 Type</label>
           <select id="filter-type" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Tous</option>
           </select>
         </div>
         <button id="reset-btn" class="px-3 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic transition-colors" title="Réinitialiser">↺</button>
-        <div class="w-32">
+        <div class="w-40">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Tri</label>
           <select id="sort-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="code.asc">Code</option>
@@ -55,7 +55,7 @@ const REGL_PAR_PAGE = 20;
             <option value="texte.asc">Texte</option>
           </select>
         </div>
-        <div class="w-24">
+        <div class="w-28">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📄 Par page</label>
           <select id="limit-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="10">10</option>
