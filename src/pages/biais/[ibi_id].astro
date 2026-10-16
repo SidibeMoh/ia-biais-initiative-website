@@ -1,11 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const API_URL = "https://ibi-postgrest.onrender.com";
+const API_URL = "https://api.ai-biais-initiative.org";
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("https://ibi-postgrest.onrender.com/biais?select=ibi_id&limit=1000");
+    const res = await fetch("https://api.ai-biais-initiative.org/biais?select=ibi_id&limit=1000");
     if (!res.ok) {
       console.warn("Erreur API:", res.status);
       return [];
