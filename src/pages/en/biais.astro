@@ -2,12 +2,12 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const API_URL = "https://api.ai-biais-initiative.org";
-const BIAIS_PAR_PAGE = 24;
+const BIAIS_PAR_Page = 24;
 ---
 
 <BaseLayout
-  title="Les 250 biais de l'IA - AI BIAIS INITIATIVE"
-  description="Explorateur interactif des 250 biais algorithmiques documentés. Recherche, filtres TriAxis, tri par score."
+  title="The 250 AI Biases - AI BIAIS INITIATIVE"
+  description="EXPLORER interactif des 250 BIASES algorithmiques documentés. Search, filtres TriAxis, tri par score."
 >
   <!-- ═══ HERO ═══ -->
   <section class="relative overflow-hidden bg-ibi-night text-white">
@@ -16,25 +16,25 @@ const BIAIS_PAR_PAGE = 24;
     </div>
     <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
       <div class="max-w-3xl">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Explorateur · 250 biais</p>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">EXPLORER · 250 BIASES</p>
         <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
-          Les 250 biais <span class="text-gradient-ibi">de l'IA</span>
+          The 250 <span class="text-gradient-ibi">AI Biases</span>
         </h1>
         <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed">
-          Recherchez, filtrez et explorez la base de connaissances. Chaque biais est classé selon la Taxonomy TriAxis et documenté avec ses métriques de détection.
+          Search, filter, and explore the knowledge base. Each bias is classified according to the TriAxis Taxonomy and documented with its detection metrics.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ FILTRES + RECHERCHE ═══ -->
+  <!-- ═══ FILTRES + Search ═══ -->
   <section class="bg-white border-b border-ibi-border sticky top-16 z-30 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-6">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
         
-        <!-- Recherche -->
+        <!-- Search -->
         <div class="md:col-span-6">
-          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Recherche</label>
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Search</label>
           <input
             id="search-input"
             type="text"
@@ -45,7 +45,7 @@ const BIAIS_PAR_PAGE = 24;
 
         <!-- Tri -->
         <div class="md:col-span-3">
-          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Trier par</label>
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Sort by</label>
           <select id="sort-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="score_ibi.desc">Score (élevé → faible)</option>
             <option value="score_ibi.asc">Score (faible → élevé)</option>
@@ -56,7 +56,7 @@ const BIAIS_PAR_PAGE = 24;
 
         <!-- Limite -->
         <div class="md:col-span-3">
-          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📄 Par page</label>
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📄 Per Page</label>
           <select id="limit-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="12">12</option>
             <option value="24" selected>24</option>
@@ -69,7 +69,7 @@ const BIAIS_PAR_PAGE = 24;
         <div class="md:col-span-3">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🧭 Axe Origin</label>
           <select id="filter-o" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
-            <option value="">Tous</option>
+            <option value="">All</option>
             <option value="O1_Systemic">O1 - Systemic</option>
             <option value="O2_computational">O2 - computational</option>
             <option value="O3_humain_cognitive">O3 - Humain-cognitive</option>
@@ -78,9 +78,9 @@ const BIAIS_PAR_PAGE = 24;
 
         <!-- Axe L -->
         <div class="md:col-span-3">
-          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔄 Axe Lifecycle</label>
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔄 Lifecycle Axis</label>
           <select id="filter-l" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
-            <option value="">Tous</option>
+            <option value="">All</option>
             <option value="L1_historique">L1 - Historique</option>
             <option value="L2_representation">L2 - Représentation</option>
             <option value="L3_Measurement">L3 - Measurement</option>
@@ -90,11 +90,11 @@ const BIAIS_PAR_PAGE = 24;
           </select>
         </div>
 
-        <!-- Sévérité -->
+        <!-- Severity -->
         <div class="md:col-span-3">
-          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚠ Sévérité</label>
+          <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚠ Severity</label>
           <select id="filter-sev" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
-            <option value="">Toutes</option>
+            <option value="">All</option>
             <option value="5_critique">5 - Critique</option>
             <option value="4_grave">4 - Grave</option>
             <option value="3_modere">3 - Modéré</option>
@@ -105,7 +105,7 @@ const BIAIS_PAR_PAGE = 24;
         <!-- Reset -->
         <div class="md:col-span-3 flex items-end">
           <button id="reset-btn" class="w-full px-4 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic transition-colors">
-            ↺ Réinitialiser
+            ↺ Reset
           </button>
         </div>
       </div>
@@ -117,7 +117,7 @@ const BIAIS_PAR_PAGE = 24;
           <span> biais trouvés</span>
         </div>
         <div id="loading-indicator" class="hidden text-ibi-fg3">
-          <span class="inline-block animate-spin">⏳</span> Chargement...
+          <span class="inline-block animate-spin">⏳</span> Loading...
         </div>
       </div>
     </div>
@@ -134,13 +134,13 @@ const BIAIS_PAR_PAGE = 24;
       <div id="empty-state" class="hidden text-center py-20">
         <div class="text-4xl md:text-6xl mb-4">🔍</div>
         <h3 class="font-display font-semibold text-xl mb-2">Aucun biais trouvé</h3>
-        <p class="text-ibi-fg2">Essayez d'autres Criterions de recherche.</p>
+        <p class="text-ibi-fg2">Essayez d'autres Criterions de Search.</p>
       </div>
 
       <!-- Message d'erreur -->
       <div id="error-state" class="hidden text-center py-20">
         <div class="text-4xl md:text-6xl mb-4">⚠️</div>
-        <h3 class="font-display font-semibold text-xl mb-2">Erreur de chargement</h3>
+        <h3 class="font-display font-semibold text-xl mb-2">Erreur de Loading</h3>
         <p class="text-ibi-fg2 mb-4">Impossible de contacter l'API. Réessayez dans quelques instants.</p>
         <button onclick="location.reload()" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white">
           Réessayer
@@ -150,11 +150,11 @@ const BIAIS_PAR_PAGE = 24;
       <!-- Pagination -->
       <div id="pagination" class="hidden mt-12 flex items-center justify-center gap-2">
         <button id="prev-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">
-          ← Précédent
+          ← Previous
         </button>
-        <div id="page-info" class="px-4 py-2 text-sm text-ibi-fg2">Page 1</div>
+        <div id="Page-info" class="px-4 py-2 text-sm text-ibi-fg2">Page 1</div>
         <button id="next-btn" class="px-4 py-2 text-sm font-display font-semibold rounded-lg border border-ibi-border bg-white text-ibi-fg2 hover:bg-ibi-arctic disabled:opacity-40 disabled:cursor-not-allowed">
-          Suivant →
+          Next →
         </button>
       </div>
     </div>
@@ -163,9 +163,9 @@ const BIAIS_PAR_PAGE = 24;
   <!-- ═══ CTA FINAL ═══ -->
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Contribuer à la base</h2>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Contribute to the database</h2>
       <p class="text-white/90 max-w-2xl mx-auto mb-8">
-        Un biais manque? Une Source à ajouter? Cette base est ouverte et évolutive. Contribuez via l'API ou par email.
+        Missing a bias? A source to add? This database is open and evolving. Contribute via the API or by email.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
@@ -179,12 +179,12 @@ const BIAIS_PAR_PAGE = 24;
   </section>
 
   <!-- ═══ SCRIPT ═══ -->
-    <script define:vars={{ API_URL, BIAIS_PAR_PAGE }}>
+    <script define:vars={{ API_URL, BIAIS_PAR_Page }}>
       (function() {
         let state = {
           search: "",
           sort: "score_ibi.desc",
-          limit: BIAIS_PAR_PAGE,
+          limit: BIAIS_PAR_Page,
           offset: 0,
           axeO: "",
           axeL: "",
@@ -206,7 +206,7 @@ const BIAIS_PAR_PAGE = 24;
         const pagination = $("pagination");
         const prevBtn = $("prev-btn");
         const nextBtn = $("next-btn");
-        const pageInfo = $("page-info");
+        const PageInfo = $("Page-info");
         const resultsCount = $("results-count");
         const loadingIndicator = $("loading-indicator");
 
@@ -313,7 +313,7 @@ const BIAIS_PAR_PAGE = 24;
 
             const currentPage = Math.floor(state.offset / state.limit) + 1;
             const totalPages = Math.max(1, Math.ceil(state.total / state.limit));
-            pageInfo.textContent = "Page " + currentPage + " / " + totalPages;
+            PageInfo.textContent = "Page " + currentPage + " / " + totalPages;
             prevBtn.disabled = state.offset === 0;
             nextBtn.disabled = state.offset + state.limit >= state.total;
           } catch (err) {
@@ -346,11 +346,11 @@ const BIAIS_PAR_PAGE = 24;
         resetBtn.addEventListener("click", () => {
           searchInput.value = "";
           sortSelect.value = "score_ibi.desc";
-          limitSelect.value = String(BIAIS_PAR_PAGE);
+          limitSelect.value = String(BIAIS_PAR_Page);
           filterO.value = "";
           filterL.value = "";
           filterSev.value = "";
-          state = { search: "", sort: "score_ibi.desc", limit: BIAIS_PAR_PAGE, offset: 0, axeO: "", axeL: "", severite: "", total: 0 };
+          state = { search: "", sort: "score_ibi.desc", limit: BIAIS_PAR_Page, offset: 0, axeO: "", axeL: "", severite: "", total: 0 };
           load();
         });
 
