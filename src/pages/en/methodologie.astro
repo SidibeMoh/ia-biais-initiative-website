@@ -3,8 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Méthodologie TriAxis - AI BIAIS INITIATIVE"
-  description="La taxonomie TriAxis classe chaque biais de l'IA selon 3 axes orthogonaux : Origine, Lifecycle, Spécifique."
+  title="Methodology TriAxis - AI BIAIS INITIATIVE"
+  description="La Taxonomy TriAxis classe chaque biais de l'IA selon 3 Axes orthogonaux : Origin, Lifecycle, Specific."
 >
   <!-- HERO -->
   <section class="relative overflow-hidden bg-ibi-night text-white">
@@ -13,16 +13,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </div>
     <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div class="max-w-3xl">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Méthodologie · Taxonomie</p>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Methodology · Taxonomy</p>
         <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
-          La taxonomie <span class="text-gradient-ibi">TriAxis</span>
+          La Taxonomy <span class="text-gradient-ibi">TriAxis</span>
         </h1>
         <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed mb-8">
-          Chaque biais est classé selon 3 axes orthogonaux qui répondent à 3 questions simples : Where does the bias come from, à quelle étape survient-il, et quelle est sa nature précise.
+          Chaque biais est classé selon 3 Axes orthogonaux qui répondent à 3 questions simples : Where does the bias come from, à quelle étape survient-il, et quelle est sa nature précise.
         </p>
         <div class="flex flex-wrap gap-3">
-          <a href="#axes" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
-            Explorer les 3 axes
+          <a href="#Axes" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
+            Explore les 3 Axes
             <span aria-hidden="true">↓</span>
           </a>
           <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
@@ -39,7 +39,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Pourquoi TriAxis</p>
       <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Une classification qui résiste au temps</h2>
       <p class="text-ibi-fg2 leading-relaxed mb-4">
-        La plupart des taxonomies existantes classent les biais par <strong class="text-ibi-fg">symptôme</strong> (ce que le biais fait) ou par <strong class="text-ibi-fg">domaine</strong> (santé, justice, recrutement…). Ces approches sont utiles mais elles vieillissent mal : de nouveaux biais apparaissent en permanence dans de nouveaux contextes.
+        La plupart des Taxonomys existantes classent les biais par <strong class="text-ibi-fg">symptôme</strong> (ce que le biais fait) ou par <strong class="text-ibi-fg">domaine</strong> (santé, justice, recrutement…). Ces approches sont utiles mais elles vieillissent mal : de nouveaux biais apparaissent en permanence dans de nouveaux contextes.
       </p>
       <p class="text-ibi-fg2 leading-relaxed">
         TriAxis adopte une approche <strong class="text-ibi-fg">structurelle</strong> : elle décrit chaque biais par 3 propriétés fondamentales qui ne dépendent ni du domaine, ni de la technologie. Un biais reste classable de la même manière qu'il soit détecté en 2020 ou en 2035.
@@ -48,28 +48,28 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <div class="grid md:grid-cols-3 gap-4">
       <div class="bg-white rounded-xl border border-ibi-border p-8">
         <div class="w-12 h-12 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-xl mb-4">O</div>
-        <h3 class="font-display font-semibold text-lg mb-2">Origine</h3>
+        <h3 class="font-display font-semibold text-lg mb-2">Origin</h3>
         <p class="text-sm text-ibi-fg2">Where does the bias come from? 3 possibilités : Systemic, computational, or human-cognitive.</p>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-8">
         <div class="w-12 h-12 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-xl mb-4">L</div>
         <h3 class="font-display font-semibold text-lg mb-2">Lifecycle</h3>
-        <p class="text-sm text-ibi-fg2">À quelle étape du cycle de vie IA? 6 étapes de L1 (historique) à L6 (déploiement).</p>
+        <p class="text-sm text-ibi-fg2">À quelle étape du Lifecycle IA? 6 étapes de L1 (historique) à L6 (déploiement).</p>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-8">
         <div class="w-12 h-12 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-xl mb-4">S</div>
-        <h3 class="font-display font-semibold text-lg mb-2">Spécifique</h3>
+        <h3 class="font-display font-semibold text-lg mb-2">Specific</h3>
         <p class="text-sm text-ibi-fg2">Quelle est la nature précise? 28 catégories de S01 (proxy) à S28 (interaction).</p>
       </div>
     </div>
   </section>
 
-  <!-- LES 3 AXES -->
-  <section id="axes" class="bg-ibi-arctic py-24">
+  <!-- LES 3 Axes -->
+  <section id="Axes" class="bg-ibi-arctic py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mb-12">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Les 3 axes</p>
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Détail des axes O, L et S</h2>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Les 3 Axes</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Détail des Axes O, L et S</h2>
       </div>
 
       <!-- AXE O -->
@@ -77,7 +77,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="flex items-center gap-4 mb-6">
           <div class="w-14 h-14 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-2xl">O</div>
           <div>
-            <h3 class="font-display font-bold text-2xl">Axe Origine</h3>
+            <h3 class="font-display font-bold text-2xl">Axe Origin</h3>
             <p class="text-sm text-ibi-fg3">Where does the bias come from?</p>
           </div>
         </div>
@@ -106,7 +106,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           <div class="w-14 h-14 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-2xl">L</div>
           <div>
             <h3 class="font-display font-bold text-2xl">Axe Lifecycle</h3>
-            <p class="text-sm text-ibi-fg3">À quelle étape du cycle de vie IA?</p>
+            <p class="text-sm text-ibi-fg3">À quelle étape du Lifecycle IA?</p>
           </div>
         </div>
         <div class="grid md:grid-cols-3 gap-4">
@@ -122,13 +122,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-6">
             <div class="text-xs font-display font-bold text-ibi-primary mb-2">L3</div>
-            <h4 class="font-display font-semibold mb-3">Mesure</h4>
-            <p class="text-sm text-ibi-fg2 leading-relaxed">Métriques, seuils, labels. Ce que l'on mesure détermine ce que le modèle apprend.</p>
+            <h4 class="font-display font-semibold mb-3">Measurement</h4>
+            <p class="text-sm text-ibi-fg2 leading-relaxed">Métriques, seuils, labels. Ce que l'on Measurement détermine ce que le modèle apprend.</p>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-6">
             <div class="text-xs font-display font-bold text-ibi-primary mb-2">L4</div>
             <h4 class="font-display font-semibold mb-3">Agrégation</h4>
-            <p class="text-sm text-ibi-fg2 leading-relaxed">Fusion de sources, pondérations, moyennes qui effacent des disparités.</p>
+            <p class="text-sm text-ibi-fg2 leading-relaxed">Fusion de Sources, pondérations, moyennes qui effacent des disparités.</p>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-6">
             <div class="text-xs font-display font-bold text-ibi-primary mb-2">L5</div>
@@ -148,13 +148,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <div class="flex items-center gap-4 mb-6">
           <div class="w-14 h-14 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-2xl">S</div>
           <div>
-            <h3 class="font-display font-bold text-2xl">Axe Spécifique</h3>
+            <h3 class="font-display font-bold text-2xl">Axe Specific</h3>
             <p class="text-sm text-ibi-fg3">Quelle est la nature précise du biais?</p>
           </div>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <p class="text-sm text-ibi-fg2 mb-6">
-            28 catégories couvrant l'ensemble des mécanismes de biais identifiés dans la littérature. Exemples :
+            28 catégories couvrant l'ensemble des Mechanisms de biais identifiés dans la littérature. Exemples :
           </p>
           <div class="grid md:grid-cols-4 gap-3 text-sm">
             <div class="p-3 bg-ibi-arctic rounded border border-ibi-border">
@@ -230,7 +230,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </div>
     </div>
     <div class="bg-ibi-arctic rounded-xl border border-ibi-border p-8">
-      <h3 class="font-display font-semibold text-lg mb-6">Échelle de sévérité (niveaux officiels)</h3>
+      <h3 class="font-display font-semibold text-lg mb-6">Severity scale (Levels officiels)</h3>
       <div class="space-y-3">
         <div class="flex items-center gap-4 p-4 bg-white rounded-lg border border-red-200">
           <div class="w-3 h-3 rounded-full bg-red-600 shrink-0"></div>
@@ -276,17 +276,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </p>
         <div class="grid md:grid-cols-3 gap-4">
           <div class="bg-black/30 rounded-lg p-5">
-            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-2">Origine</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-2">Origin</div>
             <div class="font-display font-semibold text-white mb-1">O2_computational</div>
             <p class="text-xs text-ibi-fg3">Naît de l'algorithme et du choix des variables.</p>
           </div>
           <div class="bg-black/30 rounded-lg p-5">
             <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-2">Lifecycle</div>
-            <div class="font-display font-semibold text-white mb-1">L3_mesure</div>
+            <div class="font-display font-semibold text-white mb-1">L3_Measurement</div>
             <p class="text-xs text-ibi-fg3">Se manifeste dans le choix des métriques.</p>
           </div>
           <div class="bg-black/30 rounded-lg p-5">
-            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-2">Spécifique</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-2">Specific</div>
             <div class="font-display font-semibold text-white mb-1">S01_proxy</div>
             <p class="text-xs text-ibi-fg3">Substitution par variable corrélée.</p>
           </div>
@@ -298,9 +298,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
   <!-- CTA FINAL -->
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Explorer la base</h2>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Explore the database</h2>
       <p class="text-white/90 max-w-2xl mx-auto mb-8">
-        250 biais, 68 réglementations, 21 vues analytiques. Tout est consultable, citable et ouvert.
+        250 biais, 68 Regulations, 21 vues analytiques. Tout est consultable, citable et ouvert.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95 transition-colors">

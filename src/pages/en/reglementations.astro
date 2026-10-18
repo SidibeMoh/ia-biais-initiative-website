@@ -6,8 +6,8 @@ const REGL_PAR_PAGE = 20;
 ---
 
 <BaseLayout
-  title="Les 68 réglementations mondiales - AI BIAIS INITIATIVE"
-  description="Référentiel des réglementations mondiales sur l'IA : EU AI Act, UNESCO, OCDE, RGPD et 64 autres."
+  title="Les 68 Regulations mondiales - AI BIAIS INITIATIVE"
+  description="Référentiel des Regulations mondiales sur l'IA : EU AI Act, UNESCO, OCDE, RGPD et 64 autres."
 >
   <section class="relative overflow-hidden bg-ibi-night text-white">
     <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -15,12 +15,12 @@ const REGL_PAR_PAGE = 20;
     </div>
     <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
       <div class="max-w-3xl">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Référentiel · 68 réglementations</p>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Référentiel · 68 Regulations</p>
         <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
-          Les réglementations <span class="text-gradient-ibi">mondiales</span> de l'IA
+          Les Regulations <span class="text-gradient-ibi">mondiales</span> de l'IA
         </h1>
         <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed">
-          EU AI Act, UNESCO, OCDE, RGPD, NIST AI RMF et 63 autres cadres réglementaires mondiaux. Filtrez par juridiction, type d'obligation et consultez les sanctions applicables.
+          EU AI Act, UNESCO, OCDE, RGPD, NIST AI RMF et 63 autres cadres réglementaires mondiaux. Filtrez par juridiction, type d'obligation et consultez les Penaltys applicables.
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@ const REGL_PAR_PAGE = 20;
       <div class="flex flex-wrap items-end gap-3">
         <div class="flex-1 min-w-[240px]">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔍 Recherche</label>
-          <input id="search-input" type="text" placeholder="Ex: AI Act, RGPD, transparence..."
+          <input id="search-input" type="text" placeholder="Ex: AI Act, RGPD, Transparency..."
             class="w-full px-4 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none focus:ring-2 focus:ring-ibi-primary/20 transition-all" />
         </div>
         <div class="w-44">
@@ -68,7 +68,7 @@ const REGL_PAR_PAGE = 20;
       <div class="mt-4 flex items-center justify-between text-sm">
         <div class="text-ibi-fg2">
           <span id="results-count" class="font-display font-semibold text-ibi-primary">-</span>
-          <span> réglementations trouvées</span>
+          <span> Regulations trouvées</span>
         </div>
         <div id="loading-indicator" class="hidden text-ibi-fg3">
           <span class="inline-block animate-spin">⏳</span> Chargement...
@@ -82,7 +82,7 @@ const REGL_PAR_PAGE = 20;
       <div id="empty-state" class="hidden text-center py-20">
         <div class="text-4xl md:text-6xl mb-4">🔍</div>
         <h3 class="font-display font-semibold text-xl mb-2">Aucune réglementation trouvée</h3>
-        <p class="text-ibi-fg2">Essayez d'autres critères de recherche.</p>
+        <p class="text-ibi-fg2">Essayez d'autres Criterions de recherche.</p>
       </div>
       <div id="error-state" class="hidden text-center py-20">
         <div class="text-4xl md:text-6xl mb-4">⚠️</div>
@@ -100,9 +100,9 @@ const REGL_PAR_PAGE = 20;
 
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Conformité et gouvernance</h2>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Compliance et Governance</h2>
       <p class="text-white/90 max-w-2xl mx-auto mb-8">
-        Les réglementations évoluent. Cette base est mise à jour en continu pour refléter l'état du droit mondial sur l'IA.
+        Les Regulations évoluent. Cette base est mise à jour en continu pour refléter l'état du droit mondial sur l'IA.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/aexia" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">Framework AEXIA</a>
@@ -151,10 +151,10 @@ const REGL_PAR_PAGE = 20;
               ${r.type_obligation? `<span class="text-xs font-display font-medium px-2 py-1 rounded bg-violet-100 text-violet-800">${escapeHtml(r.type_obligation)}</span>` : ""}
             </div>
             <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "-")}</h3>
-            ${r.article? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.article)}</strong></p>` : ""}
+            ${r.Article? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.Article)}</strong></p>` : ""}
             <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(r.obligation, 180))}</p>
             ${r.deadline? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}
-            ${r.sanction? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Sanction :</strong> ${escapeHtml(truncate(r.sanction, 120))}</div>` : ""}
+            ${r.Penalty? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Penalty :</strong> ${escapeHtml(truncate(r.Penalty, 120))}</div>` : ""}
           </div>
         `;
       }

@@ -7,10 +7,10 @@ const endpoints = [
   { method: "GET",  path: "/v_top_biais_critiques", desc: "Top des biais les plus critiques" },
   { method: "GET",  path: "/v_api_biais_liste",     desc: "Liste synthétique (format API)" },
   { method: "GET",  path: "/v_api_recherche",       desc: "Recherche full-text" },
-  { method: "GET",  path: "/reglementations",       desc: "Les 68 réglementations mondiales" },
-  { method: "GET",  path: "/v_api_regulations",     desc: "Réglementations formatées" },
+  { method: "GET",  path: "/reglementations",       desc: "Les 68 Regulations mondiales" },
+  { method: "GET",  path: "/v_api_regulations",     desc: "Regulations formatées" },
   { method: "POST", path: "/rpc/recherche_biais",   desc: "Recherche par mot-clé (RPC)" },
-  { method: "POST", path: "/rpc/recherche_triaxis", desc: "Recherche par axes TriAxis (RPC)" },
+  { method: "POST", path: "/rpc/recherche_triaxis", desc: "Recherche par Axes TriAxis (RPC)" },
 ];
 
 const openapiDemo = `{
@@ -63,7 +63,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
 
 <BaseLayout
   title="Documentation API - AI BIAIS INITIATIVE"
-  description="API REST ouverte sur les biais de l'IA. 250 biais, 68 réglementations, 21 vues analytiques. DOI : 10.5281/zenodo.23400341."
+  description="API REST ouverte sur les biais de l'IA. 250 biais, 68 Regulations, 21 vues analytiques. DOI : 10.5281/zenodo.23400341."
 >
   <!-- ═══ HERO ═══ -->
   <section class="relative overflow-hidden bg-ibi-night text-white">
@@ -83,7 +83,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
         </h1>
         
         <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed mb-8">
-          Une API REST ouverte, citable et documentée pour interroger les 250 biais, les 68 réglementations et les 21 vues analytiques de la base IBI.
+          Une API REST ouverte, citable et documentée pour interroger les 250 biais, les 68 Regulations et les 21 vues analytiques de la base IBI.
         </p>
 
         <div class="flex flex-wrap gap-3">
@@ -92,7 +92,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
             <span aria-hidden="true">↗</span>
           </a>
           <a href="#endpoints" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
-            Explorer les endpoints
+            Explore les endpoints
             <span aria-hidden="true">↓</span>
           </a>
         </div>
@@ -236,7 +236,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
               <span aria-hidden="true">↗</span>
             </a>
             <a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">
-              Code source
+              Code Source
             </a>
           </div>
         </div>
@@ -286,7 +286,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="mailto:contact@ai-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
-          Nous contacter
+          Contact us
         </a>
         <a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">
           Contribuer sur GitHub
