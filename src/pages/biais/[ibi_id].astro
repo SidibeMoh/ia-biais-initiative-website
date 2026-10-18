@@ -38,7 +38,7 @@ export async function getStaticPaths() {
   </div>
 
   <div id="error-state" class="hidden max-w-7xl mx-auto px-6 py-32 text-center">
-    <div class="text-6xl mb-4">⚠️</div>
+    <div class="text-4xl md:text-6xl mb-4">⚠️</div>
     <h2 class="font-display font-bold text-2xl mb-4">Biais non trouvé</h2>
     <p class="text-ibi-fg2 mb-6">Cet identifiant n'existe pas dans la base.</p>
     <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white">← Retour à la liste</a>
@@ -66,7 +66,7 @@ export async function getStaticPaths() {
           </div>
           <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8 text-center">
             <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Score IBI</div>
-            <div id="hero-score" class="font-display font-extrabold text-6xl text-gradient-ibi mb-3">-</div>
+            <div id="hero-score" class="font-display font-extrabold text-4xl md:text-6xl text-gradient-ibi mb-3">-</div>
             <div class="text-xs text-ibi-fg3">sur 10</div>
             <div class="mt-6 pt-6 border-t border-ibi-border text-left text-xs space-y-2">
               <div class="flex justify-between"><span class="text-ibi-fg3">Sévérité</span><span id="meta-severite" class="text-white font-mono">-</span></div>
@@ -172,7 +172,7 @@ export async function getStaticPaths() {
         <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais documentés, classés par la taxonomie TriAxis.</p>
         <div class="flex flex-wrap justify-center gap-3">
           <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Retour à la liste</a>
-          <a href="/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
+          <a href="/Méthodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
         </div>
       </div>
     </section>

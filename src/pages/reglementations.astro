@@ -80,12 +80,12 @@ const REGL_PAR_PAGE = 20;
     <div class="max-w-7xl mx-auto px-6">
       <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       <div id="empty-state" class="hidden text-center py-20">
-        <div class="text-6xl mb-4">🔍</div>
+        <div class="text-4xl md:text-6xl mb-4">🔍</div>
         <h3 class="font-display font-semibold text-xl mb-2">Aucune réglementation trouvée</h3>
         <p class="text-ibi-fg2">Essayez d'autres critères de recherche.</p>
       </div>
       <div id="error-state" class="hidden text-center py-20">
-        <div class="text-6xl mb-4">⚠️</div>
+        <div class="text-4xl md:text-6xl mb-4">⚠️</div>
         <h3 class="font-display font-semibold text-xl mb-2">Erreur de chargement</h3>
         <p class="text-ibi-fg2 mb-4">Impossible de contacter l'API.</p>
         <button onclick="location.reload()" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white">Réessayer</button>
@@ -257,3 +257,35 @@ const REGL_PAR_PAGE = 20;
     })();
   </script>
 </BaseLayout>
+    
+
+
+    
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.nodeValue.includes('—') || node.nodeValue.includes('–')) {
+                        node.nodeValue = node.nodeValue.replace(/—/g, ' : ').replace(/–/g, ' : ');
+                    }
+                }
+            }, 1000); // Attend 1 seconde que l'API charge
+        });
+    </script>
+
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.nodeValue.includes('—') || node.nodeValue.includes('–')) {
+                        node.nodeValue = node.nodeValue.replace(/—/g, ' : ').replace(/–/g, ' : ');
+                    }
+                }
+            }, 1000); // Attend 1 seconde que l'API charge
+        });
+    </script>
