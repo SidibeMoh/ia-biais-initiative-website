@@ -9,132 +9,114 @@ interface Props {
 
 const {
   title = "AI BIAIS INITIATIVE - Le référentiel mondial des biais algorithmiques",
-  description = "API REST ouverte documentant 250 biais, 68 réglementations mondiales et 21 vues analytiques pour la gouvernance éthique de l'IA.",
+  description = "API REST ouverte documentant 250 biais, 68 réglementations mondiales et 21 vues analytiques pour la gouvernance éthique de l'IA"
 } = Astro.props;
 
-const navLinks = [
+// --- LOGIQUE BILINGUE ---
+const currentPath = Astro.url.pathname;
+const currentLang = currentPath.startsWith('/en') ? 'en' : 'fr';
+const otherLang = currentLang === 'fr' ? 'en' : 'fr';
+const otherLangPath = currentPath.replace(`/${currentLang}/`, `/${otherLang}/`) || `/${otherLang}/`;
+
+const getLink = (href) => {
+    if (href === '/') return `/${currentLang}/`;
+    return `/${currentLang}${href}`;
+};
+
+const navLinks = currentLang === 'fr' ? [
   { href: "/", label: "Accueil" },
   { href: "/biais", label: "Biais" },
   { href: "/reglementations", label: "Réglementations" },
-  { href: "/Méthodologie", label: "Méthodologie" },
+  { href: "/methodologie", label: "Méthodologie" },
   { href: "/aexia", label: "AEXIA" },
   { href: "/rapports", label: "Rapports" },
   { href: "/api", label: "API" },
-  { href: "/a-propos", label: "A propos" },
+  { href: "/a-propos", label: "À propos" },
+] : [
+  { href: "/", label: "Home" },
+  { href: "/biais", label: "Biases" },
+  { href: "/reglementations", label: "Regulations" },
+  { href: "/methodologie", label: "Methodology" },
+  { href: "/aexia", label: "AEXIA" },
+  { href: "/rapports", label: "Reports" },
+  { href: "/api", label: "API" },
+  { href: "/a-propos", label: "About" },
 ];
 ---
-
-<!doctype html>
-<html lang="fr">
+<!DOCTYPE html>
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="author" content="AI BIAIS INITIATIVE" />
-    <meta name="theme-color" content="#070C24" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ai-biais-initiative.org" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
     <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
-  <body>
-    <!-- Skip to content -->
-    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-ibi-primary focus:text-white focus:rounded">
-      Aller au contenu principal
-    </a>
+  <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          
+                    <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center">
+            <a href={getLink("/")} class="flex items-center gap-3">
+              <Logo class="h-12 w-auto" />
+            </a>
+          </div>
 
-    <!-- Header -->
-    <header class="sticky top-0 z-40 backdrop-blur-lg bg-ibi-night/80 border-b border-ibi-border">
-      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4" aria-label="Navigation principale">
-        <a href="/" class="flex items-center shrink-0" aria-label="Accueil AI BIAIS INITIATIVE">
-          <Logo class="h-16 md:h-20 w-auto" variant="light" />
-        </a>
-        
-        <ul class="hidden md:flex items-center gap-0.5">
-          {navLinks.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="px-2.5 py-2 text-xs font-medium text-ibi-fg3 hover:text-white transition-colors rounded-lg hover:bg-white/5 whitespace-nowrap"
-              >
+          <nav class="hidden md:flex items-center space-x-1 lg:space-x-4">
+            {navLinks.map((link) => (
+              <a href={getLink(link.href)} class="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 rounded-md transition-colors">
                 {link.label}
               </a>
-            </li>
+            ))}
+            
+            <!-- Bouton FR / EN -->
+            <div class="ml-4 pl-4 border-l border-slate-700 flex items-center">
+              <a href={otherLangPath} class="px-3 py-1.5 text-xs font-bold text-slate-900 bg-white hover:bg-slate-200 rounded uppercase transition-colors">
+                {otherLang}
+              </a>
+            </div>
+          </nav>
+
+          <!-- Bouton Mobile (Burger) -->
+          <div class="md:hidden flex items-center">
+            <button id="mobile-menu-button" class="text-slate-300 hover:text-white focus:outline-none">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menu Mobile (Caché par défaut) -->
+      <div id="mobile-menu" class="md:hidden hidden bg-slate-800">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          {navLinks.map((link) => (
+            <a href={getLink(link.href)} class="block px-3 py-2 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700 rounded-md">
+              {link.label}
+            </a>
           ))}
-        </ul>
-        
-        <a
-          href="https://doi.org/10.5281/zenodo.23400341"
-          target="_blank"
-          rel="noopener"
-          class="hidden lg:inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white rounded-lg gradient-ibi hover:opacity-90 transition-opacity"
-        >
-          <span>DOI</span>
-          <span class="text-white/80">10.5281/zenodo.23400341</span>
-        </a>
-      </nav>
+          <a href={otherLangPath} class="block px-3 py-2 text-base font-bold text-slate-900 bg-white rounded-md mt-4 text-center uppercase">
+            Passer en {otherLang}
+          </a>
+        </div>
+      </div>
     </header>
 
-    <!-- Main -->
-    <main id="main">
+    <main class="flex-grow">
       <slot />
     </main>
-
-    <!-- Footer -->
-    <footer class="bg-ibi-night text-ibi-fg3 border-t border-ibi-border mt-24">
-      <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-8">
-        <div class="md:col-span-2">
-          <Logo class="h-14 w-auto mb-4" variant="light" showDomain />
-          <p class="text-sm leading-relaxed max-w-md">
-            Le référentiel mondial des biais algorithmiques. Une initiative citoyenne pour une IA éthique, explicable et responsable.
-          </p>
-        </div>
-        
-        <div>
-          <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-4">Explorer</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/biais" class="hover:text-white transition-colors">Les 250 biais</a></li>
-            <li><a href="/reglementations" class="hover:text-white transition-colors">68 réglementations</a></li>
-            <li><a href="/Méthodologie" class="hover:text-white transition-colors">Taxonomie TriAxis</a></li>
-            <li><a href="/aexia" class="hover:text-white transition-colors">Framework AEXIA</a></li>
-          </ul>
-        </div>
-        
-        <div>
-          <h3 class="font-display font-semibold text-white text-sm uppercase tracking-wider mb-4">Ressources</h3>
-          <ul class="space-y-2 text-sm">
-            <li><a href="/rapports" class="hover:text-white transition-colors">Rapports & analyses</a></li>
-            <li><a href="/api" class="hover:text-white transition-colors">Documentation API</a></li>
-            <li><a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="hover:text-white transition-colors">GitHub</a></li>
-            <li><a href="https://doi.org/10.5281/zenodo.23400341" target="_blank" rel="noopener" class="hover:text-white transition-colors">DOI Zenodo</a></li>
-            <li><a href="mailto:contact@ai-biais-initiative.org" class="hover:text-white transition-colors">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="border-t border-ibi-border">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
-          <p>© 2026 AI BIAIS INITIATIVE. Licence CC-BY 4.0.</p>
-          <p>Fait avec rigueur scientifique et citoyenne.</p>
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
+
+<script is:inline>
+  // Script pour faire fonctionner le menu burger sur mobile
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

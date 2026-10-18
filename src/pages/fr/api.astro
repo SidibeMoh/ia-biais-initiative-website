@@ -1,0 +1,297 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const endpoints = [
+  { method: "GET",  path: "/biais",                 desc: "Liste complète des 250 biais" },
+  { method: "GET",  path: "/biais?ibi_id=eq.IBI-0002", desc: "Filtrer par identifiant IBI" },
+  { method: "GET",  path: "/v_top_biais_critiques", desc: "Top des biais les plus critiques" },
+  { method: "GET",  path: "/v_api_biais_liste",     desc: "Liste synthétique (format API)" },
+  { method: "GET",  path: "/v_api_recherche",       desc: "Recherche full-text" },
+  { method: "GET",  path: "/reglementations",       desc: "Les 68 réglementations mondiales" },
+  { method: "GET",  path: "/v_api_regulations",     desc: "Réglementations formatées" },
+  { method: "POST", path: "/rpc/recherche_biais",   desc: "Recherche par mot-clé (RPC)" },
+  { method: "POST", path: "/rpc/recherche_triaxis", desc: "Recherche par axes TriAxis (RPC)" },
+];
+
+const openapiDemo = `{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "AI BIAIS Initiative API",
+    "version": "1.0.0",
+    "description": "API REST sur les biais de l'IA"
+  },
+  "servers": [
+    { "url": "https://api.ai-biais-initiative.org" }
+  ],
+  "paths": {
+    "/biais": { ... },
+    "/reglementations": { ... },
+    "/rpc/recherche_biais": { ... }
+  }
+}`;
+const codeCurlList = `curl "http://localhost:3000/biais?limit=10"`;
+
+const codeCurlByIbi = `curl "http://localhost:3000/biais?ibi_id=eq.IBI-0002"`;
+
+const codePythonRecherche = `import requests
+
+r = requests.get(
+    "http://localhost:3000/rpc/recherche_biais",
+    params={"terme": "proxy", "limite": 5}
+)
+for biais in r.json():
+    print(biais["ibi_id"], "-", biais["nom_fr"])`;
+
+const codePythonTop = `import requests
+
+r = requests.get(
+    "http://localhost:3000/v_top_biais_critiques",
+    params={"limit": 5}
+)
+for b in r.json():
+    print(b["ibi_id"], b["score_ibi"], b["nom_fr"])`;
+const codeBibtex = `@software{sidibe_2026_ia_biais,
+  author    = {SIDIBE, Mohamadou},
+  title     = {AI BIAIS Initiative - API REST},
+  year      = 2026,
+  publisher = {Zenodo},
+  version   = {1.0.0},
+  doi       = {10.5281/zenodo.23400341},
+  url       = {https://doi.org/10.5281/zenodo.23400341}
+}`;
+---
+
+<BaseLayout
+  title="Documentation API - AI BIAIS INITIATIVE"
+  description="API REST ouverte sur les biais de l'IA. 250 biais, 68 réglementations, 21 vues analytiques. DOI : 10.5281/zenodo.23400341."
+>
+  <!-- ═══ HERO ═══ -->
+  <section class="relative overflow-hidden bg-ibi-night text-white">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #2D46F5 0%, transparent 70%)"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15" style="background: radial-gradient(circle, #6B1EE8 0%, transparent 70%)"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">
+          API REST · DOI 10.5281/zenodo.23400341
+        </p>
+        
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
+          Documentation <span class="text-gradient-ibi">API</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed mb-8">
+          Une API REST ouverte, citable et documentée pour interroger les 250 biais, les 68 réglementations et les 21 vues analytiques de la base IBI.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
+            Voir sur GitHub
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href="#endpoints" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
+            Explorer les endpoints
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CHIFFRES CLES ═══ -->
+  <section class="max-w-7xl mx-auto px-6 -mt-12 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">44</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Relations exposées</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">17</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Fonctions RPC</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">20</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Relations liées</div>
+      </div>
+      <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
+        <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">REST</div>
+        <div class="text-sm text-ibi-fg2 font-medium">PostgREST 16.4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ENDPOINTS ═══ -->
+  <section id="endpoints" class="max-w-7xl mx-auto px-6 py-24">
+    <div class="max-w-3xl mb-12">
+      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Endpoints</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Points d'entrée principaux</h2>
+      <p class="text-ibi-fg2 leading-relaxed">
+        L'API suit la spécification PostgREST : chaque table et chaque vue est automatiquement exposée en REST. Les filtres, tris et sélections de colonnes se font via l'URL.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto bg-white rounded-xl border border-ibi-border">
+      <table class="w-full text-sm">
+        <thead class="bg-ibi-arctic border-b border-ibi-border">
+          <tr>
+            <th class="text-left px-6 py-4 font-display font-semibold">Méthode</th>
+            <th class="text-left px-6 py-4 font-display font-semibold">Endpoint</th>
+            <th class="text-left px-6 py-4 font-display font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-ibi-border">
+          {endpoints.map((ep) => (
+            <tr class="hover:bg-ibi-arctic/50 transition-colors">
+              <td class="px-6 py-4">
+                <span class={`font-display font-mono text-xs px-2 py-1 rounded ${ep.method === "GET" ? "bg-green-100 text-green-800" : "bg-blue-100 text-blue-800"}`}>
+                  {ep.method}
+                </span>
+              </td>
+              <td class="px-6 py-4 font-mono text-xs text-ibi-fg2">{ep.path}</td>
+              <td class="px-6 py-4 text-ibi-fg2">{ep.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ EXEMPLES ═══ -->
+  <section class="bg-ibi-arctic py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-12">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Exemples</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Utilisation rapide</h2>
+        <p class="text-ibi-fg2 leading-relaxed">
+          Voici quelques exemples concrets pour interroger l'API. Base URL : <code class="text-xs font-mono bg-white px-2 py-1 rounded border border-ibi-border">http://localhost:3000</code> (dev) ou <code class="text-xs font-mono bg-white px-2 py-1 rounded border border-ibi-border">https://api.ai-biais-initiative.org</code> (prod).
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
+            <span class="text-ibi-primary">⚡</span>
+            Curl - Lister 10 biais
+          </h3>
+          <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codeCurlList}</pre>
+        </div>
+
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
+            <span class="text-ibi-primary">⚡</span>
+            Curl - Biais par identifiant
+          </h3>
+          <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codeCurlByIbi}</pre>
+        </div>
+
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
+            <span class="text-ibi-primary">🐍</span>
+            Python - Recherche via RPC
+          </h3>
+          <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codePythonRecherche}</pre>
+        </div>
+
+        <div class="bg-white rounded-xl border border-ibi-border p-6">
+          <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
+            <span class="text-ibi-primary">🐍</span>
+            Python - Top biais critiques
+          </h3>
+          <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codePythonTop}</pre>
+        </div>
+      </div>
+
+      <div class="mt-6 bg-white rounded-xl border border-ibi-border p-6">
+        <h3 class="font-display font-semibold mb-3 flex items-center gap-2">
+          <span class="text-ibi-primary">📚</span>
+          Filtres PostgREST disponibles
+        </h3>
+        <div class="grid md:grid-cols-2 gap-3 text-sm text-ibi-fg2">
+          <div><code class="font-mono text-xs text-ibi-primary">?limit=10</code> - Limite le nombre de résultats</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?offset=20</code> - Pagination</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?order=score_ibi.desc</code> - Tri descendant</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?select=ibi_id,nom_fr</code> - Sélection de colonnes</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?severite=eq.5_critique</code> - Filtre égalité</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?score_ibi=gte.8</code> - Filtre supérieur ou égal</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SPEC OPENAPI ═══ -->
+  <section class="bg-ibi-night text-white py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Spécification</p>
+          <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">Spec OpenAPI complète</h2>
+          <p class="text-ibi-fg3 leading-relaxed mb-6">
+            Toute l'API est décrite dans un fichier OpenAPI 3.0 généré automatiquement par PostgREST. Importable dans Postman, Swagger UI, Insomnia ou tout autre client compatible.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="https://github.com/SidibeMoh/ia-biais-initiative-api/blob/main/openapi.json" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">
+              Voir openapi.json
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">
+              Code source
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-6">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+            <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+            <span class="ml-2 text-xs text-ibi-fg3 font-mono">openapi.json</span>
+          </div>
+          <pre class="text-xs text-ibi-fg3 font-mono leading-relaxed overflow-hidden">{openapiDemo}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CITATION ═══ -->
+  <section class="max-w-7xl mx-auto px-6 py-24">
+    <div class="bg-white rounded-2xl border border-ibi-border p-8 md:p-12">
+      <div class="max-w-3xl">
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Citation</p>
+        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Citer l'API dans vos travaux</h2>
+        <p class="text-ibi-fg2 mb-6">
+          L'API dispose d'un DOI Zenodo. Merci de le citer si vous utilisez ces données dans une publication scientifique, un rapport ou un projet.
+        </p>
+        <pre class="bg-ibi-arctic border border-ibi-border rounded-lg p-6 text-xs font-mono overflow-x-auto text-ibi-fg2">{codeBibtex}</pre>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://doi.org/10.5281/zenodo.23400341" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">
+            Page Zenodo
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href="/api" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic">
+            Retour en haut
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA FINAL ═══ -->
+  <section class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Construisons ensemble</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">
+        Vous utilisez l'API ? Vous avez des suggestions ? Vous voulez contribuer à enrichir la base ? Contactez-nous.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="mailto:contact@ai-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
+          Nous contacter
+        </a>
+        <a href="https://github.com/SidibeMoh/ia-biais-initiative-api" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">
+          Contribuer sur GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
