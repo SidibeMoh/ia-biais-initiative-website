@@ -70,9 +70,9 @@ const BIAIS_PAR_PAGE = 24;
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🧭 Axe Origine</label>
           <select id="filter-o" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Tous</option>
-            <option value="O1_systemique">O1 - Systémique</option>
-            <option value="O2_computationnel">O2 - Computationnel</option>
-            <option value="O3_humain_cognitif">O3 - Humain-cognitif</option>
+            <option value="O1_Systemic">O1 - Systemic</option>
+            <option value="O2_computational">O2 - computational</option>
+            <option value="O3_humain_cognitive">O3 - Humain-cognitive</option>
           </select>
         </div>
 
@@ -165,7 +165,7 @@ const BIAIS_PAR_PAGE = 24;
     <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
       <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Contribuer à la base</h2>
       <p class="text-white/90 max-w-2xl mx-auto mb-8">
-        Un biais manque ? Une source à ajouter ? Cette base est ouverte et évolutive. Contribuez via l'API ou par email.
+        Un biais manque? Une source à ajouter? Cette base est ouverte et évolutive. Contribuez via l'API ou par email.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
@@ -222,7 +222,7 @@ const BIAIS_PAR_PAGE = 24;
 
         function truncate(str, max) {
           if (!str) return "";
-          return str.length > max ? str.slice(0, max) + "..." : str;
+          return str.length > max? str.slice(0, max) + "..." : str;
         }
 
         function severityBadge(sev) {
@@ -237,7 +237,7 @@ const BIAIS_PAR_PAGE = 24;
 
         function renderCard(b) {
           const sev = severityBadge(b.severite);
-          const score = b.score_ibi ? Number(b.score_ibi).toFixed(1) : "-";
+          const score = b.score_ibi? Number(b.score_ibi).toFixed(1) : "-";
           return `
             <a href="/biais/${escapeHtml(b.ibi_id)}"
                class="group bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
@@ -296,7 +296,7 @@ const BIAIS_PAR_PAGE = 24;
             const data = await res.json();
             const range = res.headers.get("Content-Range") || "";
             const totalMatch = range.match(/\/(\d+)/);
-            state.total = totalMatch ? parseInt(totalMatch[1]) : (data ? data.length : 0);
+            state.total = totalMatch? parseInt(totalMatch[1]) : (data? data.length : 0);
 
             if (!data || data.length === 0) {
               grid.innerHTML = "";

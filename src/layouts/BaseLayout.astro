@@ -14,8 +14,8 @@ const {
 
 // --- LOGIQUE BILINGUE ---
 const currentPath = Astro.url.pathname;
-const currentLang = currentPath.startsWith('/en') ? 'en' : 'fr';
-const otherLang = currentLang === 'fr' ? 'en' : 'fr';
+const currentLang = currentPath.startsWith('/en')? 'en' : 'fr';
+const otherLang = currentLang === 'fr'? 'en' : 'fr';
 const otherLangPath = currentPath.replace(`/${currentLang}/`, `/${otherLang}/`) || `/${otherLang}/`;
 
 const getLink = (href) => {
@@ -23,7 +23,7 @@ const getLink = (href) => {
     return `/${currentLang}${href}`;
 };
 
-const navLinks = currentLang === 'fr' ? [
+const navLinks = currentLang === 'fr'? [
   { href: "/", label: "Accueil" },
   { href: "/biais", label: "Biais" },
   { href: "/reglementations", label: "Réglementations" },

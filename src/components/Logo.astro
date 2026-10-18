@@ -1,4 +1,4 @@
----
+﻿---
 interface Props {
   class?: string;
   variant?: "light" | "dark";
@@ -7,9 +7,9 @@ interface Props {
 
 const { class: className = "", variant = "light", showDomain = false } = Astro.props;
 
-const textColor = variant === "light" ? "#FFFFFF" : "#08102E";
-const subColor = variant === "light" ? "#8E99DD" : "#3D4878";
-const domainColor = variant === "light" ? "#3D4878" : "#8E96C4";
+const textColor = variant === "light"? "#FFFFFF" : "#08102E";
+const subColor = variant === "light"? "#8E99DD" : "#3D4878";
+const domainColor = variant === "light"? "#3D4878" : "#8E96C4";
 ---
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 90" class={className} aria-label="AI BIAIS INITIATIVE">

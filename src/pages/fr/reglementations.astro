@@ -139,7 +139,7 @@ const REGL_PAR_PAGE = 20;
 
       function truncate(str, max) {
         if (!str) return "";
-        return str.length > max ? str.slice(0, max) + "..." : str;
+        return str.length > max? str.slice(0, max) + "..." : str;
       }
 
       function renderCard(r) {
@@ -148,13 +148,13 @@ const REGL_PAR_PAGE = 20;
             <div class="flex flex-wrap items-center gap-2 mb-4">
               <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-primary/10 text-ibi-primary font-semibold">${escapeHtml(r.code || "")}</span>
               <span class="text-xs font-display font-medium px-2 py-1 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(r.juridiction || "-")}</span>
-              ${r.type_obligation ? `<span class="text-xs font-display font-medium px-2 py-1 rounded bg-violet-100 text-violet-800">${escapeHtml(r.type_obligation)}</span>` : ""}
+              ${r.type_obligation? `<span class="text-xs font-display font-medium px-2 py-1 rounded bg-violet-100 text-violet-800">${escapeHtml(r.type_obligation)}</span>` : ""}
             </div>
             <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "-")}</h3>
-            ${r.article ? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.article)}</strong></p>` : ""}
+            ${r.article? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.article)}</strong></p>` : ""}
             <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(r.obligation, 180))}</p>
-            ${r.deadline ? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}
-            ${r.sanction ? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Sanction :</strong> ${escapeHtml(truncate(r.sanction, 120))}</div>` : ""}
+            ${r.deadline? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}
+            ${r.sanction? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Sanction :</strong> ${escapeHtml(truncate(r.sanction, 120))}</div>` : ""}
           </div>
         `;
       }
@@ -181,7 +181,7 @@ const REGL_PAR_PAGE = 20;
           const data = await res.json();
           const range = res.headers.get("Content-Range") || "";
           const totalMatch = range.match(/\/(\d+)/);
-          state.total = totalMatch ? parseInt(totalMatch[1]) : (data ? data.length : 0);
+          state.total = totalMatch? parseInt(totalMatch[1]) : (data? data.length : 0);
 
           if (!data || data.length === 0) {
             grid.innerHTML = "";

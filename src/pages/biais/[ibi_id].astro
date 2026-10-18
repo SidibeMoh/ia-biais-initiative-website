@@ -186,9 +186,9 @@ export async function getStaticPaths() {
       const content = $("content");
 
       const AXE_O = {
-        "O1_systemique": "Systémique - inscrit dans les structures sociales",
-        "O2_computationnel": "Computationnel - nait de l'algorithme",
-        "O3_humain_cognitif": "Humain-cognitif - vient des biais des concepteurs"
+        "O1_Systemic": "Systemic - inscrit dans les structures sociales",
+        "O2_computational": "computational - nait de l'algorithme",
+        "O3_humain_cognitive": "Humain-cognitive - vient des biais des concepteurs"
       };
       const AXE_L = {
         "L1_historique": "Historique - données anciennes",
@@ -251,7 +251,7 @@ export async function getStaticPaths() {
         $("hero-ibi-id").textContent = b.ibi_id || "-";
         $("hero-nom-fr").textContent = b.nom_fr || "-";
         $("hero-nom-en").textContent = b.nom_en || "-";
-        $("hero-score").textContent = b.score_ibi ? Number(b.score_ibi).toFixed(1) : "-";
+        $("hero-score").textContent = b.score_ibi? Number(b.score_ibi).toFixed(1) : "-";
         $("hero-severite").textContent = sev.label;
         $("hero-severite").className = "text-xs font-display font-semibold px-3 py-1.5 rounded border " + sev.color;
         $("hero-statut").textContent = b.statut || "-";
@@ -269,7 +269,7 @@ export async function getStaticPaths() {
         $("axe-s-code").textContent = b.axe_s || "-";
         $("axe-s-libelle").textContent = AXE_S[b.axe_s] || "-";
         $("exemple").textContent = b.exemple_concret || "Aucun exemple documenté pour ce biais.";
-        const metriques = Array.isArray(b.metriques_detection) ? b.metriques_detection : [];
+        const metriques = Array.isArray(b.metriques_detection)? b.metriques_detection : [];
         if (metriques.length > 0) {
           $("metriques-list").innerHTML = metriques.map(m =>
             '<span class="text-xs font-mono px-3 py-1.5 rounded bg-ibi-arctic text-ibi-primary border border-ibi-border">' + escapeHtml(m) + '</span>'
