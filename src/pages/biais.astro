@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const API_URL = "https://api.ai-biais-initiative.org";
@@ -6,7 +6,7 @@ const BIAIS_PAR_PAGE = 24;
 ---
 
 <BaseLayout
-  title="Les 250 biais de l'IA — IA BIAIS INITIATIVE"
+  title="Les 250 biais de l'IA - AI BIAIS INITIATIVE"
   description="Explorateur interactif des 250 biais algorithmiques documentés. Recherche, filtres TriAxis, tri par score."
 >
   <!-- ═══ HERO ═══ -->
@@ -70,9 +70,9 @@ const BIAIS_PAR_PAGE = 24;
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🧭 Axe Origine</label>
           <select id="filter-o" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Tous</option>
-            <option value="O1_systemique">O1 — Systémique</option>
-            <option value="O2_computationnel">O2 — Computationnel</option>
-            <option value="O3_humain_cognitif">O3 — Humain-cognitif</option>
+            <option value="O1_systemique">O1 - Systémique</option>
+            <option value="O2_computationnel">O2 - Computationnel</option>
+            <option value="O3_humain_cognitif">O3 - Humain-cognitif</option>
           </select>
         </div>
 
@@ -81,12 +81,12 @@ const BIAIS_PAR_PAGE = 24;
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">🔄 Axe Lifecycle</label>
           <select id="filter-l" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Tous</option>
-            <option value="L1_historique">L1 — Historique</option>
-            <option value="L2_representation">L2 — Représentation</option>
-            <option value="L3_mesure">L3 — Mesure</option>
-            <option value="L4_agregation">L4 — Agrégation</option>
-            <option value="L5_evaluation">L5 — Évaluation</option>
-            <option value="L6_deploiement">L6 — Déploiement</option>
+            <option value="L1_historique">L1 - Historique</option>
+            <option value="L2_representation">L2 - Représentation</option>
+            <option value="L3_mesure">L3 - Mesure</option>
+            <option value="L4_agregation">L4 - Agrégation</option>
+            <option value="L5_evaluation">L5 - Évaluation</option>
+            <option value="L6_deploiement">L6 - Déploiement</option>
           </select>
         </div>
 
@@ -95,10 +95,10 @@ const BIAIS_PAR_PAGE = 24;
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚠ Sévérité</label>
           <select id="filter-sev" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="">Toutes</option>
-            <option value="5_critique">5 — Critique</option>
-            <option value="4_grave">4 — Grave</option>
-            <option value="3_modere">3 — Modéré</option>
-            <option value="1_faible">1-2 — Faible</option>
+            <option value="5_critique">5 - Critique</option>
+            <option value="4_grave">4 - Grave</option>
+            <option value="3_modere">3 - Modéré</option>
+            <option value="1_faible">1-2 - Faible</option>
           </select>
         </div>
 
@@ -113,7 +113,7 @@ const BIAIS_PAR_PAGE = 24;
       <!-- Compteur -->
       <div class="mt-4 flex items-center justify-between text-sm">
         <div class="text-ibi-fg2">
-          <span id="results-count" class="font-display font-semibold text-ibi-primary">—</span>
+          <span id="results-count" class="font-display font-semibold text-ibi-primary">-</span>
           <span> biais trouvés</span>
         </div>
         <div id="loading-indicator" class="hidden text-ibi-fg3">
@@ -232,12 +232,12 @@ const BIAIS_PAR_PAGE = 24;
             "3_modere":   { label: "3 Modéré",   color: "bg-yellow-100 text-yellow-800 border-yellow-200" },
             "1_faible":   { label: "1-2 Faible", color: "bg-green-100 text-green-800 border-green-200" },
           };
-          return map[sev] || { label: sev || "—", color: "bg-gray-100 text-gray-700 border-gray-200" };
+          return map[sev] || { label: sev || "-", color: "bg-gray-100 text-gray-700 border-gray-200" };
         }
 
         function renderCard(b) {
           const sev = severityBadge(b.severite);
-          const score = b.score_ibi ? Number(b.score_ibi).toFixed(1) : "—";
+          const score = b.score_ibi ? Number(b.score_ibi).toFixed(1) : "-";
           return `
             <a href="/biais/${escapeHtml(b.ibi_id)}"
                class="group bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">

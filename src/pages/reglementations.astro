@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const API_URL = "https://api.ai-biais-initiative.org";
@@ -6,7 +6,7 @@ const REGL_PAR_PAGE = 20;
 ---
 
 <BaseLayout
-  title="Les 68 réglementations mondiales — IA BIAIS INITIATIVE"
+  title="Les 68 réglementations mondiales - AI BIAIS INITIATIVE"
   description="Référentiel des réglementations mondiales sur l'IA : EU AI Act, UNESCO, OCDE, RGPD et 64 autres."
 >
   <section class="relative overflow-hidden bg-ibi-night text-white">
@@ -67,7 +67,7 @@ const REGL_PAR_PAGE = 20;
       </div>
       <div class="mt-4 flex items-center justify-between text-sm">
         <div class="text-ibi-fg2">
-          <span id="results-count" class="font-display font-semibold text-ibi-primary">—</span>
+          <span id="results-count" class="font-display font-semibold text-ibi-primary">-</span>
           <span> réglementations trouvées</span>
         </div>
         <div id="loading-indicator" class="hidden text-ibi-fg3">
@@ -147,10 +147,10 @@ const REGL_PAR_PAGE = 20;
           <div class="bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
             <div class="flex flex-wrap items-center gap-2 mb-4">
               <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-primary/10 text-ibi-primary font-semibold">${escapeHtml(r.code || "")}</span>
-              <span class="text-xs font-display font-medium px-2 py-1 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(r.juridiction || "—")}</span>
+              <span class="text-xs font-display font-medium px-2 py-1 rounded bg-ibi-arctic text-ibi-fg2">${escapeHtml(r.juridiction || "-")}</span>
               ${r.type_obligation ? `<span class="text-xs font-display font-medium px-2 py-1 rounded bg-violet-100 text-violet-800">${escapeHtml(r.type_obligation)}</span>` : ""}
             </div>
-            <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "—")}</h3>
+            <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "-")}</h3>
             ${r.article ? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.article)}</strong></p>` : ""}
             <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(r.obligation, 180))}</p>
             ${r.deadline ? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}

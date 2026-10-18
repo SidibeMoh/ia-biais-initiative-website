@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const endpoints = [
@@ -16,7 +16,7 @@ const endpoints = [
 const openapiDemo = `{
   "openapi": "3.0.0",
   "info": {
-    "title": "IA Biais Initiative API",
+    "title": "AI BIAIS Initiative API",
     "version": "1.0.0",
     "description": "API REST sur les biais de l'IA"
   },
@@ -52,7 +52,7 @@ for b in r.json():
     print(b["ibi_id"], b["score_ibi"], b["nom_fr"])`;
 const codeBibtex = `@software{sidibe_2026_ia_biais,
   author    = {SIDIBE, Mohamadou},
-  title     = {IA Biais Initiative - API REST},
+  title     = {AI BIAIS Initiative - API REST},
   year      = 2026,
   publisher = {Zenodo},
   version   = {1.0.0},
@@ -62,7 +62,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
 ---
 
 <BaseLayout
-  title="Documentation API — IA BIAIS INITIATIVE"
+  title="Documentation API - AI BIAIS INITIATIVE"
   description="API REST ouverte sur les biais de l'IA. 250 biais, 68 réglementations, 21 vues analytiques. DOI : 10.5281/zenodo.23400341."
 >
   <!-- ═══ HERO ═══ -->
@@ -173,7 +173,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
             <span class="text-ibi-primary">⚡</span>
-            Curl — Lister 10 biais
+            Curl - Lister 10 biais
           </h3>
           <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codeCurlList}</pre>
         </div>
@@ -181,7 +181,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
             <span class="text-ibi-primary">⚡</span>
-            Curl — Biais par identifiant
+            Curl - Biais par identifiant
           </h3>
           <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codeCurlByIbi}</pre>
         </div>
@@ -189,7 +189,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
             <span class="text-ibi-primary">🐍</span>
-            Python — Recherche via RPC
+            Python - Recherche via RPC
           </h3>
           <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codePythonRecherche}</pre>
         </div>
@@ -197,7 +197,7 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <h3 class="font-display font-semibold mb-4 flex items-center gap-2">
             <span class="text-ibi-primary">🐍</span>
-            Python — Top biais critiques
+            Python - Top biais critiques
           </h3>
           <pre class="bg-ibi-night text-white text-xs font-mono p-4 rounded-lg overflow-x-auto">{codePythonTop}</pre>
         </div>
@@ -209,12 +209,12 @@ const codeBibtex = `@software{sidibe_2026_ia_biais,
           Filtres PostgREST disponibles
         </h3>
         <div class="grid md:grid-cols-2 gap-3 text-sm text-ibi-fg2">
-          <div><code class="font-mono text-xs text-ibi-primary">?limit=10</code> — Limite le nombre de résultats</div>
-          <div><code class="font-mono text-xs text-ibi-primary">?offset=20</code> — Pagination</div>
-          <div><code class="font-mono text-xs text-ibi-primary">?order=score_ibi.desc</code> — Tri descendant</div>
-          <div><code class="font-mono text-xs text-ibi-primary">?select=ibi_id,nom_fr</code> — Sélection de colonnes</div>
-          <div><code class="font-mono text-xs text-ibi-primary">?severite=eq.5_critique</code> — Filtre égalité</div>
-          <div><code class="font-mono text-xs text-ibi-primary">?score_ibi=gte.8</code> — Filtre supérieur ou égal</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?limit=10</code> - Limite le nombre de résultats</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?offset=20</code> - Pagination</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?order=score_ibi.desc</code> - Tri descendant</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?select=ibi_id,nom_fr</code> - Sélection de colonnes</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?severite=eq.5_critique</code> - Filtre égalité</div>
+          <div><code class="font-mono text-xs text-ibi-primary">?score_ibi=gte.8</code> - Filtre supérieur ou égal</div>
         </div>
       </div>
     </div>
