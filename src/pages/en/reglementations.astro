@@ -16,11 +16,9 @@ const REGL_PAR_PAGE = 20;
     <div class="relative max-w-7xl mx-auto px-6 py-20 md:py-28">
       <div class="max-w-3xl">
         <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">Référentiel · 68 Regulations</p>
-        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
-          Les Regulations <span class="text-gradient-ibi">mondiales</span> de l'IA
-        </h1>
+        <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">Global <span class="text-ibi-violet">AI Regulations</span></h1>
         <p class="text-lg md:text-xl text-ibi-fg3 leading-relaxed">
-          EU AI Act, UNESCO, OCDE, RGPD, NIST AI RMF et 63 autres cadres réglementaires mondiaux. Filtrez par juridiction, type d'obligation et consultez les Penaltys applicables.
+          EU AI Act, UNESCO, OECD, GDPR, NIST AI RMF, and 63 other global regulatory frameworks. Filter by jurisdiction, obligation type, and view applicable penalties.
         </p>
       </div>
     </div>
@@ -37,13 +35,13 @@ const REGL_PAR_PAGE = 20;
         <div class="w-44">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">⚖ Juridiction</label>
           <select id="filter-juridiction" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
-            <option value="">Toutes</option>
+            <option value="">All</option>
           </select>
         </div>
         <div class="w-40">
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">📋 Type</label>
           <select id="filter-type" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
-            <option value="">Tous</option>
+            <option value="">All</option>
           </select>
         </div>
         <button id="reset-btn" class="px-3 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-ibi-fg2 hover:bg-ibi-arctic transition-colors" title="Réinitialiser">↺</button>
@@ -51,7 +49,7 @@ const REGL_PAR_PAGE = 20;
           <label class="block text-xs font-display font-semibold text-ibi-fg2 mb-1.5">↕ Tri</label>
           <select id="sort-select" class="w-full px-3 py-2.5 text-sm rounded-lg border border-ibi-border bg-white focus:border-ibi-primary focus:outline-none">
             <option value="code.asc">Code</option>
-            <option value="juridiction.asc">Juridiction</option>
+            <option value="juridiction.asc">Jurisdiction</option>
             <option value="texte.asc">Texte</option>
           </select>
         </div>
@@ -100,13 +98,11 @@ const REGL_PAR_PAGE = 20;
 
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Compliance et Governance</h2>
-      <p class="text-white/90 max-w-2xl mx-auto mb-8">
-        Les Regulations évoluent. Cette base est mise à jour en continu pour refléter l'état du droit mondial sur l'IA.
-      </p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Compliance and Governance</h2>
+      <p class="text-white/90 max-w-2xl mx-auto mb-8">Regulations are constantly evolving. This database is continuously updated to reflect the global legal landscape on AI.</p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="/aexia" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">Framework AEXIA</a>
-        <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Accès API</a>
+        <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">API Access</a>
       </div>
     </div>
   </section>
@@ -153,7 +149,7 @@ const REGL_PAR_PAGE = 20;
             <h3 class="font-display font-bold text-lg mb-2 leading-snug">${escapeHtml(r.texte || "-")}</h3>
             ${r.Article? `<p class="text-sm text-ibi-fg2 mb-3"><strong class="text-ibi-fg">${escapeHtml(r.Article)}</strong></p>` : ""}
             <p class="text-sm text-ibi-fg2 leading-relaxed mb-4">${escapeHtml(truncate(r.obligation, 180))}</p>
-            ${r.deadline? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Échéance :</strong> ${escapeHtml(r.deadline)}</div>` : ""}
+            ${r.deadline? `<div class="text-xs text-ibi-fg3 mb-2"><strong class="text-ibi-fg2">Deadline:</strong> ${escapeHtml(r.deadline)}</div>` : ""}
             ${r.Penalty? `<div class="text-xs text-red-700 mt-2 p-2 bg-red-50 rounded border border-red-100"><strong>⚠ Penalty :</strong> ${escapeHtml(truncate(r.Penalty, 120))}</div>` : ""}
           </div>
         `;
@@ -289,3 +285,47 @@ const REGL_PAR_PAGE = 20;
             }, 1000); // Attend 1 seconde que l'API charge
         });
     </script>
+
+<script is:inline>
+const dict = {
+  "Émirats Arabes Unis : Charte IA": "United Arab Emirates: AI Charter",
+  "Les EAU visent à relever les défis du biais algorithmique.": "The UAE aims to address the challenges of algorithmic bias.",
+  "Droit de ne pas être soumis à une décision automatisée sans garanties.": "Right not to be subject to an automated decision without guarantees.",
+  "Les données d'entraînement des systèmes IA à haut risque doivent être examinées pour les biais potentiels.": "Training data for high-risk AI systems must be examined for potential biases.",
+  "Les systèmes IA à haut risque doivent permettre leur interprétation.": "High-risk AI systems must allow for their interpretation.",
+  "Les systèmes IA à haut risque doivent permettre une supervision humaine effective.": "High-risk AI systems must allow for effective human oversight.",
+  "Les systèmes IA à haut risque doivent atteindre des niveaux appropriés de précision et de cybersécurité.": "High-risk AI systems must achieve appropriate levels of accuracy and cybersecurity.",
+  "Les déployeurs doivent utiliser les systèmes à haut risque conformément aux instructions et surveiller leur fonctionnement.": "Deployers must use high-risk systems in accordance with instructions and monitor their operation.",
+  "Les déployeurs doivent réaliser une analyse d'impact sur les droits fondamentaux avant la mise en service.": "Deployers must carry out a fundamental rights impact assessment before putting the system into service.",
+  "Interdiction des systèmes IA utilisant des techniques subliminales, exploitant les vulnérabilités, ou pratiquant le social scoring.": "Prohibition of AI systems using subliminal techniques, exploiting vulnerabilities, or practicing social scoring.",
+  "Définition des systèmes à haut risque par référence à l'Annexe III.": "Definition of high-risk systems by reference to Annex III.",
+  "Les fournisseurs doivent établir un système de surveillance après mise sur le marché.": "Providers must establish a post-market monitoring system.",
+  "Un système de gestion des risques doit être mis en place.": "A risk management system must be established.",
+  "Liste des cas d'usage à haut risque : biométrie, infrastructures critiques, éducation, emploi, justice, migration.": "List of high-risk use cases: biometrics, critical infrastructure, education, employment, justice, migration.",
+  "Argentine : Résolution AAIP sur l'IA": "Argentina: AAIP Resolution on AI",
+  "Exigences de transparence pour les systèmes d'IA traitant des données argentines.": "Transparency requirements for AI systems processing Argentine data.",
+  "Principe d'équité et de non-discrimination dans les systèmes d'IA australiens.": "Principle of fairness and non-discrimination in Australian AI systems.",
+  "Union Africaine : Stratégie Continentale IA": "African Union: Continental AI Strategy",
+  "Feuille de route 2025-2030 pour l'innovation et la gouvernance.": "2025-2030 roadmap for innovation and governance.",
+  "Brésil : LGPD": "Brazil: LGPD",
+  "Droit à la révision des décisions automatisées.": "Right to review automated decisions.",
+  "Brésil : Projet de loi IA (PL 2338/2023)": "Brazil: AI Bill (PL 2338/2023)",
+  "Centralité de la personne humaine, respect des droits humains et des valeurs démocratiques.": "Centrality of the human person, respect for human rights and democratic values.",
+  "Canada : Loi sur l'IA et les données (AIDA)": "Canada: AI and Data Act (AIDA)",
+  "Cadre basé sur les risques pour les systèmes d'IA à impact élevé.": "Risk-based framework for high-impact AI systems.",
+  "Canada : Directive sur la prise de décision automatisée": "Canada: Directive on Automated Decision-Making",
+  "Les institutions fédérales doivent publier un avis de décision automatisée.": "Federal institutions must publish an automated decision notice."
+};
+
+function translateTree() {
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+  let node;
+  while (node = walker.nextNode()) {
+    let text = node.nodeValue.trim();
+    if (dict[text]) {
+      node.nodeValue = node.nodeValue.replace(text, dict[text]);
+    }
+  }
+}
+setInterval(translateTree, 500);
+</script>
