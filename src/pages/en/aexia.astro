@@ -3,16 +3,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const pdfs = {
   fondateurs: [
-    { titre: "AEXIA Card - Gabarit",              desc: "Modèle de fiche système AEXIA",                              file: "/aexia/card-template.pdf",           taille: "401 Ko" },
+    { titre: "AEXIA Card - Template",              desc: "AEXIA system sheet template",                              file: "/aexia/card-template.pdf",           taille: "401 Ko" },
   ],
   instruments: [
-    { titre: "Auto-evaluation (FR)",              desc: "Grille d'auto-évaluation organisationnelle",                 file: "/aexia/auto-evaluation-fr.pdf",      taille: "187 Ko" },
-    { titre: "Grille d'évaluation (FR)",          desc: "Grille détaillée 6 Pillars x 6 Levels",                     file: "/aexia/grille-evaluation-fr.pdf",    taille: "208 Ko" },
-    { titre: "Evaluation Grid (EN)",              desc: "Version anglaise de la grille d'évaluation",                 file: "/aexia/grille-evaluation-en.pdf",    taille: "206 Ko" },
-    { titre: "Self-Assessment (EN)",              desc: "Version anglaise de l'auto-évaluation",                      file: "/aexia/self-assessment-en.pdf",      taille: "186 Ko" },
+    { titre: "Self-assessment (FR)",              desc: "Organizational self-assessment grid",                 file: "/aexia/auto-evaluation-fr.pdf",      taille: "187 Ko" },
+    { titre: "Assessment grid (FR)",          desc: "Detailed grid 6 Pillars x 6 Levels",                     file: "/aexia/grille-evaluation-fr.pdf",    taille: "208 Ko" },
+    { titre: "Evaluation Grid (EN)",              desc: "English version of the assessment grid",                 file: "/aexia/grille-evaluation-en.pdf",    taille: "206 Ko" },
+    { titre: "Self-Assessment (EN)",              desc: "English version of the self-assessment",                      file: "/aexia/self-assessment-en.pdf",      taille: "186 Ko" },
   ],
   cards: [
-    { titre: "AEXIA Card (FR)",                   desc: "Fiche système opérationnelle",                               file: "/aexia/card-fr.pdf",                 taille: "162 Ko" },
+    { titre: "AEXIA Card (FR)",                   desc: "Operational system sheet",                               file: "/aexia/card-fr.pdf",                 taille: "162 Ko" },
     { titre: "AEXIA Card (EN)",                   desc: "System card in English",                                     file: "/aexia/card-en.pdf",                 taille: "161 Ko" },
   ],
 };
@@ -20,7 +20,7 @@ const pdfs = {
 
 <BaseLayout
   title="AEXIA - GOVERNANCE FRAMEWORK de l'Explainable AI | AI BIAIS INITIATIVE"
-  description="AEXIA : cadre intègre articulant explicabilité, Organizational maturity et maturité système. Contributions originales DCME, ECS, RAD."
+  description="AEXIA : cadre intègre articulant explicabilité, Organizational maturity et maturité système. ORIGINAL CONTRIBUTIONS DCME, ECS, RAD."
 >
   <!-- ═══ HERO ═══ -->
   <section class="relative overflow-hidden bg-ibi-night text-white">
@@ -43,16 +43,16 @@ const pdfs = {
         </p>
         
         <p class="text-lg text-ibi-fg3 leading-relaxed mb-8">
-          Un cadre intègre qui articule, dans une même structure opérationnelle et mesurable, l'explicabilité, la Organizational maturity et la maturité individuelle des systèmes d'IA déployés.
+          An integrated framework that articulates, within a single operational and measurable structure, explainability, organizational maturity and the individual maturity of deployed AI systems.
         </p>
 
         <div class="flex flex-wrap gap-3">
           <a href="#telechargements" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90 transition-opacity">
-            Download les documents
+            Download documents
             <span aria-hidden="true">↓</span>
           </a>
           <a href="https://doi.org/10.5281/zenodo.23126471" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
-            Voir le DOI Zenodo
+            View Zenodo DOI
             <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -65,15 +65,15 @@ const pdfs = {
     <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
         <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">6</div>
-        <div class="text-sm text-ibi-fg2 font-medium">Pillars organisationnels</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Organizational Pillars</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
         <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">N0-N5</div>
-        <div class="text-sm text-ibi-fg2 font-medium">Levels maturité organisation</div>
+        <div class="text-sm text-ibi-fg2 font-medium">Organizational maturity levels</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
         <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">S0-S9</div>
-        <div class="text-sm text-ibi-fg2 font-medium">Levels maturité système</div>
+        <div class="text-sm text-ibi-fg2 font-medium">System maturity levels</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-6 text-center">
         <div class="font-display font-extrabold text-4xl text-gradient-ibi mb-2">18</div>
@@ -82,15 +82,15 @@ const pdfs = {
     </div>
   </section>
 
-  <!-- ═══ POSITIONNEMENT ═══ -->
+  <!-- ═══ POSITIONING ═══ -->
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="max-w-3xl mb-12">
-      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Positionnement</p>
+      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">POSITIONING</p>
       <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">
-        Le vide comblé par AEXIA
+        The void filled by AEXIA
       </h2>
       <p class="text-ibi-fg2 leading-relaxed">
-        Quatre référentiels structurent aujourd'hui la Governance de l'IA, mais aucun ne traite frontalement la question de la Algorithmic Responsibility des équilibres produits par des systèmes apprenants.
+        Four frameworks currently structure AI Governance, but none directly addresses the question of Algorithmic Responsibility for the equilibria produced by learning systems.
       </p>
     </div>
 
@@ -98,9 +98,9 @@ const pdfs = {
       <table class="w-full text-sm">
         <thead class="bg-ibi-arctic border-b border-ibi-border">
           <tr>
-            <th class="text-left px-6 py-4 font-display font-semibold">Référentiel</th>
-            <th class="text-left px-6 py-4 font-display font-semibold">Ce qu'il fournit</th>
-            <th class="text-left px-6 py-4 font-display font-semibold">Ce qu'il ne fournit pas</th>
+            <th class="text-left px-6 py-4 font-display font-semibold">Framework</th>
+            <th class="text-left px-6 py-4 font-display font-semibold">What it provides</th>
+            <th class="text-left px-6 py-4 font-display font-semibold">What it doesn't provide</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-ibi-border">
@@ -111,17 +111,17 @@ const pdfs = {
           </tr>
           <tr>
             <td class="px-6 py-4 font-medium">ISO/IEC 42001</td>
-            <td class="px-6 py-4 text-ibi-fg2">Système de management de l'IA</td>
-            <td class="px-6 py-4 text-ibi-fg2">Évaluation de la maturité d'un système donné</td>
+            <td class="px-6 py-4 text-ibi-fg2">AI management system</td>
+            <td class="px-6 py-4 text-ibi-fg2">Evaluation of the maturity of a given system</td>
           </tr>
           <tr>
             <td class="px-6 py-4 font-medium">MLTRL (Lavin et al., 2022)</td>
-            <td class="px-6 py-4 text-ibi-fg2">Échelle de maturité par système ML (9 Levels)</td>
+            <td class="px-6 py-4 text-ibi-fg2">Maturity scale per ML system (9 Levels)</td>
             <td class="px-6 py-4 text-ibi-fg2">Governance organisationnelle · Compliance réglementaire</td>
           </tr>
           <tr>
             <td class="px-6 py-4 font-medium">EU AI Act (2024/1689)</td>
-            <td class="px-6 py-4 text-ibi-fg2">Obligations légales pour les systèmes à haut risque</td>
+            <td class="px-6 py-4 text-ibi-fg2">Legal obligations for high-risk systems</td>
             <td class="px-6 py-4 text-ibi-fg2">Instrument de Measurement · méthode d'évaluation</td>
           </tr>
         </tbody>
@@ -130,64 +130,64 @@ const pdfs = {
 
     <div class="mt-6 p-6 bg-ibi-arctic rounded-xl border border-ibi-border">
       <p class="text-sm text-ibi-fg2 leading-relaxed">
-        <strong class="text-ibi-fg">AEXIA™ se situe à l'intersection de ces quatre espaces.</strong> Il ne se substitue à aucun d'eux : il les orchestre autour d'une question qu'aucun ne traite frontalement - celle de la <strong class="text-ibi-fg">Algorithmic Responsibility des équilibres produits</strong>.
+        <strong class="text-ibi-fg">AEXIA™ sits at the intersection of these four spaces.</strong> It does not replace any of them : it orchestrates them around a question that none directly addresses - that of the <strong class="text-ibi-fg">Algorithmic Responsibility of the equilibria produced</strong>.
       </p>
     </div>
   </section>
 </BaseLayout>
 
-  <!-- ═══ AEXIA EN BREF ═══ -->
+  <!-- ═══ AEXIA IN BRIEF ═══ -->
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="max-w-3xl mb-12">
-      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">AEXIA en bref</p>
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Comprendre AEXIA en 2 minutes</h2>
+      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">AEXIA IN BRIEF</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Understanding AEXIA in 2 minutes</h2>
       <p class="text-ibi-fg2 leading-relaxed">
-        AEXIA est un cadre de Explainable AI Governance. Il ne remplace aucun référentiel existant - il les orchestre pour répondre à une question qu'aucun ne traite frontalement : comment garantir la <strong class="text-ibi-fg">Algorithmic Responsibility</strong> des équilibres produits par des systèmes apprenants.
+        AEXIA is an Explainable AI Governance framework. It does not replace any existing framework - it orchestrates them to answer a question that none directly addresses: how to guarantee the Algorithmic Responsibility of the equilibria produced by learning systems.
       </p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4 mb-10">
       <div class="bg-white rounded-xl border border-ibi-border p-6">
         <div class="text-3xl mb-3">🧭</div>
-        <h3 class="font-display font-semibold mb-2">Un Dual axis</h3>
+        <h3 class="font-display font-semibold mb-2">A Dual Axis</h3>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          La maturité de l'organisation (AEXIA-O) et celle de chaque système (AEXIA-S) sont mesurées séparément, puis croisées. Leur intersection détermine ce que l'organisation a le droit de déployer.
+          The maturity of the organization (AEXIA-O) and that of each system (AEXIA-S) are measured separately and then crossed. Their intersection determines what the organization is allowed to deploy.
         </p>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-6">
         <div class="text-3xl mb-3">🧩</div>
-        <h3 class="font-display font-semibold mb-2">Trois contributions originales</h3>
+        <h3 class="font-display font-semibold mb-2">Three original contributions</h3>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          DCME (explication causale multi-échelle), ECS (score de consistance), RAD (dette de Algorithmic Responsibility). Ces trois concepts n'existent dans aucun autre cadre.
+          DCME (multi-scale causal explanation), ECS (consistency score), RAD (Algorithmic Responsibility debt). These three concepts do not exist in any other framework.
         </p>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-6">
         <div class="text-3xl mb-3">🛡️</div>
-        <h3 class="font-display font-semibold mb-2">Quatre Mechanisms de robustesse</h3>
+        <h3 class="font-display font-semibold mb-2">Four robustness mechanisms</h3>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          Weakest link, Evidentiary gates, Downgrading automatique sur dérive, Risk proportionality. C'est ce qui distingue un cadre opérationnel d'un référentiel déclaratif.
+          Weakest link, Evidentiary gates, Automatic downgrading on drift, Risk proportionality. This is what distinguishes an operational framework from a declarative reference.
         </p>
       </div>
     </div>
 
     <div class="bg-ibi-arctic rounded-xl border border-ibi-border p-8">
-      <h3 class="font-display font-semibold text-lg mb-6">Ce qu'AEXIA fournit concrètement</h3>
+      <h3 class="font-display font-semibold text-lg mb-6">What AEXIA concretely provides</h3>
       <div class="grid md:grid-cols-2 gap-6 text-sm text-ibi-fg2">
         <div>
-          <p class="font-semibold text-ibi-fg mb-2">📋 Une grille d'auto-évaluation</p>
-          <p>6 Pillars (Foundations, Architecture, Governance, Compliance, Operations, Measurement) × 6 Levels de maturité, pour situer votre organisation.</p>
+          <p class="font-semibold text-ibi-fg mb-2">📋 A self-assessment grid</p>
+          <p>6 Pillars (Foundations, Architecture, Governance, Compliance, Operations, Measurement) × 6 maturity levels, to situate your organization.</p>
         </div>
         <div>
-          <p class="font-semibold text-ibi-fg mb-2">🎴 Un gabarit de fiche système</p>
-          <p>L'AEXIA Card : l'artefact qu'un régulateur demandera en premier. Classification AI Act, niveau S, méthode XAI, plan de surveillance.</p>
+          <p class="font-semibold text-ibi-fg mb-2">🎴 A system sheet template</p>
+          <p>The AEXIA Card: the artifact a regulator will ask for first. AI Act classification, S level, XAI method, monitoring plan.</p>
         </div>
         <div>
-          <p class="font-semibold text-ibi-fg mb-2">🔄 Un Lifecycle en 6 phases</p>
-          <p>MAP → DEFINE → BUILD → GOVERN → OPERATE → IMPROVE. Chaque phase a ses livrables et ses durées indicatives.</p>
+          <p class="font-semibold text-ibi-fg mb-2">🔄 A 6-phase Lifecycle</p>
+          <p>MAP → DEFINE → BUILD → GOVERN → OPERATE → IMPROVE. Each phase has its deliverables and indicative durations.</p>
         </div>
         <div>
-          <p class="font-semibold text-ibi-fg mb-2">📚 18 référentiels orchestrés</p>
-          <p>NIST AI RMF, ISO/IEC 42001, EU AI Act, OECD, UNESCO, DAMA-DMBOK, COBIT, CMMI, TOGAF, ITIL, MLTRL et 7 autres.</p>
+          <p class="font-semibold text-ibi-fg mb-2">📚 18 orchestrated frameworks</p>
+          <p>NIST AI RMF, ISO/IEC 42001, EU AI Act, OECD, UNESCO, DAMA-DMBOK, COBIT, CMMI, TOGAF, ITIL, MLTRL and 7 others.</p>
         </div>
       </div>
     </div>
@@ -197,9 +197,9 @@ const pdfs = {
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mb-12">
         <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Architecture</p>
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Une Architecture à Dual axis</h2>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">A Dual Axis Architecture</h2>
         <p class="text-ibi-fg2 leading-relaxed">
-          Une organisation mature peut exploiter un système immature ; une organisation immature peut héberger un système techniquement irréprochable. AEXIA sépare ces deux propriétés et les croise pour produire la décision de déploiement.
+          A mature organization can operate an immature system; an immature organization can host a technically flawless system. AEXIA separates these two properties and crosses them to produce the deployment decision.
         </p>
       </div>
 
@@ -207,67 +207,67 @@ const pdfs = {
         <div class="bg-white rounded-xl border border-ibi-border p-8">
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-xl">O</div>
-            <h3 class="font-display font-bold text-xl">AEXIA-O - Organisation</h3>
+            <h3 class="font-display font-bold text-xl">AEXIA-O - Organization</h3>
           </div>
           <p class="text-ibi-fg2 leading-relaxed mb-4">
-            Maturité de l'organisation à gouverner l'Explainable AI. Évalué 1 à 2 fois par an sur 6 Pillars et 6 Levels (N0 à N5).
+            Maturity of the organization to govern Explainable AI. Evaluated 1 to 2 times a year on 6 Pillars and 6 Levels (N0 to N5).
           </p>
           <div class="text-sm font-display font-semibold text-ibi-primary">
-            N0 Inexistant → N5 Excellence
+            N0 Non-existent → N5 Excellence
           </div>
         </div>
 
         <div class="bg-white rounded-xl border border-ibi-border p-8">
           <div class="flex items-center gap-4 mb-4">
             <div class="w-12 h-12 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold text-xl">S</div>
-            <h3 class="font-display font-bold text-xl">AEXIA-S - Système</h3>
+            <h3 class="font-display font-bold text-xl">AEXIA-S - System</h3>
           </div>
           <p class="text-ibi-fg2 leading-relaxed mb-4">
-            Maturité d'un système d'IA donné. Réévalué à chaque passage de porte et à chaque incident. Aligné sur les MLTRL de Lavin et al. (Nature Communications, 2022).
+            Maturity of a given AI system. Re-evaluated at each gate passage and each incident. Aligned with the MLTRL of Lavin et al. (Nature Communications, 2022).
           </p>
           <div class="text-sm font-display font-semibold text-ibi-primary">
-            S0 Premiers principes → S9 En service surveillé
+            S0 First principles → S9 In monitored service
           </div>
         </div>
       </div>
 
       <div class="overflow-x-auto bg-white rounded-xl border border-ibi-border">
         <div class="px-6 py-4 border-b border-ibi-border bg-ibi-night text-white">
-          <h3 class="font-display font-semibold">Matrice de croisement O × S - Grille de décision de déploiement</h3>
+          <h3 class="font-display font-semibold">O × S crossing matrix - Deployment decision grid</h3>
         </div>
         <table class="w-full text-sm">
           <thead class="bg-ibi-arctic border-b border-ibi-border">
             <tr>
-              <th class="text-left px-4 py-3 font-display font-semibold">Maturité org.</th>
-              <th class="text-left px-4 py-3 font-display font-semibold">Systèmes S0-S5</th>
-              <th class="text-left px-4 py-3 font-display font-semibold">Systèmes S6-S7</th>
-              <th class="text-left px-4 py-3 font-display font-semibold">Systèmes S8-S9</th>
+              <th class="text-left px-4 py-3 font-display font-semibold">Org. maturity</th>
+              <th class="text-left px-4 py-3 font-display font-semibold">Systems S0-S5</th>
+              <th class="text-left px-4 py-3 font-display font-semibold">Systems S6-S7</th>
+              <th class="text-left px-4 py-3 font-display font-semibold">Systems S8-S9</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-ibi-border">
             <tr>
               <td class="px-4 py-3 font-medium">N0-N1</td>
-              <td class="px-4 py-3 text-ibi-fg2">Toléré : phase exploratoire</td>
+              <td class="px-4 py-3 text-ibi-fg2">Tolerated: exploratory phase</td>
               <td class="px-4 py-3 text-red-700 font-medium">Prohibited</td>
-              <td class="px-4 py-3 text-red-700 font-medium">ALERTE MAJEURE</td>
+              <td class="px-4 py-3 text-red-700 font-medium">MAJOR ALERT</td>
             </tr>
             <tr>
               <td class="px-4 py-3 font-medium">N2</td>
-              <td class="px-4 py-3 text-ibi-fg2">Toléré avec traçabilité</td>
-              <td class="px-4 py-3 text-amber-700 font-medium">Authorized sous condition</td>
-              <td class="px-4 py-3 text-amber-700 font-medium">Risque limité uniquement</td>
+              <td class="px-4 py-3 text-ibi-fg2">Tolerated with traceability</td>
+              <td class="px-4 py-3 text-amber-700 font-medium">Authorized under condition</td>
+              <td class="px-4 py-3 text-amber-700 font-medium">Limited risk only</td>
             </tr>
             <tr>
               <td class="px-4 py-3 font-medium">N3</td>
               <td class="px-4 py-3 text-ibi-fg2">Normal</td>
-              <td class="px-4 py-3 text-ibi-fg2">Porte franchie sur preuve</td>
-              <td class="px-4 py-3 text-green-700 font-medium">Authorized, y compris haut risque</td>
+              <td class="px-4 py-3 text-ibi-fg2">Gate passed on evidence</td>
+              <td class="px-4 py-3 text-green-700 font-medium">Authorized, including high risk</td>
             </tr>
             <tr>
               <td class="px-4 py-3 font-medium">N4-N5</td>
               <td class="px-4 py-3 text-ibi-fg2">Normal</td>
-              <td class="px-4 py-3 text-ibi-fg2">Normal, automatisé</td>
-              <td class="px-4 py-3 text-green-700 font-medium">Avec Downgrading automatisée</td>
+              <td class="px-4 py-3 text-ibi-fg2">Normal, automated</td>
+              <td class="px-4 py-3 text-green-700 font-medium">With automated Downgrading</td>
             </tr>
           </tbody>
         </table>
@@ -275,14 +275,14 @@ const pdfs = {
     </div>
   </section>
 
-  <!-- ═══ CONTRIBUTIONS ORIGINALES ═══ -->
+  <!-- ═══ ORIGINAL CONTRIBUTIONS ═══ -->
   <section class="bg-ibi-night text-white py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mb-12">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Contributions originales</p>
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">DCME, ECS et RAD</h2>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ORIGINAL CONTRIBUTIONS</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">DCME, ECS and RAD</h2>
         <p class="text-ibi-fg3 leading-relaxed">
-          Trois apports intellectuels propres de Mohamadou SIDIBE. Ils constituent le seul élément d'AEXIA qu'aucun autre framework ne peut revendiquer, et différencient AEXIA de toute synthèse de référentiels existants.
+          Three intellectual contributions by Mohamadou SIDIBE. They constitute the only element of AEXIA that no other framework can claim, and differentiate AEXIA from any synthesis of existing references.
         </p>
       </div>
 
@@ -292,7 +292,7 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">DCME</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">DYNAMIC CAUSAL MULTI-SCALE EXPLANATION</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Décompose la prédiction d'un modèle en contributions causales organisées sur plusieurs échelles (macro, méso, micro), en distinguant effets directs et effets médiés.
+            Decomposes a model's prediction into causal contributions organized across multiple scales (macro, meso, micro), distinguishing direct and mediated effects.
           </p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
             ŷ = φ₀ + Σφᵢ⁽ˢ⁾ + Σψᵢⱼ
@@ -304,7 +304,7 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">ECS</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">EXPLANATION CONSISTENCY SCORE</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Métrique évaluant la stabilité d'une explication lorsqu'elle est recalculée sur des échantillons voisins ou des perturbations contrôlées. ECS ∈ [0,1].
+            Metric evaluating the stability of an explanation when recalculated on neighboring samples or controlled perturbations. ECS ∈ [0, 1].
           </p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
             ECS = 1 − (1/N) Σ ‖φ(x) − φ(xₖ)‖₁ / (‖φ(x)‖₁ + δ)
@@ -316,7 +316,7 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">RAD</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">RESPONSIBILITY ALGORITHMIC DEBT</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Indicateur cumulatif mesurant l'écart entre la maturité attendue d'un système et sa maturité effective, pondéré par sa criticité réglementaire au sens de l'AI Act.
+            Cumulative indicator measuring the gap between a system's expected maturity and its effective maturity, weighted by its regulatory criticality under the AI Act.
           </p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
             RADᵢ(T) = Σ αₜ · max(0, S_attendu − S_effectif) · βᵢ
@@ -329,10 +329,10 @@ const pdfs = {
   <!-- ═══ 4 MECANISMES ═══ -->
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="max-w-3xl mb-12">
-      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Robustesse opérationnelle</p>
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Les 4 mechanisms qui distinguent AEXIA</h2>
+      <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">OPERATIONAL ROBUSTNESS</p>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">The 4 mechanisms that distinguish AEXIA</h2>
       <p class="text-ibi-fg2 leading-relaxed">
-        Ces Mechanisms distinguent un framework opérationnel d'un référentiel déclaratif. Trois sont empruntés à l'ingénierie système (NASA, MLTRL) ; le quatrième est Specific à l'IA apprenante.
+        These mechanisms distinguish an operational framework from a declarative reference. Three are borrowed from systems engineering (NASA, MLTRL); the fourth is specific to learning AI.
       </p>
     </div>
 
@@ -343,7 +343,7 @@ const pdfs = {
           <h3 class="font-display font-semibold">1. Weakest link rule</h3>
         </div>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          Le niveau AEXIA-O publié est celui du pilier le plus faible, jamais la moyenne pondérée. Idem pour un système : c'est le composant le moins mûr qui détermine le niveau global.
+          The published AEXIA-O level is that of the weakest pillar, never the weighted average. Same for a system: it is the least mature component that determines the global level.
         </p>
       </div>
 
@@ -353,7 +353,7 @@ const pdfs = {
           <h3 class="font-display font-semibold">2. Evidentiary gates</h3>
         </div>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          Aucun passage de niveau ne s'obtient par déclaration. Chaque transition exige un jeu fermé d'artefacts, examinés en revue : fiche de risque, justification XAI, dossier de Compliance, pipelines de surveillance.
+          No level passage is obtained by declaration. Each transition requires a closed set of artifacts, examined in review: risk sheet, XAI justification, compliance file, monitoring pipelines.
         </p>
       </div>
 
@@ -363,7 +363,7 @@ const pdfs = {
           <h3 class="font-display font-semibold">3. Downgrading (Specific IA)</h3>
         </div>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          Une fusée qualifiée reste qualifiée. Un système d'IA, non. Dérive de données, incident d'explicabilité, changement de population d'usagers : autant de déclencheurs de Downgrading automatique.
+          A qualified rocket remains qualified. An AI system does not. Data drift, explainability incident, change in user population: so many triggers for automatic downgrading.
         </p>
       </div>
 
@@ -373,7 +373,7 @@ const pdfs = {
           <h3 class="font-display font-semibold">4. Risk proportionality</h3>
         </div>
         <p class="text-sm text-ibi-fg2 leading-relaxed">
-          Appliquer l'intégralité d'AEXIA à un modèle de recommandation interne à faible enjeu est un gaspillage. Le framework s'adapte au niveau de risque AI Act.
+          Applying all of AEXIA to a low-stakes internal recommendation model is a waste. The framework adapts to the AI Act risk level.
         </p>
       </div>
     </div>
@@ -383,10 +383,10 @@ const pdfs = {
   <section class="bg-ibi-arctic py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mb-12">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Architecture organisationnelle</p>
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Les 6 Pillars AEXIA-O</h2>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ORGANIZATIONAL ARCHITECTURE</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">The 6 AEXIA-O Pillars</h2>
         <p class="text-ibi-fg2 leading-relaxed">
-          Chaque pilier est évalué sur 6 Levels de maturité (N0 à N5). Le niveau publié de l'organisation est celui du pilier le plus faible.
+          Each pillar is evaluated on 6 maturity Levels (N0 to N5). The published level of the organization is that of the weakest pillar.
         </p>
       </div>
 
@@ -394,37 +394,37 @@ const pdfs = {
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">F</div>
           <h3 class="font-display font-semibold mb-2">Foundations</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Bases mathématiques et théoriques : SHAP, LIME, DCME.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Mathematical and theoretical foundations: SHAP, LIME, DCME.</p>
           <p class="text-xs text-ibi-fg3">DAMA-DMBOK · ISO 8000 · DCAM</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">A</div>
           <h3 class="font-display font-semibold mb-2">Architecture</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Infrastructure technique et organisationnelle XAI.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Technical and organizational XAI infrastructure.</p>
           <p class="text-xs text-ibi-fg3">TOGAF · DAMA-DMBOK · DCAM · MLflow</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">G</div>
           <h3 class="font-display font-semibold mb-2">Governance</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Rôles, responsabilités, politiques, contrôle.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Roles, responsibilities, policies, control.</p>
           <p class="text-xs text-ibi-fg3">COBIT · DGI · ISO/IEC 38505 · 38507</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">C</div>
           <h3 class="font-display font-semibold mb-2">Compliance</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Réglementation, éthique, audit.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Regulation, ethics, audit.</p>
           <p class="text-xs text-ibi-fg3">NIST AI RMF · EU AI Act · OECD · UNESCO · RGPD</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">O</div>
           <h3 class="font-display font-semibold mb-2">Operations</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Excellence opérationnelle, gestion de projet.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Operational excellence, project management.</p>
           <p class="text-xs text-ibi-fg3">ITIL v4 · Agile · PRINCE2 · Lean/Six Sigma</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-6">
           <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">M</div>
           <h3 class="font-display font-semibold mb-2">Measurement & Amélioration</h3>
-          <p class="text-sm text-ibi-fg2 mb-3">Évaluation, Measurement, amélioration continue.</p>
+          <p class="text-sm text-ibi-fg2 mb-3">Evaluation, Measurement, continuous improvement.</p>
           <p class="text-xs text-ibi-fg3">CMMI · DCAM · ISO 8000 · Six Sigma</p>
         </div>
       </div>
@@ -435,38 +435,38 @@ const pdfs = {
   <section class="max-w-7xl mx-auto px-6 py-24">
     <div class="max-w-3xl mb-12">
       <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Lifecycle</p>
-      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">6 phases opérationnelles</h2>
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">6 operational phases</h2>
     </div>
     <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-3">
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">01</div>
         <div class="font-display font-semibold text-sm mb-1">MAP</div>
-        <div class="text-xs text-ibi-fg3">2-4 sem.</div>
+        <div class="text-xs text-ibi-fg3">2-4 wks.</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">02</div>
         <div class="font-display font-semibold text-sm mb-1">DEFINE</div>
-        <div class="text-xs text-ibi-fg3">4-8 sem.</div>
+        <div class="text-xs text-ibi-fg3">4-8 wks.</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">03</div>
         <div class="font-display font-semibold text-sm mb-1">BUILD</div>
-        <div class="text-xs text-ibi-fg3">2-6 mois</div>
+        <div class="text-xs text-ibi-fg3">2-6 mos.</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">04</div>
         <div class="font-display font-semibold text-sm mb-1">GOVERN</div>
-        <div class="text-xs text-ibi-fg3">Continu</div>
+        <div class="text-xs text-ibi-fg3">Continuous</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">05</div>
         <div class="font-display font-semibold text-sm mb-1">OPERATE</div>
-        <div class="text-xs text-ibi-fg3">Continu</div>
+        <div class="text-xs text-ibi-fg3">Continuous</div>
       </div>
       <div class="bg-white rounded-xl border border-ibi-border p-4 text-center">
         <div class="text-xs font-display font-bold text-ibi-primary mb-2">06</div>
         <div class="font-display font-semibold text-sm mb-1">IMPROVE</div>
-        <div class="text-xs text-ibi-fg3">Trimestriel</div>
+        <div class="text-xs text-ibi-fg3">Quarterly</div>
       </div>
     </div>
   </section>
@@ -475,10 +475,10 @@ const pdfs = {
   <section id="telechargements" class="bg-ibi-night text-white py-24">
     <div class="max-w-7xl mx-auto px-6">
       <div class="max-w-3xl mb-12">
-        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ResSources</p>
-        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Download les documents AEXIA</h2>
+        <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">RESOURCES</p>
+        <h2 class="font-display font-bold text-3xl md:text-4xl mb-4">Download documents AEXIA</h2>
         <p class="text-ibi-fg3 leading-relaxed">
-          Tous les documents sont publiés sous licence CC BY 4.0. La version de référence est le Framework v3.0.
+          All documents are published under CC BY 4.0 license. The reference version is Framework V3.0.
         </p>
       </div>
 
@@ -496,7 +496,7 @@ const pdfs = {
         ))}
       </div>
 
-      <h3 class="font-display font-semibold text-lg mb-4 text-ibi-primary">🧪 Instruments d'évaluation</h3>
+      <h3 class="font-display font-semibold text-lg mb-4 text-ibi-primary">🧪 Assessment instruments</h3>
       <div class="grid md:grid-cols-2 gap-4 mb-10">
         {pdfs.instruments.map((pdf) => (
           <a href={pdf.file} target="_blank" rel="noopener" class="group flex items-center gap-4 bg-ibi-marine rounded-xl border border-ibi-border p-5 hover:border-ibi-primary transition-colors">
@@ -525,7 +525,7 @@ const pdfs = {
       </div>
 
       <div class="bg-ibi-marine rounded-xl border border-ibi-border p-8 text-center">
-        <p class="text-sm text-ibi-fg3 mb-4">Citer AEXIA dans vos travaux</p>
+        <p class="text-sm text-ibi-fg3 mb-4">Cite AEXIA in your work</p>
         <div class="font-mono text-xs text-ibi-fg3 bg-black/30 p-4 rounded max-w-2xl mx-auto text-left overflow-x-auto">
           SIDIBE, M. (2026). AEXIA Framework - Accountable, Ethical,<br/>
           eXplainable, Interpretable, Auditable AI Governance Framework,<br/>
