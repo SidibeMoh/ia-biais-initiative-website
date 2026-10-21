@@ -298,7 +298,7 @@ const bibtexExemple = `@techreport{aibiais2026barometre1,
           <p class="text-ibi-fg2 leading-relaxed mb-6">
             Pour être notifié dès la sortie d'un nouveau rapport, écrivez-nous à l'adresse ci-dessous. Vous recevrez un email à chaque publication.
           </p>
-          <a href="mailto:contact@ai-biais-initiative.org?subject=Alerte%20Rapports%20-%20Inscription" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">
+          <a href="#" onclick="event.preventDefault(); navigator.clipboard.writeText('contact@ai-biais-initiative.org'); alert('Adresse email copiée !');" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">
             <span>📧</span>
             S'inscrire aux alertes
           </a>
@@ -332,7 +332,7 @@ const bibtexExemple = `@techreport{aibiais2026barometre1,
         Vous êtes chercheur, expert ou institution et souhaitez contribuer à un rapport? Nous sommes ouverts aux co-publications et contributions d'experts invités.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="mailto:contact@ai-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95 transition-colors">
+        <a href="#" onclick="event.preventDefault(); navigator.clipboard.writeText('contact@ai-biais-initiative.org'); alert('Adresse email copiée !');" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95 transition-colors">
           Proposer une contribution
         </a>
         
