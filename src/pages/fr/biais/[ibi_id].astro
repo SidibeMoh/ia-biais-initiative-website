@@ -1,0 +1,329 @@
+﻿---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const API_URL = "https://api.ai-biais-initiative.org";
+
+export async function getStaticPaths() {
+  try {
+    const res = await fetch("https://api.ai-biais-initiative.org/biais?select=ibi_id&limit=1000");
+    if (!res.ok) {
+      console.warn("Erreur API:", res.status);
+      return [];
+    }
+    const biais = await res.json();
+    return biais.map((b) => ({
+      params: { ibi_id: b.ibi_id },
+    }));
+  } catch (err) {
+    console.error("getStaticPaths failed:", err);
+    return [];
+  }
+}
+---
+
+<BaseLayout title="Fiche biais - AI BIAIS INITIATIVE" description="Fiche détaillée d'un biais algorithmique.">
+  <div class="bg-ibi-arctic border-b border-ibi-border">
+    <div class="max-w-7xl mx-auto px-6 py-4 text-sm">
+      <a href="/" class="text-ibi-fg3 hover:text-ibi-primary">Accueil</a>
+      <span class="text-ibi-fg3 mx-2">›</span>
+      <a href="/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biais</a>
+      <span class="text-ibi-fg3 mx-2">›</span>
+      <span id="breadcrumb-id" class="text-ibi-fg font-display font-semibold">Chargement...</span>
+    </div>
+  </div>
+
+  <div id="loading" class="max-w-7xl mx-auto px-6 py-32 text-center">
+    <div class="text-4xl mb-4 animate-pulse">⏳</div>
+    <p class="text-ibi-fg2">Chargement de la fiche...</p>
+  </div>
+
+  <div id="error-state" class="hidden max-w-7xl mx-auto px-6 py-32 text-center">
+    <div class="text-4xl md:text-6xl mb-4">⚠️</div>
+    <h2 class="font-display font-bold text-2xl mb-4">Biais non trouvé</h2>
+    <p class="text-ibi-fg2 mb-6">Cet identifiant n'existe pas dans la base.</p>
+    <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white">← Retour à la liste</a>
+  </div>
+
+  <div id="content" class="hidden">
+    <section class="relative overflow-hidden bg-ibi-night text-white">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20" style="background: radial-gradient(circle, #2D46F5 0%, transparent 70%)"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-6 py-16 md:py-20">
+        <div class="grid md:grid-cols-3 gap-8 items-start">
+          <div class="md:col-span-2">
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <span id="hero-ibi-id" class="font-display font-mono text-sm px-3 py-1.5 rounded-lg bg-ibi-primary/20 text-ibi-primary">-</span>
+              <span id="hero-severite" class="text-xs font-display font-semibold px-3 py-1.5 rounded border">-</span>
+              <span id="hero-statut" class="text-xs font-display font-medium px-3 py-1.5 rounded bg-white/10 text-ibi-fg3">-</span>
+            </div>
+            <h1 id="hero-nom-fr" class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">-</h1>
+            <p id="hero-nom-en" class="text-lg md:text-xl text-ibi-fg3 italic mb-8">-</p>
+            <div class="flex flex-wrap gap-3">
+              <a href="/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">← Retour à la liste</a>
+              <a id="api-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">Voir sur l'API ↗</a>
+            </div>
+          </div>
+          <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8 text-center">
+            <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Score IBI</div>
+            <div id="hero-score" class="font-display font-extrabold text-4xl md:text-6xl text-gradient-ibi mb-3">-</div>
+            <div class="text-xs text-ibi-fg3">sur 10</div>
+            <div class="mt-6 pt-6 border-t border-ibi-border text-left text-xs space-y-2">
+              <div class="flex justify-between"><span class="text-ibi-fg3">Sévérité</span><span id="meta-severite" class="text-white font-mono">-</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">Fréquence</span><span id="meta-frequence" class="text-white font-mono">-</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">Ampleur groupes</span><span id="meta-ampleur" class="text-white font-mono">-</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">Difficulté détection</span><span id="meta-difficulte" class="text-white font-mono">-</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl border border-ibi-border p-8">
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">🇫🇷 Définition (FR)</div>
+          <p id="def-fr" class="text-ibi-fg leading-relaxed">-</p>
+        </div>
+        <div class="bg-white rounded-xl border border-ibi-border p-8">
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">🇬🇧 Definition (EN)</div>
+          <p id="def-en" class="text-ibi-fg leading-relaxed italic">-</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-ibi-arctic py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-10">
+          <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">Taxonomie TriAxis</p>
+          <h2 class="font-display font-bold text-2xl md:text-3xl">Classification structurelle</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-white rounded-xl border border-ibi-border p-6">
+            <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">O</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Origine</div>
+            <div id="axe-o-code" class="font-display font-semibold text-lg mb-2">-</div>
+            <div id="axe-o-libelle" class="text-sm text-ibi-fg2">-</div>
+          </div>
+          <div class="bg-white rounded-xl border border-ibi-border p-6">
+            <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">L</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Lifecycle</div>
+            <div id="axe-l-code" class="font-display font-semibold text-lg mb-2">-</div>
+            <div id="axe-l-libelle" class="text-sm text-ibi-fg2">-</div>
+          </div>
+          <div class="bg-white rounded-xl border border-ibi-border p-6">
+            <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">S</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Spécifique</div>
+            <div id="axe-s-code" class="font-display font-semibold text-lg mb-2">-</div>
+            <div id="axe-s-libelle" class="text-sm text-ibi-fg2">-</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-8">
+        <div class="flex items-start gap-4">
+          <div class="text-3xl shrink-0">💡</div>
+          <div>
+            <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-amber-700 mb-2">Exemple concret</div>
+            <p id="exemple" class="text-ibi-fg leading-relaxed">-</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-ibi-arctic py-16">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white rounded-xl border border-ibi-border p-8">
+            <h2 class="font-display font-bold text-xl mb-6">📊 Métriques de détection</h2>
+            <div id="metriques-list" class="flex flex-wrap gap-2">
+              <span class="text-sm text-ibi-fg3 italic">Aucune métrique documentée</span>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl border border-ibi-border p-8">
+            <h2 class="font-display font-bold text-xl mb-6">⚙️ Seuils d'alerte</h2>
+            <div id="seuils-list" class="space-y-3">
+              <span class="text-sm text-ibi-fg3 italic">Aucun seuil documenté</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="bg-white rounded-xl border border-ibi-border p-8">
+        <h2 class="font-display font-bold text-xl mb-6">📋 Métadonnées</h2>
+        <div class="grid md:grid-cols-3 gap-6 text-sm">
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributeur</div><div id="meta-contributeur" class="text-ibi-fg font-medium">-</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div id="meta-institution" class="text-ibi-fg font-medium">-</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Version</div><div id="meta-version" class="text-ibi-fg font-medium">-</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Créé le</div><div id="meta-created" class="text-ibi-fg font-medium">-</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Mis à jour le</div><div id="meta-updated" class="text-ibi-fg font-medium">-</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">UUID</div><div id="meta-uuid" class="text-ibi-fg font-mono text-xs">-</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pb-24">
+      <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
+        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explorer d'autres biais</h2>
+        <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais documentés, classés par la taxonomie TriAxis.</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Retour à la liste</a>
+          <a href="/Méthodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script define:vars={{ API_URL }}>
+    (function() {
+      const $ = (id) => document.getElementById(id);
+      const loading = $("loading");
+      const errorState = $("error-state");
+      const content = $("content");
+
+      const AXE_O = {
+        "O1_Systemic": "Systemic - inscrit dans les structures sociales",
+        "O2_computational": "computational - nait de l'algorithme",
+        "O3_humain_cognitive": "Humain-cognitive - vient des biais des concepteurs"
+      };
+      const AXE_L = {
+        "L1_historique": "Historique - données anciennes",
+        "L2_representation": "Représentation - choix des variables",
+        "L3_mesure": "Mesure - métriques et seuils",
+        "L4_agregation": "Agrégation - fusion des sources",
+        "L5_evaluation": "Évaluation - jeux de test",
+        "L6_deploiement": "Déploiement - production et drift"
+      };
+      const AXE_S = {
+        "S01_proxy": "Proxy - variable substitut",
+        "S02_feedback": "Feedback - boucle de rétroaction",
+        "S03_selection": "Sélection - biais d'échantillon",
+        "S04_sampling": "Sampling - échantillonnage",
+        "S05_annotation": "Annotation - biais des annotateurs",
+        "S06_label": "Label - biais d'étiquetage",
+        "S07_distribution_shift": "Distribution shift",
+        "S08_covariate_shift": "Covariate shift",
+        "S09_concept_drift": "Concept drift",
+        "S10_automation": "Automation - excès de confiance",
+        "S11_confirmation": "Confirmation - biais de confirmation",
+        "S12_anchoring": "Anchoring - ancrage",
+        "S13_availability": "Availability - disponibilité",
+        "S18_group_attribution": "Attribution de groupe",
+        "S22_linguistic": "Linguistique",
+        "S24_institutionnel": "Institutionnel",
+        "S28_interaction": "Interaction"
+      };
+
+      function escapeHtml(str) {
+        if (str === null || str === undefined) return "";
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+      }
+
+      function formatDate(iso) {
+        if (!iso) return "-";
+        try {
+          const d = new Date(iso);
+          return d.toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" });
+        } catch (e) { return iso; }
+      }
+
+      function severityInfo(sev) {
+        const map = {
+          "5_critique": { label: "5 - Critique", color: "bg-red-100 text-red-800 border-red-300" },
+          "4_grave":    { label: "4 - Grave",    color: "bg-amber-100 text-amber-800 border-amber-300" },
+          "3_modere":   { label: "3 - Modéré",   color: "bg-yellow-100 text-yellow-800 border-yellow-300" },
+          "1_faible":   { label: "1-2 - Faible", color: "bg-green-100 text-green-800 border-green-300" }
+        };
+        return map[sev] || { label: sev || "-", color: "bg-gray-100 text-gray-700 border-gray-300" };
+      }
+
+      function getIbiIdFromUrl() {
+        const parts = window.location.pathname.split("/").filter(Boolean);
+        return parts[parts.length - 1];
+      }
+
+      function renderBiais(b) {
+        const sev = severityInfo(b.severite);
+        $("hero-ibi-id").textContent = b.ibi_id || "-";
+        $("hero-nom-fr").textContent = b.nom_fr || "-";
+        $("hero-nom-en").textContent = b.nom_en || "-";
+        $("hero-score").textContent = b.score_ibi? Number(b.score_ibi).toFixed(1) : "-";
+        $("hero-severite").textContent = sev.label;
+        $("hero-severite").className = "text-xs font-display font-semibold px-3 py-1.5 rounded border " + sev.color;
+        $("hero-statut").textContent = b.statut || "-";
+        $("api-link").href = API_URL + "/biais?ibi_id=eq." + encodeURIComponent(b.ibi_id);
+        $("meta-severite").textContent = b.severite || "-";
+        $("meta-frequence").textContent = b.frequence || "-";
+        $("meta-ampleur").textContent = b.ampleur_groupes || "-";
+        $("meta-difficulte").textContent = b.difficulte_detection || "-";
+        $("def-fr").textContent = b.definition_fr || "-";
+        $("def-en").textContent = b.definition_en || "-";
+        $("axe-o-code").textContent = b.axe_o || "-";
+        $("axe-o-libelle").textContent = AXE_O[b.axe_o] || "-";
+        $("axe-l-code").textContent = b.axe_l || "-";
+        $("axe-l-libelle").textContent = AXE_L[b.axe_l] || "-";
+        $("axe-s-code").textContent = b.axe_s || "-";
+        $("axe-s-libelle").textContent = AXE_S[b.axe_s] || "-";
+        $("exemple").textContent = b.exemple_concret || "Aucun exemple documenté pour ce biais.";
+        const metriques = Array.isArray(b.metriques_detection)? b.metriques_detection : [];
+        if (metriques.length > 0) {
+          $("metriques-list").innerHTML = metriques.map(m =>
+            '<span class="text-xs font-mono px-3 py-1.5 rounded bg-ibi-arctic text-ibi-primary border border-ibi-border">' + escapeHtml(m) + '</span>'
+          ).join("");
+        }
+        const seuils = b.seuils_alerte;
+        if (seuils && typeof seuils === "object") {
+          const keys = Object.keys(seuils);
+          if (keys.length > 0) {
+            $("seuils-list").innerHTML = keys.map(k =>
+              '<div class="flex justify-between items-center py-2 border-b border-ibi-border last:border-b-0">' +
+                '<span class="text-sm font-mono text-ibi-fg2">' + escapeHtml(k) + '</span>' +
+                '<span class="text-sm font-display font-semibold text-ibi-primary">' + escapeHtml(seuils[k]) + '</span>' +
+              '</div>'
+            ).join("");
+          }
+        }
+        $("meta-contributeur").textContent = b.contributeur || "-";
+        $("meta-institution").textContent = b.institution || "-";
+        $("meta-version").textContent = b.version || "-";
+        $("meta-created").textContent = formatDate(b.created_at);
+        $("meta-updated").textContent = formatDate(b.updated_at);
+        $("meta-uuid").textContent = b.bias_id || "-";
+      }
+
+      async function load() {
+        const ibiId = getIbiIdFromUrl();
+        if (!ibiId) {
+          loading.classList.add("hidden");
+          errorState.classList.remove("hidden");
+          return;
+        }
+        $("breadcrumb-id").textContent = ibiId;
+        try {
+          const url = API_URL + "/biais?ibi_id=eq." + encodeURIComponent(ibiId) + "&limit=1";
+          const res = await fetch(url);
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          const data = await res.json();
+          if (!data || data.length === 0) {
+            loading.classList.add("hidden");
+            errorState.classList.remove("hidden");
+            return;
+          }
+          renderBiais(data[0]);
+          loading.classList.add("hidden");
+          content.classList.remove("hidden");
+        } catch (err) {
+          console.error("Erreur:", err);
+          loading.classList.add("hidden");
+          errorState.classList.remove("hidden");
+        }
+      }
+
+      load();
+    })();
+  </script>
+</BaseLayout>
