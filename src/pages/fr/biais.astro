@@ -234,7 +234,7 @@ const BIAIS_PAR_PAGE = 24;
           const sev = severityBadge(b.severite);
           const score = b.score_ibi? Number(b.score_ibi).toFixed(1) : "-";
           return `
-            <a href="/biais/${escapeHtml(b.ibi_id)}"
+            <a href="/fr/biais/${escapeHtml(b.ibi_id)}"
                class="group bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
               <div class="flex items-start justify-between gap-3 mb-3">
                 <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-arctic text-ibi-primary">${escapeHtml(b.ibi_id)}</span>

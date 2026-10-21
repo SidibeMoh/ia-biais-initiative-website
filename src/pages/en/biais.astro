@@ -165,7 +165,7 @@ const BIAIS_PAR_Page = 24;
         Missing a bias? A source to add? This database is open and evolving. Contribute via the API or by email.
       </p>
       <div class="flex flex-wrap justify-center gap-3">
-        <a href="/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
+        <a href="/en/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
           Documentation API
         </a>
         <a href="mailto:contact@ai-biais-initiative.org" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">
@@ -236,7 +236,7 @@ const BIAIS_PAR_Page = 24;
           const sev = severityBadge(b.severite);
           const score = b.score_ibi? Number(b.score_ibi).toFixed(1) : "-";
           return `
-            <a href="/biais/${escapeHtml(b.ibi_id)}"
+            <a href="/en/biais/${escapeHtml(b.ibi_id)}"
                class="group bg-white rounded-xl border border-ibi-border p-6 hover:border-ibi-primary hover:shadow-lg transition-all">
               <div class="flex items-start justify-between gap-3 mb-3">
                 <span class="font-display font-mono text-xs px-2 py-1 rounded bg-ibi-arctic text-ibi-primary">${escapeHtml(b.ibi_id)}</span>
