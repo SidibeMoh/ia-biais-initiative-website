@@ -326,4 +326,42 @@ export async function getStaticPaths() {
       load();
     })();
   </script>
+  <script is:inline>
+    async function populateTriAxis() {
+      const pathParts = window.location.pathname.split('/').filter(p => p !== '');
+      const ibiId = pathParts[pathParts.length - 1];
+      if (!ibiId || !ibiId.startsWith('IBI-')) return;
+
+      const isEn = window.location.pathname.includes('/en/');
+      const apiUrl = "https://api.ai-biais-initiative.org/biais?ibi_id=eq." + ibiId + "&select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*)";
+
+      try {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+        if (!Array.isArray(data) || data.length === 0) return;
+        const b = data[0];
+
+        const updateCard = (prefix, axeData) => {
+          if (!axeData) return;
+          const codeEl = document.getElementById("axe-" + prefix + "-code");
+          const labelEl = document.getElementById("axe-" + prefix + "-libelle");
+          if (codeEl) {
+            const shortCode = axeData.code ? axeData.code.split('_')[0] : '-';
+            codeEl.innerText = shortCode;
+          }
+          if (labelEl) {
+            labelEl.innerText = isEn ? (axeData.libelle_en || '-') : (axeData.libelle_fr || '-');
+          }
+        };
+
+        updateCard('o', b.axe_o);
+        updateCard('l', b.axe_l);
+        updateCard('s', b.axe_s);
+
+      } catch (e) {
+        console.error("Erreur TriAxis", e);
+      }
+    }
+    window.addEventListener('load', populateTriAxis);
+  </script>
 </BaseLayout>
