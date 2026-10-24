@@ -29,7 +29,7 @@ const pdfs = {
     <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div class="max-w-3xl">
         <p class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-6">
-          GOVERNANCE FRAMEWORK IA · DOI 10.5281/zenodo.23126471
+          GOVERNANCE FRAMEWORK IA · DOI 10.5281/zenodo.23583886
         </p>
         
         <h1 class="font-display font-extrabold text-4xl md:text-6xl leading-tight mb-6">
@@ -48,7 +48,7 @@ const pdfs = {
             Download documents
             <span aria-hidden="true">↓</span>
           </a>
-          <a href="https://doi.org/10.5281/zenodo.23126471" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
+          <a href="https://doi.org/10.5281/zenodo.23583886" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5 transition-colors">
             View Zenodo DOI
             <span aria-hidden="true">↗</span>
           </a>
@@ -289,10 +289,9 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">DCME</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">DYNAMIC CAUSAL MULTI-SCALE EXPLANATION</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Decomposes a model's prediction into causal contributions organized across multiple scales (macro, meso, micro), distinguishing direct and mediated effects.
-          </p>
+            DCME is a multi-scale presentation of causal Shapley values, which decomposes each variable's contribution into a direct part and a redistribution mediated by the causal graph. It is designed for audit documentation (AEXIA Card), not as a new family of explainers.</p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
-            ŷ = φ₀ + Σφᵢ⁽ˢ⁾ + Σψᵢⱼ
+            φC = φD + ψ<br>Σψ = 0<br>ΣφC = ΣφD = f(x) − E[f(x)]
           </div>
         </div>
 
@@ -301,10 +300,9 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">ECS</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">EXPLANATION CONSISTENCY SCORE</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Metric evaluating the stability of an explanation when recalculated on neighboring samples or controlled perturbations. ECS ∈ [0, 1].
-          </p>
+            ECS is a local stability metric of an explanation: it evaluates how much the explanation φ(f, x) varies when recalculated on neighboring points. It does not measure the fidelity of the explanation to the model nor its explanatory quality.</p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
-            ECS = 1 − (1/N) Σ ‖φ(x) − φ(xₖ)‖₁ / (‖φ(x)‖₁ + δ)
+            ECS(f,x,ε) = 1 − min(1, (1/N) Σ ‖φ(f,x) − φ(f,xₖ)‖₁ / (‖φ(f,x)‖₁ + δ))
           </div>
         </div>
 
@@ -313,10 +311,9 @@ const pdfs = {
           <h3 class="font-display font-bold text-xl mb-2">RAD</h3>
           <p class="text-xs font-display font-semibold text-ibi-primary mb-4 tracking-wider">RESPONSIBILITY ALGORITHMIC DEBT</p>
           <p class="text-sm text-ibi-fg3 leading-relaxed mb-4">
-            Cumulative indicator measuring the gap between a system's expected maturity and its effective maturity, weighted by its regulatory criticality under the AI Act.
-          </p>
+            RAD summarizes the gap between the expected maturity and the effective maturity of an AI system portfolio, weighted by regulatory criticality. Version 3.1 distinguishes a simplified primary indicator, RAD-lite, and an optional cumulative variant.</p>
           <div class="text-xs text-ibi-fg3 italic font-mono bg-black/30 p-3 rounded">
-            RADᵢ(T) = Σ αₜ · max(0, S_attendu − S_effectif) · βᵢ
+            RAD-lite = Σᵢ βᵢ · max(0, S_att,i − S_eff,i) / Σᵢ βᵢ · S_att,i
           </div>
         </div>
       </div>
@@ -526,10 +523,10 @@ const pdfs = {
         <div class="font-mono text-xs text-ibi-fg3 bg-black/30 p-4 rounded max-w-2xl mx-auto text-left overflow-x-auto">
           SIDIBE, M. (2026). AEXIA Framework - Accountable, Ethical,<br/>
           eXplainable, Interpretable, Auditable AI Governance Framework,<br/>
-          Version 3.0. AI BIAIS INITIATIVE. DOI: 10.5281/zenodo.23126471
+          Version 3.1. AI BIAIS INITIATIVE. DOI: 10.5281/zenodo.23583886
         </div>
         <div class="mt-6">
-          <a href="https://doi.org/10.5281/zenodo.23126471" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ibi-primary font-display font-semibold hover:underline">
+          <a href="https://doi.org/10.5281/zenodo.23583886" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ibi-primary font-display font-semibold hover:underline">
             View Zenodo page
             <span aria-hidden="true">↗</span>
           </a>

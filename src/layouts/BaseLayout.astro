@@ -120,6 +120,30 @@ const navLinks = currentLang === 'fr'? [
           <a href={`/${currentLang}/rapports`} class="hover:text-white transition-colors">Rapports</a>
         </div>
       </div>
+            <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-500">
+          <details class="cursor-pointer">
+            <summary class="hover:text-slate-300 transition-colors">
+              {currentLang === 'fr' ? 'Mentions légales & Politique de confidentialité' : 'Legal Notice & Privacy Policy'}
+            </summary>
+            <div class="mt-4 space-y-2 pl-4 border-l-2 border-slate-700">
+              {currentLang === 'fr' ? (
+                <>
+                  <p><strong>Éditeur :</strong> AI BIAIS INITIATIVE - Responsable de publication : Mohamadou SIDIBE.</p>
+                  <p><strong>Hébergement :</strong> Vercel (Frontend), Render (API), Neon (Base de données).</p>
+                  <p><strong>Propriété intellectuelle :</strong> Contenus sous licence CC BY 4.0 (réutilisation libre avec citation).</p>
+                  <p><strong>Données personnelles :</strong> Aucun cookie de traçage ou publicitaire n'est utilisé. L'application SaaS utilise le stockage local (localStorage) uniquement pour maintenir votre connexion (JWT). Vous disposez d'un droit d'accès et de suppression de vos données en écrivant à contact@ai-biais-initiative.org.</p>
+                </>
+              ) : (
+                <>
+                  <p><strong>Publisher:</strong> AI BIAIS INITIATIVE - Publication Director: Mohamadou SIDIBE.</p>
+                  <p><strong>Hosting:</strong> Vercel (Frontend), Render (API), Neon (Database).</p>
+                  <p><strong>Intellectual Property:</strong> Contents under CC BY 4.0 license (free reuse with citation).</p>
+                  <p><strong>Personal Data:</strong> No tracking or advertising cookies are used. The SaaS application uses local storage (localStorage) only to maintain your connection (JWT). You have the right to access and delete your data by writing to contact@ai-biais-initiative.org.</p>
+                </>
+              )}
+            </div>
+          </details>
+        </div>
     </footer>
 </body>
 </html>
