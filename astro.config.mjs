@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://ai-biais-initiative.org',
+  site: 'https://www.ai-biais-initiative.org',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]
