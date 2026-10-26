@@ -26,7 +26,7 @@ export async function getStaticPaths() {
     <div class="max-w-7xl mx-auto px-6 py-4 text-sm">
       <a href="/" class="text-ibi-fg3 hover:text-ibi-primary">Accueil</a>
       <span class="text-ibi-fg3 mx-2">›</span>
-      <a href="/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biais</a>
+      <a href="/fr/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biais</a>
       <span class="text-ibi-fg3 mx-2">›</span>
       <span id="breadcrumb-id" class="text-ibi-fg font-display font-semibold">Chargement...</span>
     </div>
@@ -41,7 +41,7 @@ export async function getStaticPaths() {
     <div class="text-4xl md:text-6xl mb-4">⚠️</div>
     <h2 class="font-display font-bold text-2xl mb-4">Biais non trouvé</h2>
     <p class="text-ibi-fg2 mb-6">Cet identifiant n'existe pas dans la base.</p>
-    <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white">← Retour à la liste</a>
+    <a href="/fr/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg gradient-ibi text-white">← Retour à la liste</a>
   </div>
 
   <div id="content" class="hidden">
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
             <h1 id="hero-nom-fr" class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">-</h1>
             <p id="hero-nom-en" class="text-lg md:text-xl text-ibi-fg3 italic mb-8">-</p>
             <div class="flex flex-wrap gap-3">
-              <a href="/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">← Retour à la liste</a>
+              <a href="/fr/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">← Retour à la liste</a>
               <a id="api-link" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">Voir sur l'API ↗</a>
             </div>
           </div>
@@ -171,8 +171,8 @@ export async function getStaticPaths() {
         <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explorer d'autres biais</h2>
         <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais documentés, classés par la taxonomie TriAxis.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Retour à la liste</a>
-          <a href="/Méthodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
+          <a href="/fr/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Retour à la liste</a>
+          <a href="/fr/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
         </div>
       </div>
     </section>
@@ -365,3 +365,4 @@ export async function getStaticPaths() {
     window.addEventListener('load', populateTriAxis);
   </script>
 </BaseLayout>
+
