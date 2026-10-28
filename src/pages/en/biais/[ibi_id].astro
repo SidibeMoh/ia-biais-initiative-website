@@ -333,7 +333,7 @@ export async function getStaticPaths() {
       if (!ibiId || !ibiId.startsWith('IBI-')) return;
 
       const isEn = window.location.pathname.includes('/en/');
-      const apiUrl = "https://api.ai-biais-initiative.org/biais?ibi_id=eq." + ibiId + "&select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_sources(sources(*))";
+      const apiUrl = "https://api.ai-biais-initiative.org/biais?ibi_id=eq." + ibiId + "&select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*)";
 
       try {
         const res = await fetch(apiUrl);
@@ -354,8 +354,6 @@ export async function getStaticPaths() {
           }
         };
 
-        const sourcesList = document.getElementById("sources-list"); if (sourcesList) { if (b.biais_sources && b.biais_sources.length > 0) { sourcesList.innerHTML = b.biais_sources.map(bs => { const s = bs.sources; if (!s) return ""; const link = s.url || (s.doi ? "https://doi.org/" + s.doi : "#"); const auteurs = s.auteurs && Array.isArray(s.auteurs) ? s.auteurs.join(", ") : ""; const annee = s.annee ? "(" + s.annee + ")" : ""; return `<li class="flex items-start gap-2"><span class="text-ibi-primary mt-1">•</span><div><a href="${link}" target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">${s.titre}</a>${auteurs ? `<span class="text-xs block text-ibi-fg3 mt-0.5">${auteurs} ${annee}</span>` : ""}</div></li>`; }).join(""); } else { sourcesList.innerHTML = `<li class="text-ibi-fg3 italic">Aucune source documentée.</li>`; } }
-        const sourcesList = document.getElementById("sources-list"); if (sourcesList) { if (b.biais_sources && b.biais_sources.length > 0) { sourcesList.innerHTML = b.biais_sources.map(bs => { const s = bs.sources; if (!s) return ""; const link = s.url || (s.doi ? "https://doi.org/" + s.doi : "#"); const auteurs = s.auteurs && Array.isArray(s.auteurs) ? s.auteurs.join(", ") : ""; const annee = s.annee ? "(" + s.annee + ")" : ""; return `<li class="flex items-start gap-2"><span class="text-ibi-primary mt-1">•</span><div><a href="${link}" target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">${s.titre}</a>${auteurs ? `<span class="text-xs block text-ibi-fg3 mt-0.5">${auteurs} ${annee}</span>` : ""}</div></li>`; }).join(""); } else { sourcesList.innerHTML = `<li class="text-ibi-fg3 italic">Aucune source documentée.</li>`; } }
         updateCard('o', b.axe_o);
         updateCard('l', b.axe_l);
         updateCard('s', b.axe_s);
@@ -367,6 +365,4 @@ export async function getStaticPaths() {
     window.addEventListener('load', populateTriAxis);
   </script>
 </BaseLayout>
-
-
 
