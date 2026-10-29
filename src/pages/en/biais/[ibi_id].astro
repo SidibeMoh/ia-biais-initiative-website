@@ -151,6 +151,17 @@ export async function getStaticPaths() {
         </div>
       </div>
     </section>
+    <!-- BLOC SOURCES -->
+    <div class="mt-8 mb-8 max-w-4xl mx-auto">
+        <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
+          <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
+            <span>📚</span> <span>Sources &amp; Références Scientifiques</span>
+          </h3>
+          <ul id="sources-list" class="space-y-3 text-sm text-ibi-fg2">
+            <li class="text-ibi-fg3 italic">Chargement des sources...</li>
+          </ul>
+        </section>
+    </div>
 
             <!-- BLOC IMPACT ET MITIGATION -->
         <div class="mt-8 mb-8 max-w-4xl mx-auto">
@@ -395,6 +406,24 @@ export async function getStaticPaths() {
             labelEl.innerText = isEn ? (axeData.libelle_en || '-') : (axeData.libelle_fr || '-');
           }
         };
+                // --- GESTION DES SOURCES ---
+        const sourcesList = document.getElementById("sources-list");
+        if (sourcesList) {
+            if (b.biais_sources && b.biais_sources.length > 0) {
+                sourcesList.innerHTML = b.biais_sources.map(bs => {
+                    const s = bs.sources;
+                    if (!s) return '';
+                    const link = s.url || (s.doi ? "https://doi.org/" + s.doi : '#');
+                    const auteurs = s.auteurs && Array.isArray(s.auteurs) ? s.auteurs.join(', ') : '';
+                    const annee = s.annee ? "(" + s.annee + ")" : '';
+                    return '<li class="flex items-start gap-2"><span class="text-ibi-primary mt-1">•</span><div><a href="' + link + '" target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">' + s.titre + '</a>' + (auteurs ? '<span class="text-xs block text-ibi-fg3 mt-0.5">' + auteurs + ' ' + annee + '</span>' : '') + '</div></li>';
+                }).join('');
+            } else {
+                sourcesList.innerHTML = '<li class="text-ibi-fg3 italic">Aucune source documentée.</li>';
+            }
+        }
+        // ---------------------------
+
         // --- GESTION DE L'IMPACT ET MITIGATION ---
         const sectorsList = document.getElementById("sectors-list");
         const regList = document.getElementById("regulations-list");
