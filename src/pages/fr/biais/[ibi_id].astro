@@ -418,7 +418,7 @@ export async function getStaticPaths() {
 
                 // --- GESTION DES SOURCES ---
         {
-            const sourcesList = document.querySelector('.sources-container');
+            const sourcesList = document.getElementById("sources-list");
             if (sourcesList) {
                 if (b.biais_sources && b.biais_sources.length > 0) {
                     sourcesList.innerHTML = b.biais_sources.map(bs => {
