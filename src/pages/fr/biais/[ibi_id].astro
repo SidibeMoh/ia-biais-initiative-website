@@ -1,7 +1,6 @@
 ﻿---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
-const API_URL = "https://api.ai-biais-initiative.org";
 
 export async function getStaticPaths() {
   try {
@@ -151,6 +150,56 @@ export async function getStaticPaths() {
         </div>
       </div>
     </section>
+
+        <!-- BLOC IMPACT ET MITIGATION -->
+    <div class="mt-8 mb-8 max-w-4xl mx-auto">
+        <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
+          <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
+            <span>🛡️</span> <span>Impact & Mitigation</span>
+          </h3>
+          
+          <!-- Incidents -->
+          <div id="incidents-container" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">⚠️ Incidents réels documentés</h4>
+            <ul id="incidents-list" class="list-disc list-inside space-y-2 text-sm text-red-900"></ul>
+          </div>
+
+          <!-- Groupes -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-ibi-fg2 mb-2">🎯 Groupes vulnérables impactés</h4>
+            <div id="groups-list" class="flex flex-wrap gap-2">
+              <span class="text-ibi-fg3 italic text-sm">Chargement...</span>
+            </div>
+          </div>
+
+          <!-- Méthodologies -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-ibi-fg2 mb-2">🛠️ Méthodologies de mitigation</h4>
+            <ul id="methods-list" class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
+              <li class="text-ibi-fg3 italic">Chargement...</li>
+            </ul>
+          </div>
+
+          <!-- Secteurs -->
+          <div class="mb-6">
+            <h4 class="font-semibold text-ibi-fg2 mb-2">🏢 Secteurs concernés</h4>
+            <div id="sectors-list" class="flex flex-wrap gap-2">
+              <span class="text-ibi-fg3 italic text-sm">Chargement...</span>
+            </div>
+          </div>
+
+          <!-- Réglementations -->
+          <div>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">⚖️ Réglementations applicables</h4>
+            <div id="regulations-list" class="space-y-4 text-sm text-ibi-fg2">
+              <span class="text-ibi-fg3 italic text-sm">Chargement...</span>
+            </div>
+          </div>
+        </section>
+    </div>
+
+    <!-- SECTION METADONNEES (Laisse la ligne <section> qui suit intacte) -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
 
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-white rounded-xl border border-ibi-border p-8">
@@ -328,16 +377,19 @@ export async function getStaticPaths() {
     })();
   </script>
   <script is:inline>
-    async function populateTriAxis() {
+        async function populateTriAxis() {
       const pathParts = window.location.pathname.split('/').filter(p => p !== '');
       const ibiId = pathParts[pathParts.length - 1];
       if (!ibiId || !ibiId.startsWith('IBI-')) return;
-
+      
       const isEn = window.location.pathname.includes('/en/');
-      const apiUrl = "https://api.ai-biais-initiative.org/biais?ibi_id=eq." + ibiId + "&select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*))";
+      
+      // Une seule ligne const apiUrl (celle avec toutes les tables)
+      const apiUrl = "https://api.ai-biais-initiative.org/biais?ibi_id=eq." + ibiId + "&select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_reglementations(reglementations(*)),biais_secteurs(secteurs(*)),biais_methodologies(methodologies(*)),biais_groupes(groupes_impactes(*)),incidents_biais(incidents(*))";
 
       try {
         const res = await fetch(apiUrl);
+        // ... le reste de ton code
         const data = await res.json();
         if (!Array.isArray(data) || data.length === 0) return;
         const b = data[0];
@@ -372,6 +424,71 @@ export async function getStaticPaths() {
                     sourcesList.innerHTML = `<li class="text-ibi-fg3 italic">Aucune source documentée.</li>`;
                 }
             }
+        }
+        // ---------------------------
+                // --- GESTION DE L'IMPACT ET MITIGATION ---
+        const sectorsList = document.getElementById("sectors-list");
+        const regList = document.getElementById("regulations-list");
+        const groupsList = document.getElementById("groups-list");
+        const methodsList = document.getElementById("methods-list");
+        const incidentsContainer = document.getElementById("incidents-container");
+        const incidentsList = document.getElementById("incidents-list");
+
+        if (incidentsContainer && incidentsList) {
+            if (b.incidents_biais && b.incidents_biais.length > 0) {
+                incidentsContainer.classList.remove("hidden");
+                incidentsList.innerHTML = b.incidents_biais.map(ib => {
+                    const inc = ib.incidents;
+                    if (!inc) return '';
+                    return '<li><span class="font-semibold">' + (inc.titre || inc.code) + '</span> : ' + (inc.description || '') + '</li>';
+                }).join('');
+            }
+        }
+        if (groupsList) {
+            if (b.biais_groupes && b.biais_groupes.length > 0) {
+                groupsList.innerHTML = b.biais_groupes.map(bg => {
+                    const g = bg.groupes_impactes;
+                    if (!g) return '';
+                    return '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">' + (g.nom_fr || g.code) + '</span>';
+                }).join('');
+            } else { groupsList.innerHTML = '<span class="text-ibi-fg3 italic text-sm">Aucun groupe spécifique.</span>'; }
+        }
+        if (methodsList) {
+            if (b.biais_methodologies && b.biais_methodologies.length > 0) {
+                methodsList.innerHTML = b.biais_methodologies.map(bm => {
+                    const m = bm.methodologies;
+                    if (!m) return '';
+                    return '<li><span class="font-semibold">' + m.code + '</span> : ' + (m.nom_fr || m.description) + '</li>';
+                }).join('');
+            } else { methodsList.innerHTML = '<li class="text-ibi-fg3 italic">Aucune méthodologie documentée.</li>'; }
+        }
+        if (sectorsList) {
+            if (b.biais_secteurs && b.biais_secteurs.length > 0) {
+                sectorsList.innerHTML = b.biais_secteurs.map(bs => {
+                    const s = bs.secteurs;
+                    if (!s) return '';
+                    return '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-ibi-arctic text-ibi-primary border border-ibi-border">' + s.nom_fr + ' (Risque: ' + bs.niveau_risque + '/5)</span>';
+                }).join('');
+            } else { sectorsList.innerHTML = '<span class="text-ibi-fg3 italic text-sm">Aucun secteur spécifique.</span>'; }
+        }
+        if (regList) {
+            if (b.biais_reglementations && b.biais_reglementations.length > 0) {
+                const regs = b.biais_reglementations.map(br => br.reglementations).filter(Boolean);
+                const grouped = regs.reduce((acc, reg) => {
+                    let jur = reg.juridiction || "International";
+                    if (jur === "UE") jur = "🇪🇺 Europe"; else if (jur === "USA") jur = "🇺🇸 États-Unis"; else if (jur === "France") jur = "🇫🇷 France"; else if (jur === "ONU" || jur === "ISO") jur = "🌍 International"; else jur = "🌐 " + jur;
+                    if (!acc[jur]) acc[jur] = [];
+                    acc[jur].push(reg);
+                    return acc;
+                }, {});
+                let html = "";
+                for (const [jur, items] of Object.entries(grouped)) {
+                    html += '<div class="mb-4"><h5 class="font-bold text-ibi-fg mb-2 border-b border-ibi-border pb-1">' + jur + '</h5><ul class="space-y-2">';
+                    items.forEach(item => { html += '<li class="flex items-start gap-2"><span class="text-ibi-primary mt-1">•</span><div><span class="font-semibold">' + item.code + '</span> : ' + item.texte + '</div></li>'; });
+                    html += '</ul></div>';
+                }
+                regList.innerHTML = html;
+            } else { regList.innerHTML = '<span class="text-ibi-fg3 italic text-sm">Aucune réglementation spécifique.</span>'; }
         }
         // ---------------------------
 updateCard('o', b.axe_o);
