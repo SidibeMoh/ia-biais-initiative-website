@@ -152,76 +152,73 @@ export async function getStaticPaths() {
       </div>
     </section>
 
-    <section class="max-w-7xl mx-auto px-6 py-16">
-      <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <!-- BLOC IMPACT ET MITIGATION -->
-    <div class="mt-8 mb-8 max-w-4xl mx-auto">
-        <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
-          <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>🛡️</span> <span>Impact & Mitigation</span>
-          </h3>
-          
-          <!-- Incidents -->
-          <div id="incidents-container" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-            <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">⚠️ Documented real-world incidents</h4>
-            <ul id="incidents-list" class="list-disc list-inside space-y-2 text-sm text-red-900"></ul>
-          </div>
+            <!-- BLOC IMPACT ET MITIGATION -->
+        <div class="mt-8 mb-8 max-w-4xl mx-auto">
+            <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
+              <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
+                <span>🛡️</span> <span>Impact & Mitigation</span>
+              </h3>
+              
+              <div id="incidents-container" class="hidden mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">⚠️ Documented real-world incidents</h4>
+                <ul id="incidents-list" class="list-disc list-inside space-y-2 text-sm text-red-900"></ul>
+              </div>
 
-          <!-- Groups -->
-          <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">🎯 Impacted vulnerable groups</h4>
-            <div id="groups-list" class="flex flex-wrap gap-2">
-              <span class="text-ibi-fg3 italic text-sm">Loading...</span>
-            </div>
-          </div>
+              <div class="mb-6">
+                <h4 class="font-semibold text-ibi-fg2 mb-2">🎯 Impacted vulnerable groups</h4>
+                <div id="groups-list" class="flex flex-wrap gap-2">
+                  <span class="text-ibi-fg3 italic text-sm">Loading...</span>
+                </div>
+              </div>
 
-          <!-- Methodologies -->
-          <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">🛠️ Mitigation methodologies</h4>
-            <ul id="methods-list" class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
-              <li class="text-ibi-fg3 italic">Loading...</li>
-            </ul>
-          </div>
+              <div class="mb-6">
+                <h4 class="font-semibold text-ibi-fg2 mb-2">🛠️ Mitigation methodologies</h4>
+                <ul id="methods-list" class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
+                  <li class="text-ibi-fg3 italic">Loading...</li>
+                </ul>
+              </div>
 
-          <!-- Sectors -->
-          <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">🏢 Sectors concerned</h4>
-            <div id="sectors-list" class="flex flex-wrap gap-2">
-              <span class="text-ibi-fg3 italic text-sm">Loading...</span>
-            </div>
-          </div>
+              <div class="mb-6">
+                <h4 class="font-semibold text-ibi-fg2 mb-2">🏢 Sectors concerned</h4>
+                <div id="sectors-list" class="flex flex-wrap gap-2">
+                  <span class="text-ibi-fg3 italic text-sm">Loading...</span>
+                </div>
+              </div>
 
-          <!-- Regulations -->
-          <div>
-            <h4 class="font-semibold text-ibi-fg2 mb-2">⚖️ Applicable regulations</h4>
-            <div id="regulations-list" class="space-y-4 text-sm text-ibi-fg2">
-              <span class="text-ibi-fg3 italic text-sm">Loading...</span>
+              <div>
+                <h4 class="font-semibold text-ibi-fg2 mb-2">⚖️ Applicable regulations</h4>
+                <div id="regulations-list" class="space-y-4 text-sm text-ibi-fg2">
+                  <span class="text-ibi-fg3 italic text-sm">Loading...</span>
+                </div>
+              </div>
+            </section>
+        </div>
+
+        <!-- SECTION METADONNEES -->
+        <section class="max-w-7xl mx-auto px-6 py-16">
+          <div class="bg-white rounded-xl border border-ibi-border p-8">
+            <h2 class="font-display font-bold text-xl mb-6">📋 Metadata</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-sm">
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributor</div><div id="meta-contributeur" class="text-ibi-fg font-medium">-</div></div>
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div id="meta-institution" class="text-ibi-fg font-medium">-</div></div>
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Version</div><div id="meta-version" class="text-ibi-fg font-medium">-</div></div>
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Created</div><div id="meta-created" class="text-ibi-fg font-medium">-</div></div>
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Updated</div><div id="meta-updated" class="text-ibi-fg font-medium">-</div></div>
+              <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">UUID</div><div id="meta-uuid" class="text-ibi-fg font-mono text-xs">-</div></div>
             </div>
           </div>
         </section>
-    </div>
-        <h2 class="font-display font-bold text-xl mb-6">📋 Métadonnées</h2>
-        <div class="grid md:grid-cols-3 gap-6 text-sm">
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributeur</div><div id="meta-contributeur" class="text-ibi-fg font-medium">-</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div id="meta-institution" class="text-ibi-fg font-medium">-</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Version</div><div id="meta-version" class="text-ibi-fg font-medium">-</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Créé le</div><div id="meta-created" class="text-ibi-fg font-medium">-</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Mis à jour le</div><div id="meta-updated" class="text-ibi-fg font-medium">-</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">UUID</div><div id="meta-uuid" class="text-ibi-fg font-mono text-xs">-</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="max-w-7xl mx-auto px-6 pb-24">
+        <section class="max-w-7xl mx-auto px-6 pb-24">
       <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
-        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explorer d'autres biais</h2>
-        <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais documentés, classés par la taxonomie TriAxis.</p>
+        <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explore other biases</h2>
+        <p class="text-white/90 max-w-2xl mx-auto mb-8">250 documented biases, classified by the TriAxis taxonomy.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Retour à la liste</a>
-          <a href="/Méthodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
+          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Back to list</a>
+          <a href="/en/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Understand TriAxis</a>
         </div>
       </div>
     </section>
+  </div> <!-- Cette balise ferme le div id="content" -->
   </div>
 
   <script define:vars={{ API_URL }}>
