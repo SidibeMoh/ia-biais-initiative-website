@@ -1,0 +1,146 @@
+﻿---
+// ContributionModal.astro
+---
+<button 
+    id="btn-open-contribution"
+    class="mt-6 px-8 py-3 bg-[#1A2BCC] hover:bg-[#2D46F5] text-white font-semibold rounded-lg transition-colors border border-white/20">
+    Proposer un biais
+</button>
+
+<dialog id="modal-contribution" class="w-full max-w-3xl p-0 rounded-xl bg-[#0D1336] text-white backdrop:bg-black/70">
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Proposer un nouveau biais</h2>
+            <button id="btn-close-modal" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+        </div>
+
+        <form id="form-biais" class="space-y-4">
+            <div class="grid grid-cols-2 gap-4">
+                <input type="text" name="nom_fr" placeholder="Nom du biais (FR)" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                <input type="text" name="nom_en" placeholder="Bias name (EN)" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+            </div>
+            
+            <textarea name="definition_fr" placeholder="Définition (FR)" required rows="2" class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white"></textarea>
+            <textarea name="definition_en" placeholder="Definition (EN)" required rows="2" class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white"></textarea>
+
+            <div class="grid grid-cols-3 gap-4">
+    <!-- Axe O -->
+    <select name="axe_o_code" required class="p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+        <option value="">Axe O (Origine)</option>
+        <option value="O1_systemique">O1 - Systémique</option>
+        <option value="O2_computationnel">O2 - Computationnel</option>
+        <option value="O3_humain_cognitif">O3 - Humain-Cognitif</option>
+    </select>
+
+    <!-- Axe L -->
+    <select name="axe_l_code" required class="p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+        <option value="">Axe L (Lifecycle)</option>
+        <option value="L1_historique">L1 - Historique</option>
+        <option value="L2_representation">L2 - Représentation</option>
+        <option value="L3_mesure">L3 - Mesure</option>
+        <option value="L4_agregation">L4 - Agrégation</option>
+        <option value="L5_apprentissage">L5 - Apprentissage</option>
+        <option value="L6_evaluation">L6 - Évaluation</option>
+        <option value="L7_deploiement">L7 - Déploiement</option>
+    </select>
+
+    <!-- Axe S (Champ texte) -->
+    <input type="text" name="axe_s_code" placeholder="Ex: S03_selection" required class="p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+</div>
+
+            <div class="grid grid-cols-4 gap-4 text-sm">
+                <label>Sévérité (1-5)<input type="number" name="severite" min="1" max="5" value="3" required class="w-full p-2 mt-1 bg-[#070C24] border border-gray-600 rounded text-white"></label>
+                <label>Fréquence (1-5)<input type="number" name="frequence" min="1" max="5" value="3" required class="w-full p-2 mt-1 bg-[#070C24] border border-gray-600 rounded text-white"></label>
+                <label>Ampleur (1-5)<input type="number" name="ampleur_groupes" min="1" max="5" value="3" required class="w-full p-2 mt-1 bg-[#070C24] border border-gray-600 rounded text-white"></label>
+                <label>Difficulté (1-5)<input type="number" name="difficulte_det" min="1" max="5" value="3" required class="w-full p-2 mt-1 bg-[#070C24] border border-gray-600 rounded text-white"></label>
+            </div>
+
+            <textarea name="exemple_concret" placeholder="Exemple concret d'application" required rows="2" class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white"></textarea>
+
+            <div class="border-t border-gray-700 pt-4 mt-4">
+                <h3 class="text-lg font-semibold mb-2">Source Scientifique Obligatoire</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <input type="text" name="source_titre" placeholder="Titre de l'article" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                    <input type="text" name="source_auteurs" placeholder="Auteurs" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                    <input type="number" name="source_annee" placeholder="Année" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                    <input type="url" name="source_url" placeholder="URL ou DOI (https://...)" class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 border-t border-gray-700 pt-4 mt-4">
+                <input type="text" name="contributeur" placeholder="Votre nom" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+                <input type="text" name="institution" placeholder="Votre institution" required class="w-full p-2 bg-[#070C24] border border-gray-600 rounded text-white">
+            </div>
+
+            <div class="mt-6 flex justify-end gap-4">
+                <button type="button" id="btn-cancel-modal" class="px-4 py-2 text-gray-400 hover:text-white">Annuler</button>
+                <button type="submit" id="btn-submit" class="px-6 py-2 bg-[#6B1EE8] hover:bg-[#9B47FF] text-white font-bold rounded-lg transition-colors">
+                    Soumettre à validation
+                </button>
+            </div>
+        </form>
+        <div id="form-message" class="mt-4 hidden p-3 rounded text-center"></div>
+    </div>
+</dialog>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('modal-contribution');
+        const btnOpen = document.getElementById('btn-open-contribution');
+        const btnClose = document.getElementById('btn-close-modal');
+        const btnCancel = document.getElementById('btn-cancel-modal');
+        const form = document.getElementById('form-biais');
+        const btnSubmit = document.getElementById('btn-submit');
+        const msgDiv = document.getElementById('form-message');
+
+        btnOpen.addEventListener('click', () => modal.showModal());
+        btnClose.addEventListener('click', () => modal.close());
+        btnCancel.addEventListener('click', () => modal.close());
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            data.severite = parseInt(data.severite);
+            data.frequence = parseInt(data.frequence);
+            data.ampleur_groupes = parseInt(data.ampleur_groupes);
+            data.difficulte_det = parseInt(data.difficulte_det);
+            data.source_annee = parseInt(data.source_annee);
+
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "Envoi en cours...";
+            msgDiv.className = "hidden";
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/biais/proposer', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    msgDiv.innerText = `Succès ! Proposition enregistrée sous l'ID ${result.ibi_id}. En attente de validation.`;
+                    msgDiv.className = "mt-4 p-3 rounded text-center bg-green-900/50 text-green-200 border border-green-500";
+                    form.reset();
+                } else {
+                    throw new Error(result.detail || "Erreur lors de la soumission.");
+                }
+            } catch (error) {
+                msgDiv.innerText = error.message;
+                msgDiv.className = "mt-4 p-3 rounded text-center bg-red-900/50 text-red-200 border border-red-500";
+            } finally {
+                msgDiv.classList.remove('hidden');
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Soumettre à validation";
+            }
+        });
+    });
+</script>
+
+
+
+

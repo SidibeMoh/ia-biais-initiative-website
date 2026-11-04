@@ -1,4 +1,5 @@
 ﻿---
+import ContributionModal from '../../components/ContributionModal.astro';
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const API_URL = "https://api.ai-biais-initiative.org";
@@ -168,9 +169,7 @@ const BIAIS_PAR_Page = 24;
         <a href="/en/api" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">
           Documentation API
         </a>
-        <a href="#" onclick="event.preventDefault(); navigator.clipboard.writeText('contact@ai-biais-initiative.org'); alert('Email address copied!');" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">
-          Contact us
-        </a>
+        <ContributionModal />
       </div>
     </div>
   </section>
@@ -367,3 +366,6 @@ const BIAIS_PAR_Page = 24;
       })();
     </script>
 </BaseLayout>
+
+
+
