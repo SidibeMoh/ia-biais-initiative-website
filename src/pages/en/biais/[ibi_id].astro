@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 export const prerender = true;
@@ -74,7 +74,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
             <h1 class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">{b.nom_en || b.nom_fr}</h1>
             <p class="text-lg md:text-xl text-ibi-fg3 italic mb-8">{b.nom_fr}</p>
             <div class="flex flex-wrap gap-3">
-              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">← Back to list</a>
+              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">← B← Back to list</a>
               <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">View on API ↗</a>
             </div>
           </div>
@@ -317,7 +317,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
         <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explore other biases</h2>
         <p class="text-white/90 max-w-2xl mx-auto mb-8">250 documented biases, classified by the TriAxis taxonomy.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← Back to list</a>
+          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">← B← Back to list</a>
           <a href="/en/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Understand TriAxis</a>
         </div>
       </div>
