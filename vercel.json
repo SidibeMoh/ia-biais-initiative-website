@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/iais", "destination": "/fr/iais", "permanent": true },
+    { "source": "/iais/", "destination": "/fr/iais", "permanent": true },
+    { "source": "/reglementations", "destination": "/fr/reglementations", "permanent": true },
+    { "source": "/reglementations/", "destination": "/fr/reglementations", "permanent": true },
+    { "source": "/biais", "destination": "/fr/biais", "permanent": true },
+    { "source": "/biais/", "destination": "/fr/biais", "permanent": true },
+    { "source": "/methodologie", "destination": "/fr/methodologie", "permanent": true },
+    { "source": "/aexia", "destination": "/fr/aexia", "permanent": true },
+    { "source": "/api", "destination": "/fr/api", "permanent": true },
+    { "source": "/a-propos", "destination": "/fr/a-propos", "permanent": true },
+    { "source": "/rapports", "destination": "/fr/rapports", "permanent": true }
+  ]
+}
