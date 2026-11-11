@@ -32,3 +32,8 @@ pnpm-debug.log*
 
 # Backups API
 .backup_api_*
+
+# Backups locaux
+*.bak_*
+backup_*/
+
