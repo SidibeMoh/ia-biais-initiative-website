@@ -1,11 +1,11 @@
-import { defineConfig } from 'astro/config';
+﻿import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.ai-biais-initiative.org',
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   output: 'server',
   adapter: vercel(),
   integrations: [
