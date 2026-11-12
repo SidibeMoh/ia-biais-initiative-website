@@ -37,3 +37,6 @@ pnpm-debug.log*
 *.bak_*
 backup_*/
 
+
+# Vercel build artifacts
+.vercel/
