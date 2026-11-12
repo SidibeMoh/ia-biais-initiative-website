@@ -1,80 +1,62 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-
 export const prerender = true;
-
 export async function getStaticPaths() {
   try {
     const res = await fetch("https://api.ai-biais-initiative.org/biais?select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_reglementations(reglementations(*)),biais_secteurs(secteurs(*)),biais_methodologies(methodologies(*)),biais_groupes(groupes_impactes(*)),incidents_biais(incidents(*))");
     if (!res.ok) return [];
     const biais = await res.json();
-    return biais.map((b) => ({
-      params: { ibi_id: b.ibi_id },
-      props: { b },
-    }));
-  } catch (err) {
-    return [];
-  }
+    return biais.map((b) => ({ params: { ibi_id: b.ibi_id }, props: { b } }));
+  } catch (err) { return []; }
 }
-
 const { b } = Astro.props;
-
 const sevMap = {
   "5_critique": { label: "5 - Critique", color: "bg-red-100 text-red-800 border-red-300" },
   "4_grave": { label: "4 - Grave", color: "bg-amber-100 text-amber-800 border-amber-300" },
-  "3_modere": { label: "3 - ModÃ©rÃ©", color: "bg-yellow-100 text-yellow-800 border-yellow-300" },
+  "3_modere": { label: "3 - Mod&eacute;r&eacute;", color: "bg-yellow-100 text-yellow-800 border-yellow-300" },
   "1_faible": { label: "1-2 - Faible", color: "bg-green-100 text-green-800 border-green-300" }
 };
 const sev = sevMap[b.severite] || { label: b.severite || "-", color: "bg-gray-100 text-gray-700 border-gray-300" };
-
 const formatDate = (iso) => {
   if (!iso) return "-";
   try { return new Date(iso).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }); }
   catch (e) { return iso; }
 };
-
 const regs = (b.biais_reglementations || []).map(br => br.reglementations).filter(Boolean);
 const groupedRegs = regs.reduce((acc, reg) => {
   let jur = reg.juridiction || "International";
-  if (jur === "UE") jur = "ðŸ‡ªðŸ‡º Europe";
-  else if (jur === "USA") jur = "ðŸ‡ºðŸ‡¸ Ã‰tats-Unis";
-  else if (jur === "France") jur = "ðŸ‡«ðŸ‡· France";
-  else if (jur === "ONU" || jur === "ISO") jur = "ðŸŒ International";
-  else jur = "ðŸŒ " + jur;
+  if (jur === "UE") jur = "&#x1F1EA;&#x1F1FA; Europe";
+  else if (jur === "USA") jur = "&#x1F1FA;&#x1F1F8; &Eacute;tats-Unis";
+  else if (jur === "France") jur = "&#x1F1EB;&#x1F1F7; France";
+  else if (jur === "ONU" || jur === "ISO") jur = "&#x1F30D; International";
+  else jur = "&#x1F310; " + jur;
   if (!acc[jur]) acc[jur] = [];
   acc[jur].push(reg);
   return acc;
 }, {});
-
-// FONCTION SÃ‰CURISÃ‰E POUR LES LIENS
 const getLink = (s) => {
   if (!s) return '#';
-  // 1. Si un DOI est présent, on l'utilise en priorité
   if (s.doi && s.doi.trim() !== '') return "https://doi.org/" + s.doi.trim();
-  // 2. Si une URL est présente
   if (s.url && s.url.trim() !== '') {
     const url = s.url.trim();
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    // Si l'URL commence par "10." c'est un DOI mal stocké, on le corrige
     if (url.startsWith('10.')) return "https://doi.org/" + url;
-    // Sinon, on force le https
     return "https://" + url;
   }
   return '#';
 };
 ---
 
-<BaseLayout title={`${b.nom_fr} - AI BIAIS INITIATIVE`} description={b.definition_fr || "Fiche dÃ©taillÃ©e d'un biais algorithmique."}>
+<BaseLayout title={`${b.nom_fr} - AI BIAIS INITIATIVE`} description={b.definition_fr || "Fiche d&eacute;taill&eacute;e d'un biais algorithmique."}>
   <div class="bg-ibi-arctic border-b border-ibi-border">
     <div class="max-w-7xl mx-auto px-6 py-4 text-sm">
       <a href="/" class="text-ibi-fg3 hover:text-ibi-primary">Accueil</a>
-      <span class="text-ibi-fg3 mx-2">â€º</span>
+      <span class="text-ibi-fg3 mx-2">&rsaquo;</span>
       <a href="/fr/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biais</a>
-      <span class="text-ibi-fg3 mx-2">â€º</span>
+      <span class="text-ibi-fg3 mx-2">&rsaquo;</span>
       <span class="text-ibi-fg font-display font-semibold">{b.ibi_id}</span>
     </div>
   </div>
-
   <div id="content">
     <section class="relative overflow-hidden bg-ibi-night text-white">
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -91,8 +73,8 @@ const getLink = (s) => {
             <h1 class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">{b.nom_fr}</h1>
             <p class="text-lg md:text-xl text-ibi-fg3 italic mb-8">{b.nom_en}</p>
             <div class="flex flex-wrap gap-3">
-              <a href="/fr/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">â† Retour Ã  la liste</a>
-              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">Voir sur l'API â†—</a>
+              <a href="/fr/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">&larr; Retour &agrave; la liste</a>
+              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">Voir sur l'API &#x2197;</a>
             </div>
           </div>
           <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8 text-center">
@@ -100,29 +82,27 @@ const getLink = (s) => {
             <div class="font-display font-extrabold text-4xl md:text-6xl text-gradient-ibi mb-3">{b.score_ibi ? Number(b.score_ibi).toFixed(1) : "-"}</div>
             <div class="text-xs text-ibi-fg3">sur 10</div>
             <div class="mt-6 pt-6 border-t border-ibi-border text-left text-xs space-y-2">
-              <div class="flex justify-between"><span class="text-ibi-fg3">SÃ©vÃ©ritÃ©</span><span class="text-white font-mono">{b.severite || "-"}</span></div>
-              <div class="flex justify-between"><span class="text-ibi-fg3">FrÃ©quence</span><span class="text-white font-mono">{b.frequence || "-"}</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">S&eacute;v&eacute;rit&eacute;</span><span class="text-white font-mono">{b.severite || "-"}</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">Fr&eacute;quence</span><span class="text-white font-mono">{b.frequence || "-"}</span></div>
               <div class="flex justify-between"><span class="text-ibi-fg3">Ampleur groupes</span><span class="text-white font-mono">{b.ampleur_groupes || "-"}</span></div>
-              <div class="flex justify-between"><span class="text-ibi-fg3">DifficultÃ© dÃ©tection</span><span class="text-white font-mono">{b.difficulte_detection || "-"}</span></div>
+              <div class="flex justify-between"><span class="text-ibi-fg3">Difficult&eacute; d&eacute;tection</span><span class="text-white font-mono">{b.difficulte_detection || "-"}</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ðŸ‡«ðŸ‡· DÃ©finition (FR)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">&#x1F1EB;&#x1F1F7; D&eacute;finition (FR)</div>
           <p class="text-ibi-fg leading-relaxed">{b.definition_fr || "-"}</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ðŸ‡¬ðŸ‡§ Definition (EN)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">&#x1F1EC;&#x1F1E7; Definition (EN)</div>
           <p class="text-ibi-fg leading-relaxed italic">{b.definition_en || "-"}</p>
         </div>
       </div>
     </section>
-
     <section class="bg-ibi-arctic py-16">
       <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10">
@@ -138,47 +118,45 @@ const getLink = (s) => {
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-6">
             <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">L</div>
-            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Lifecycle</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Cycle de vie</div>
             <div class="font-display font-semibold text-lg mb-2">{b.axe_l?.code?.split('_')[0] || "-"}</div>
             <div class="text-sm text-ibi-fg2">{b.axe_l?.libelle_fr || "-"}</div>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-6">
             <div class="w-10 h-10 rounded-lg gradient-ibi flex items-center justify-center text-white font-display font-bold mb-4">S</div>
-            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">SpÃ©cifique</div>
+            <div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Sp&eacute;cifique</div>
             <div class="font-display font-semibold text-lg mb-2">{b.axe_s?.code?.split('_')[0] || "-"}</div>
             <div class="text-sm text-ibi-fg2">{b.axe_s?.libelle_fr || "-"}</div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-8">
         <div class="flex items-start gap-4">
-          <div class="text-3xl shrink-0">ðŸ’¡</div>
+          <div class="text-3xl shrink-0">&#x1F4A1;</div>
           <div>
             <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-amber-700 mb-2">Exemple concret</div>
-            <p class="text-ibi-fg leading-relaxed">{b.exemple_concret || "Aucun exemple documentÃ© pour ce biais."}</p>
+            <p class="text-ibi-fg leading-relaxed">{b.exemple_concret || "Aucun exemple document&eacute; pour ce biais."}</p>
           </div>
         </div>
       </div>
     </section>
-
     <section class="bg-ibi-arctic py-16">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">ðŸ“Š MÃ©triques de dÃ©tection</h2>
+            <h2 class="font-display font-bold text-xl mb-6">&#x1F4CA; M&eacute;triques de d&eacute;tection</h2>
             <div class="flex flex-wrap gap-2">
               {b.metriques_detection && b.metriques_detection.length > 0 ? (
                 b.metriques_detection.map(m => <span class="text-xs font-mono px-3 py-1.5 rounded bg-ibi-arctic text-ibi-primary border border-ibi-border">{m}</span>)
               ) : (
-                <span class="text-sm text-ibi-fg3 italic">Aucune mÃ©trique documentÃ©e</span>
+                <span class="text-sm text-ibi-fg3 italic">Aucune m&eacute;trique document&eacute;e</span>
               )}
             </div>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">âš™ï¸ Seuils d'alerte</h2>
+            <h2 class="font-display font-bold text-xl mb-6">&#x2699; Seuils d'alerte</h2>
             <div class="space-y-3">
               {b.seuils_alerte && Object.keys(b.seuils_alerte).length > 0 ? (
                 Object.entries(b.seuils_alerte).map(([k, v]) => (
@@ -188,18 +166,17 @@ const getLink = (s) => {
                   </div>
                 ))
               ) : (
-                <span class="text-sm text-ibi-fg3 italic">Aucun seuil documentÃ©</span>
+                <span class="text-sm text-ibi-fg3 italic">Aucun seuil document&eacute;</span>
               )}
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ðŸ“š</span> <span>Sources &amp; RÃ©fÃ©rences Scientifiques</span>
+            <span>&#x1F4DA;</span> <span>Sources &amp; R&eacute;f&eacute;rences Scientifiques</span>
           </h3>
           <ul class="space-y-3 text-sm text-ibi-fg2">
             {b.biais_sources && b.biais_sources.length > 0 ? (
@@ -211,7 +188,7 @@ const getLink = (s) => {
                 const annee = s.annee ? `(${s.annee})` : '';
                 return (
                   <li class="flex items-start gap-2">
-                    <span class="text-ibi-primary mt-1">â€¢</span>
+                    <span class="text-ibi-primary mt-1">&bull;</span>
                     <div>
                       <a href={link} target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">{s.titre}</a>
                       {auteurs && <span class="text-xs block text-ibi-fg3 mt-0.5">{auteurs} {annee}</span>}
@@ -220,21 +197,19 @@ const getLink = (s) => {
                 );
               })
             ) : (
-              <li class="text-ibi-fg3 italic">Aucune source documentÃ©e.</li>
+              <li class="text-ibi-fg3 italic">Aucune source document&eacute;e.</li>
             )}
           </ul>
         </section>
     </div>
-
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ðŸ›¡ï¸</span> <span>Impact & Mitigation</span>
+            <span>&#x1F6E1;</span> <span>Impact &amp; Mitigation</span>
           </h3>
-
           {b.incidents_biais && b.incidents_biais.length > 0 && (
             <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">âš ï¸ Incidents rÃ©els documentÃ©s</h4>
+              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">&#x26A0; Incidents r&eacute;els document&eacute;s</h4>
               <ul class="list-disc list-inside space-y-2 text-sm text-red-900">
                 {b.incidents_biais.map(ib => {
                   const inc = ib.incidents;
@@ -244,9 +219,8 @@ const getLink = (s) => {
               </ul>
             </div>
           )}
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸŽ¯ Groupes vulnÃ©rables impactÃ©s</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3AF; Groupes vuln&eacute;rables impact&eacute;s</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_groupes && b.biais_groupes.length > 0 ? (
                 b.biais_groupes.map(bg => {
@@ -255,13 +229,12 @@ const getLink = (s) => {
                   return <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">{g.nom_fr || g.code}</span>;
                 })
               ) : (
-                <span class="text-ibi-fg3 italic text-sm">Aucun groupe spÃ©cifique.</span>
+                <span class="text-ibi-fg3 italic text-sm">Aucun groupe sp&eacute;cifique.</span>
               )}
             </div>
           </div>
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸ› ï¸ MÃ©thodologies de mitigation</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F6E0; M&eacute;thodologies de mitigation</h4>
             <ul class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
               {b.biais_methodologies && b.biais_methodologies.length > 0 ? (
                 b.biais_methodologies.map(bm => {
@@ -270,13 +243,12 @@ const getLink = (s) => {
                   return <li><span class="font-semibold">{m.code}</span> : {m.nom_fr || m.description}</li>;
                 })
               ) : (
-                <li class="text-ibi-fg3 italic">Aucune mÃ©thodologie documentÃ©e.</li>
+                <li class="text-ibi-fg3 italic">Aucune m&eacute;thodologie document&eacute;e.</li>
               )}
             </ul>
           </div>
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸ¢ Secteurs concernÃ©s</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3E2; Secteurs concern&eacute;s</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_secteurs && b.biais_secteurs.length > 0 ? (
                 b.biais_secteurs.map(bs => {
@@ -285,13 +257,12 @@ const getLink = (s) => {
                   return <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-ibi-arctic text-ibi-primary border border-ibi-border">{s.nom_fr} (Risque: {bs.niveau_risque}/5)</span>;
                 })
               ) : (
-                <span class="text-ibi-fg3 italic text-sm">Aucun secteur spÃ©cifique.</span>
+                <span class="text-ibi-fg3 italic text-sm">Aucun secteur sp&eacute;cifique.</span>
               )}
             </div>
           </div>
-
           <div>
-            <h4 class="font-semibold text-ibi-fg2 mb-2">âš–ï¸ RÃ©glementations applicables</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x2696; R&eacute;glementations applicables</h4>
             <div class="space-y-4 text-sm text-ibi-fg2">
               {Object.keys(groupedRegs).length > 0 ? (
                 Object.entries(groupedRegs).map(([jur, items]) => (
@@ -300,7 +271,7 @@ const getLink = (s) => {
                     <ul class="space-y-2">
                       {items.map(item => (
                         <li class="flex items-start gap-2">
-                          <span class="text-ibi-primary mt-1">â€¢</span>
+                          <span class="text-ibi-primary mt-1">&bull;</span>
                           <div><span class="font-semibold">{item.code}</span> : {item.texte}</div>
                         </li>
                       ))}
@@ -308,33 +279,31 @@ const getLink = (s) => {
                   </div>
                 ))
               ) : (
-                <span class="text-ibi-fg3 italic text-sm">Aucune rÃ©glementation spÃ©cifique.</span>
+                <span class="text-ibi-fg3 italic text-sm">Aucune r&eacute;glementation sp&eacute;cifique.</span>
               )}
             </div>
           </div>
         </section>
     </div>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-white rounded-xl border border-ibi-border p-8">
-        <h2 class="font-display font-bold text-xl mb-6">ðŸ“‹ MÃ©tadonnÃ©es</h2>
+        <h2 class="font-display font-bold text-xl mb-6">&#x1F4CB; M&eacute;tadonn&eacute;es</h2>
         <div class="grid md:grid-cols-3 gap-6 text-sm">
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributeur</div><div class="text-ibi-fg font-medium">{b.contributeur || "-"}</div></div>
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div class="text-ibi-fg font-medium">{b.institution || "-"}</div></div>
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Version</div><div class="text-ibi-fg font-medium">{b.version || "-"}</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">CrÃ©Ã© le</div><div class="text-ibi-fg font-medium">{formatDate(b.created_at)}</div></div>
-          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Mis Ã  jour le</div><div class="text-ibi-fg font-medium">{formatDate(b.updated_at)}</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Cr&eacute;&eacute; le</div><div class="text-ibi-fg font-medium">{formatDate(b.created_at)}</div></div>
+          <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Mis &agrave; jour le</div><div class="text-ibi-fg font-medium">{formatDate(b.updated_at)}</div></div>
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">UUID</div><div class="text-ibi-fg font-mono text-xs">{b.bias_id || "-"}</div></div>
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 pb-24">
       <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
         <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explorer d'autres biais</h2>
-        <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais documentÃ©s, classÃ©s par la taxonomie TriAxis.</p>
+        <p class="text-white/90 max-w-2xl mx-auto mb-8">250 biais document&eacute;s, class&eacute;s par la taxonomie TriAxis.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/fr/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">â† Retour Ã  la liste</a>
+          <a href="/fr/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">&larr; Retour &agrave; la liste</a>
           <a href="/fr/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Comprendre TriAxis</a>
         </div>
       </div>

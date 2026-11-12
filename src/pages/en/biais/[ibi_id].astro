@@ -1,24 +1,15 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-
 export const prerender = true;
-
 export async function getStaticPaths() {
   try {
     const res = await fetch("https://api.ai-biais-initiative.org/biais?select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_reglementations(reglementations(*)),biais_secteurs(secteurs(*)),biais_methodologies(methodologies(*)),biais_groupes(groupes_impactes(*)),incidents_biais(incidents(*))");
     if (!res.ok) return [];
     const biais = await res.json();
-    return biais.map((b) => ({
-      params: { ibi_id: b.ibi_id },
-      props: { b },
-    }));
-  } catch (err) {
-    return [];
-  }
+    return biais.map((b) => ({ params: { ibi_id: b.ibi_id }, props: { b } }));
+  } catch (err) { return []; }
 }
-
 const { b } = Astro.props;
-
 const sevMap = {
   "5_critique": { label: "5 - Critical", color: "bg-red-100 text-red-800 border-red-300" },
   "4_grave": { label: "4 - Severe", color: "bg-amber-100 text-amber-800 border-amber-300" },
@@ -26,38 +17,30 @@ const sevMap = {
   "1_faible": { label: "1-2 - Low", color: "bg-green-100 text-green-800 border-green-300" }
 };
 const sev = sevMap[b.severite] || { label: b.severite || "-", color: "bg-gray-100 text-gray-700 border-gray-300" };
-
 const formatDate = (iso) => {
   if (!iso) return "-";
   try { return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }); }
   catch (e) { return iso; }
 };
-
 const regs = (b.biais_reglementations || []).map(br => br.reglementations).filter(Boolean);
 const groupedRegs = regs.reduce((acc, reg) => {
   let jur = reg.juridiction || "International";
-  if (jur === "UE") jur = "ðŸ‡ªðŸ‡º Europe";
-  else if (jur === "USA") jur = "ðŸ‡ºðŸ‡¸ United States";
-  else if (jur === "France") jur = "ðŸ‡«ðŸ‡· France";
-  else if (jur === "ONU" || jur === "ISO") jur = "ðŸŒ International";
-  else jur = "ðŸŒ " + jur;
+  if (jur === "UE") jur = "&#x1F1EA;&#x1F1FA; Europe";
+  else if (jur === "USA") jur = "&#x1F1FA;&#x1F1F8; United States";
+  else if (jur === "France") jur = "&#x1F1EB;&#x1F1F7; France";
+  else if (jur === "ONU" || jur === "ISO") jur = "&#x1F30D; International";
+  else jur = "&#x1F310; " + jur;
   if (!acc[jur]) acc[jur] = [];
   acc[jur].push(reg);
   return acc;
 }, {});
-
-// SAFE LINK FUNCTION
 const getLink = (s) => {
   if (!s) return '#';
-  // 1. Si un DOI est présent, on l'utilise en priorité
   if (s.doi && s.doi.trim() !== '') return "https://doi.org/" + s.doi.trim();
-  // 2. Si une URL est présente
   if (s.url && s.url.trim() !== '') {
     const url = s.url.trim();
     if (url.startsWith('http://') || url.startsWith('https://')) return url;
-    // Si l'URL commence par "10." c'est un DOI mal stocké, on le corrige
     if (url.startsWith('10.')) return "https://doi.org/" + url;
-    // Sinon, on force le https
     return "https://" + url;
   }
   return '#';
@@ -68,13 +51,12 @@ const getLink = (s) => {
   <div class="bg-ibi-arctic border-b border-ibi-border">
     <div class="max-w-7xl mx-auto px-6 py-4 text-sm">
       <a href="/en/" class="text-ibi-fg3 hover:text-ibi-primary">Home</a>
-      <span class="text-ibi-fg3 mx-2">â€º</span>
+      <span class="text-ibi-fg3 mx-2">&rsaquo;</span>
       <a href="/en/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biases</a>
-      <span class="text-ibi-fg3 mx-2">â€º</span>
+      <span class="text-ibi-fg3 mx-2">&rsaquo;</span>
       <span class="text-ibi-fg font-display font-semibold">{b.ibi_id}</span>
     </div>
   </div>
-
   <div id="content">
     <section class="relative overflow-hidden bg-ibi-night text-white">
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -91,8 +73,8 @@ const getLink = (s) => {
             <h1 class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">{b.nom_en || b.nom_fr}</h1>
             <p class="text-lg md:text-xl text-ibi-fg3 italic mb-8">{b.nom_fr}</p>
             <div class="flex flex-wrap gap-3">
-              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">â† Back to list</a>
-              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">View on API â†—</a>
+              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">&larr; Back to list</a>
+              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">View on API &#x2197;</a>
             </div>
           </div>
           <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8 text-center">
@@ -109,20 +91,18 @@ const getLink = (s) => {
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ðŸ‡«ðŸ‡· DÃ©finition (FR)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">&#x1F1EB;&#x1F1F7; D&eacute;finition (FR)</div>
           <p class="text-ibi-fg leading-relaxed">{b.definition_fr || "-"}</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ðŸ‡¬ðŸ‡§ Definition (EN)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">&#x1F1EC;&#x1F1E7; Definition (EN)</div>
           <p class="text-ibi-fg leading-relaxed italic">{b.definition_en || "-"}</p>
         </div>
       </div>
     </section>
-
     <section class="bg-ibi-arctic py-16">
       <div class="max-w-7xl mx-auto px-6">
         <div class="mb-10">
@@ -151,11 +131,10 @@ const getLink = (s) => {
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-8">
         <div class="flex items-start gap-4">
-          <div class="text-3xl shrink-0">ðŸ’¡</div>
+          <div class="text-3xl shrink-0">&#x1F4A1;</div>
           <div>
             <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-amber-700 mb-2">Concrete Example</div>
             <p class="text-ibi-fg leading-relaxed">{b.exemple_concret || "No example documented for this bias."}</p>
@@ -163,12 +142,11 @@ const getLink = (s) => {
         </div>
       </div>
     </section>
-
     <section class="bg-ibi-arctic py-16">
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">ðŸ“Š Detection Metrics</h2>
+            <h2 class="font-display font-bold text-xl mb-6">&#x1F4CA; Detection Metrics</h2>
             <div class="flex flex-wrap gap-2">
               {b.metriques_detection && b.metriques_detection.length > 0 ? (
                 b.metriques_detection.map(m => <span class="text-xs font-mono px-3 py-1.5 rounded bg-ibi-arctic text-ibi-primary border border-ibi-border">{m}</span>)
@@ -178,7 +156,7 @@ const getLink = (s) => {
             </div>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">âš™ï¸ Alert Thresholds</h2>
+            <h2 class="font-display font-bold text-xl mb-6">&#x2699; Alert Thresholds</h2>
             <div class="space-y-3">
               {b.seuils_alerte && Object.keys(b.seuils_alerte).length > 0 ? (
                 Object.entries(b.seuils_alerte).map(([k, v]) => (
@@ -195,11 +173,10 @@ const getLink = (s) => {
         </div>
       </div>
     </section>
-
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ðŸ“š</span> <span>Sources &amp; Scientific References</span>
+            <span>&#x1F4DA;</span> <span>Sources &amp; Scientific References</span>
           </h3>
           <ul class="space-y-3 text-sm text-ibi-fg2">
             {b.biais_sources && b.biais_sources.length > 0 ? (
@@ -211,7 +188,7 @@ const getLink = (s) => {
                 const annee = s.annee ? `(${s.annee})` : '';
                 return (
                   <li class="flex items-start gap-2">
-                    <span class="text-ibi-primary mt-1">â€¢</span>
+                    <span class="text-ibi-primary mt-1">&bull;</span>
                     <div>
                       <a href={link} target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">{s.titre}</a>
                       {auteurs && <span class="text-xs block text-ibi-fg3 mt-0.5">{auteurs} {annee}</span>}
@@ -225,16 +202,14 @@ const getLink = (s) => {
           </ul>
         </section>
     </div>
-
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ðŸ›¡ï¸</span> <span>Impact & Mitigation</span>
+            <span>&#x1F6E1;</span> <span>Impact &amp; Mitigation</span>
           </h3>
-
           {b.incidents_biais && b.incidents_biais.length > 0 && (
             <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">âš ï¸ Real documented incidents</h4>
+              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">&#x26A0; Real documented incidents</h4>
               <ul class="list-disc list-inside space-y-2 text-sm text-red-900">
                 {b.incidents_biais.map(ib => {
                   const inc = ib.incidents;
@@ -244,9 +219,8 @@ const getLink = (s) => {
               </ul>
             </div>
           )}
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸŽ¯ Vulnerable groups impacted</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3AF; Vulnerable groups impacted</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_groupes && b.biais_groupes.length > 0 ? (
                 b.biais_groupes.map(bg => {
@@ -259,9 +233,8 @@ const getLink = (s) => {
               )}
             </div>
           </div>
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸ› ï¸ Mitigation methodologies</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F6E0; Mitigation methodologies</h4>
             <ul class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
               {b.biais_methodologies && b.biais_methodologies.length > 0 ? (
                 b.biais_methodologies.map(bm => {
@@ -274,9 +247,8 @@ const getLink = (s) => {
               )}
             </ul>
           </div>
-
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ðŸ¢ Sectors concerned</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3E2; Sectors concerned</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_secteurs && b.biais_secteurs.length > 0 ? (
                 b.biais_secteurs.map(bs => {
@@ -289,9 +261,8 @@ const getLink = (s) => {
               )}
             </div>
           </div>
-
           <div>
-            <h4 class="font-semibold text-ibi-fg2 mb-2">âš–ï¸ Applicable regulations</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">&#x2696; Applicable regulations</h4>
             <div class="space-y-4 text-sm text-ibi-fg2">
               {Object.keys(groupedRegs).length > 0 ? (
                 Object.entries(groupedRegs).map(([jur, items]) => (
@@ -300,7 +271,7 @@ const getLink = (s) => {
                     <ul class="space-y-2">
                       {items.map(item => (
                         <li class="flex items-start gap-2">
-                          <span class="text-ibi-primary mt-1">â€¢</span>
+                          <span class="text-ibi-primary mt-1">&bull;</span>
                           <div><span class="font-semibold">{item.code}</span> : {item.texte}</div>
                         </li>
                       ))}
@@ -314,10 +285,9 @@ const getLink = (s) => {
           </div>
         </section>
     </div>
-
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-white rounded-xl border border-ibi-border p-8">
-        <h2 class="font-display font-bold text-xl mb-6">ðŸ“‹ Metadata</h2>
+        <h2 class="font-display font-bold text-xl mb-6">&#x1F4CB; Metadata</h2>
         <div class="grid md:grid-cols-3 gap-6 text-sm">
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributor</div><div class="text-ibi-fg font-medium">{b.contributeur || "-"}</div></div>
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div class="text-ibi-fg font-medium">{b.institution || "-"}</div></div>
@@ -328,13 +298,12 @@ const getLink = (s) => {
         </div>
       </div>
     </section>
-
     <section class="max-w-7xl mx-auto px-6 pb-24">
       <div class="gradient-ibi rounded-2xl p-12 text-center text-white">
         <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explore other biases</h2>
         <p class="text-white/90 max-w-2xl mx-auto mb-8">250 documented biases, classified by the TriAxis taxonomy.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">â† Back to list</a>
+          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">&larr; Back to list</a>
           <a href="/en/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Understand TriAxis</a>
         </div>
       </div>
