@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+
 export const prerender = true;
+
 export async function getStaticPaths() {
   try {
     const res = await fetch("https://api.ai-biais-initiative.org/biais?select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_reglementations(reglementations(*)),biais_secteurs(secteurs(*)),biais_methodologies(methodologies(*)),biais_groupes(groupes_impactes(*)),incidents_biais(incidents(*))");
@@ -9,19 +11,24 @@ export async function getStaticPaths() {
     return biais.map((b) => ({ params: { ibi_id: b.ibi_id }, props: { b } }));
   } catch (err) { return []; }
 }
+
 const { b } = Astro.props;
+
 const sevMap = {
   "5_critique": { label: "5 - Critique", color: "bg-red-100 text-red-800 border-red-300" },
   "4_grave": { label: "4 - Grave", color: "bg-amber-100 text-amber-800 border-amber-300" },
-  "3_modere": { label: "3 - Mod&eacute;r&eacute;", color: "bg-yellow-100 text-yellow-800 border-yellow-300" },
+  "3_modere": { label: "3 - Modéré", color: "bg-yellow-100 text-yellow-800 border-yellow-300" },
   "1_faible": { label: "1-2 - Faible", color: "bg-green-100 text-green-800 border-green-300" }
 };
 const sev = sevMap[b.severite] || { label: b.severite || "-", color: "bg-gray-100 text-gray-700 border-gray-300" };
+
 const formatDate = (iso) => {
   if (!iso) return "-";
   try { return new Date(iso).toLocaleDateString("fr-FR", { year: "numeric", month: "long", day: "numeric" }); }
   catch (e) { return iso; }
 };
+
+const regs = (b.biais_reglementations || []).map(br => br.reglementations).filter(Boolean);
 const groupedRegs = regs.reduce((acc, reg) => {
   let jur = reg.juridiction || "International";
   if (jur === "UE") jur = "🇪🇺 Europe";
@@ -33,15 +40,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
   acc[jur].push(reg);
   return acc;
 }, {});
-  if (jur === "UE") jur = "&#x1F1EA;&#x1F1FA; Europe";
-  else if (jur === "USA") jur = "&#x1F1FA;&#x1F1F8; &Eacute;tats-Unis";
-  else if (jur === "France") jur = "&#x1F1EB;&#x1F1F7; France";
-  else if (jur === "ONU" || jur === "ISO") jur = "&#x1F30D; International";
-  else jur = "&#x1F310; " + jur;
-  if (!acc[jur]) acc[jur] = [];
-  acc[jur].push(reg);
-  return acc;
-}, {});
+
 const getLink = (s) => {
   if (!s) return '#';
   if (s.doi && s.doi.trim() !== '') return "https://doi.org/" + s.doi.trim();
