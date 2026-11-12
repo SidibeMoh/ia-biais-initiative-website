@@ -45,6 +45,14 @@ const groupedRegs = regs.reduce((acc, reg) => {
   acc[jur].push(reg);
   return acc;
 }, {});
+
+// FONCTION SÉCURISÉE POUR LES LIENS
+const getLink = (s) => {
+  if (!s) return '#';
+  if (s.doi) return "https://doi.org/" + s.doi;
+  if (s.url) return s.url.startsWith('http') ? s.url : "https://" + s.url;
+  return '#';
+};
 ---
 
 <BaseLayout title={`${b.nom_fr} - AI BIAIS INITIATIVE`} description={b.definition_fr || "Fiche détaillée d'un biais algorithmique."}>
@@ -189,7 +197,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
               b.biais_sources.map(bs => {
                 const s = bs.sources;
                 if (!s) return null;
-                const link = s.doi ? "https://doi.org/" + s.doi : (s.url ? (s.url.startsWith('http') ? s.url : "https://" + s.url) : '#');
+                const link = getLink(s);
                 const auteurs = s.auteurs && Array.isArray(s.auteurs) ? s.auteurs.join(', ') : '';
                 const annee = s.annee ? `(${s.annee})` : '';
                 return (
