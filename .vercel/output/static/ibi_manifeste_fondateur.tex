@@ -1,0 +1,639 @@
+% ============================================================
+% IA BIAIS INITIATIVE — Manifeste fondateur
+% Bilingue FR/EN · Design premium
+% Version corrigée — Compilation garantie
+% Auteur : Mohamadou SIDIBE
+% Version : 1.0 · Octobre 2026
+% Compilation : pdflatex (2 passes)
+% ============================================================
+
+\documentclass[11pt,a4paper,openany]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning,calc,backgrounds,fit,decorations.pathreplacing}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\DeclareUnicodeCharacter{2122}{\texttrademark}
+
+% ------------------------------------------------------------
+% PALETTE
+% ------------------------------------------------------------
+\definecolor{navy}{HTML}{0F172A}
+\definecolor{purple}{HTML}{4C1D95}
+\definecolor{cyan}{HTML}{0891B2}
+\definecolor{orange}{HTML}{D97706}
+\definecolor{green}{HTML}{059669}
+\definecolor{red}{HTML}{B91C1C}
+\definecolor{gray}{HTML}{94A3B8}
+\definecolor{light}{HTML}{F8FAFC}
+\definecolor{mint}{HTML}{ECFDF5}
+
+% ------------------------------------------------------------
+% STYLE CHAPITRES
+% ------------------------------------------------------------
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{navy}}
+  {\filright\textsc{\Large\color{purple}Chapitre \thechapter}}
+  {10pt}
+  {\Huge\filright}
+  [\vspace{0.3em}\textcolor{purple}{\rule{\textwidth}{2pt}}]
+
+\titlespacing*{\chapter}{0pt}{-20pt}{25pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{navy}}
+  {\thesection}{0.8em}{}
+  [\vspace{-0.3em}\textcolor{cyan}{\rule{\textwidth}{0.8pt}}]
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{purple}}
+  {\thesubsection}{0.6em}{}
+
+% ------------------------------------------------------------
+% EN-TÊTE / PIED
+% ------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\small\textcolor{navy}{\textbf{IA BIAIS INITIATIVE — Manifeste}}}
+\fancyhead[RE,LO]{\small\textcolor{gray}{\nouppercase{\rightmark}}}
+\fancyfoot[C]{\small\textcolor{gray}{\thepage}}
+\fancyfoot[LE,RO]{\small\textcolor{gray}{contact@ia-biais-initiative.org}}
+\fancyfoot[RE,LO]{\small\textcolor{gray}{v1.0 · Oct. 2026}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% ------------------------------------------------------------
+% BOÎTES
+% ------------------------------------------------------------
+\newtcolorbox{ideabox}{
+  colback=mint, colframe=green, boxrule=1pt, arc=4pt,
+  left=10pt,right=10pt,top=8pt,bottom=8pt, breakable,
+  title={\faLightbulb\ Idée clé}, coltitle=white, colbacktitle=green,
+  fonttitle=\bfseries
+}
+
+\newtcolorbox{quoteauthor}{
+  colback=light, colframe=purple, boxrule=0pt, leftrule=4pt,
+  arc=0pt, left=10pt,right=10pt,top=8pt,bottom=8pt, breakable
+}
+
+\newtcolorbox{keybox}{
+  colback=yellow!8, colframe=orange, boxrule=1pt, arc=4pt,
+  left=10pt,right=10pt,top=8pt,bottom=8pt, breakable
+}
+
+\newtcolorbox{ctabox}{
+  colback=navy, colframe=navy, boxrule=0pt, arc=6pt,
+  left=12pt,right=12pt,top=12pt,bottom=12pt, breakable,
+  coltext=white,
+}
+
+% ------------------------------------------------------------
+% MÉTADONNÉES PDF
+% ------------------------------------------------------------
+\hypersetup{
+  pdftitle={IA BIAIS INITIATIVE — Manifeste fondateur},
+  pdfauthor={Mohamadou SIDIBE},
+  pdfsubject={Observatoire mondial des biais algorithmiques},
+  pdfkeywords={biais algorithmiques, équité, IA responsable, gouvernance IA},
+}
+
+% ============================================================
+\begin{document}
+
+% ------------------------------------------------------------
+% PAGE DE TITRE
+% ------------------------------------------------------------
+\begin{titlepage}
+\centering
+\vspace*{1cm}
+
+\begin{tikzpicture}
+  \node[fill=navy,text=white,minimum width=15cm,minimum height=4.5cm,
+        align=center,inner sep=18pt,rounded corners=8pt]
+    {\fontsize{34}{40}\selectfont\textbf{IA BIAIS}\\[6pt]
+     \fontsize{34}{40}\selectfont\textbf{INITIATIVE}\\[10pt]
+     \fontsize{14}{18}\selectfont\textcolor{gray}{Observatoire Mondial des Biais}\\[2pt]
+     \fontsize{14}{18}\selectfont\textcolor{gray}{dans l'Intelligence Artificielle}};
+\end{tikzpicture}
+
+\vspace{1cm}
+
+{\LARGE\textbf{\textcolor{purple}{MANIFESTE FONDATEUR}}\\[4pt]
+ \large\textcolor{gray}{\textit{Founding Manifesto}}}
+
+\vspace{1.2cm}
+
+% Filet spectral
+\begin{tikzpicture}
+  \fill[purple] (0,0) rectangle (3,0.4);
+  \fill[cyan]   (3,0) rectangle (6,0.4);
+  \fill[orange] (6,0) rectangle (9,0.4);
+  \fill[red]    (9,0) rectangle (12,0.4);
+  \fill[green]  (12,0) rectangle (15,0.4);
+\end{tikzpicture}
+
+\vspace{1cm}
+
+\begin{quote}
+\centering
+{\Large\itshape\textcolor{purple}{« L'IA sans équité n'est qu'un outil de discrimination automatisée. »}}\\[8pt]
+{\large — SIDIBE Mohamadou, Fondateur}
+\end{quote}
+
+\vfill
+
+\begin{tcolorbox}[colback=light,colframe=purple,boxrule=1pt,arc=6pt,width=13cm,center]
+\centering
+{\Large\textbf{Mohamadou SIDIBE}}\\[6pt]
+{\normalsize Expert en Gouvernance des Données \& IA}\\[2pt]
+{\normalsize Chief Data Officer · Polytechnique ExED 2026}\\[8pt]
+{\normalsize\textbf{Fondateur, IA BIAIS INITIATIVE}}\\[2pt]
+{\small\texttt{contact@ia-biais-initiative.org}}\\[4pt]
+{\small\href{https://ia-biais-initiative.org}{ia-biais-initiative.org}}
+\end{tcolorbox}
+
+\vspace{1cm}
+
+{\small\textcolor{gray}{
+  Version 1.0 · Octobre 2026\\
+  Licence CC BY 4.0 · Réutilisation libre avec attribution
+}}
+
+\end{titlepage}
+
+% ------------------------------------------------------------
+% TABLE DES MATIÈRES
+% ------------------------------------------------------------
+\frontmatter
+\tableofcontents
+\clearpage
+
+% ------------------------------------------------------------
+% PRÉAMBULE
+% ------------------------------------------------------------
+\chapter*{Préambule}
+\addcontentsline{toc}{chapter}{Préambule}
+
+Nous, fondateurs de l'IA BIAIS INITIATIVE, réunis autour d'une conviction partagée — que \textbf{l'équité algorithmique n'est pas un paramètre technique mais un choix de société} — déclarons ce qui suit.
+
+\vspace{0.3cm}
+
+\begin{ideabox}
+L'intelligence artificielle est en train de devenir l'infrastructure invisible de nos sociétés. Elle décide, trie, classe, recommande, refuse, oriente. Mais elle le fait souvent \emph{sans rendre de comptes}. C'est ce vide que nous venons combler.
+\end{ideabox}
+
+\vspace{0.3cm}
+
+Ce Manifeste expose :
+\begin{enumerate}[leftmargin=1.5em]
+  \item Pourquoi nous nous levons aujourd'hui
+  \item Ce que disent les leaders mondiaux de l'IA
+  \item Notre mission, notre vision, nos valeurs
+  \item Notre réponse : la Base\_IBI
+  \item Notre connexion au framework AEXIA\textsuperscript{TM}
+  \item Notre gouvernance
+  \item Notre feuille de route
+  \item Comment nous rejoindre
+\end{enumerate}
+
+\vspace{0.5cm}
+
+\begin{quoteauthor}
+\textbf{\textcolor{purple}{Note aux lecteurs}}\\[4pt]
+Ce Manifeste s'adresse à quatre publics complémentaires :
+\begin{itemize}[leftmargin=1.5em, topsep=2pt, itemsep=1pt]
+  \item \textbf{Chercheurs et académiques} — pour la rigueur méthodologique
+  \item \textbf{Entreprises et praticiens} (CDO, DPO, DSI, Data Scientists) — pour les outils opérationnels
+  \item \textbf{ONG et société civile} — pour l'ancrage citoyen et la défense des droits
+  \item \textbf{Régulateurs et institutions} — pour l'alignement réglementaire
+\end{itemize}
+\end{quoteauthor}
+
+\clearpage
+
+% ============================================================
+% PARTIE I
+% ============================================================
+\mainmatter
+\part{Pourquoi nous nous levons}
+\label{part:pourquoi}
+
+\chapter{Une révolution sans garde-fous}
+
+\section{L'ampleur du phénomène}
+
+L'intelligence artificielle transforme chaque secteur de l'économie mondiale en une décennie : santé, justice, recrutement, crédit, sécurité, éducation, mobilité, médias. Cette transformation est porteuse de promesses immenses. Elle est aussi porteuse d'un \textbf{risque systémique invisible} : les biais algorithmiques.
+
+Les décisions automatisées déterminent désormais :
+\begin{itemize}[leftmargin=1.5em]
+  \item qui obtient un crédit ou un logement
+  \item qui est convoqué à un entretien d'embauche
+  \item qui reçoit un diagnostic prioritaire
+  \item qui est placé en détention provisoire
+  \item qui est signalé à la police ou aux services sociaux
+  \item qui voit son dossier médical traité en urgence
+\end{itemize}
+
+\begin{keybox}
+\textbf{Ces décisions ne sont pas neutres.} Elles reproduisent, amplifient et automatisent des discriminations historiques.
+\end{keybox}
+
+\section{Ce que nous savons, et ce que nous ignorons}
+
+Nous savons que les biais algorithmiques existent. Nous savons qu'ils affectent des millions de personnes. Nous savons qu'ils sont documentés dans tous les secteurs critiques.
+
+Nous ne savons pas — et personne ne sait aujourd'hui — \textbf{combien de systèmes d'IA déployés dans le monde présentent des biais significatifs}. Nous n'avons pas de référentiel mondial, pas de taxonomie universellement reconnue, pas d'instrument de mesure comparable.
+
+\begin{ideabox}
+Cette lacune n'est pas un accident. Elle est un \textbf{choix} — celui des acteurs qui bénéficient du déploiement massif des systèmes d'IA sans avoir à documenter leurs biais.
+\end{ideabox}
+
+\chapter{Ce que disent les leaders mondiaux de l'IA}
+
+Nous ne sommes pas seuls à alerter. Les voix les plus autorisées du domaine convergent.
+
+\section{Geoffrey Hinton — Prix Nobel de Physique 2024}
+
+\begin{quoteauthor}
+\textit{« Les entreprises technologiques poursuivent des profits à court terme au détriment de la sécurité à long terme de l'humanité. Nous avons besoin d'une attention urgente et énergique pour contrer les risques de l'IA. »}\\[4pt]
+\textbf{— Discours Nobel, Stockholm, 2024}
+\end{quoteauthor}
+
+Hinton, co-inventeur des réseaux de neurones profonds, a \textbf{quitté Google en 2023} pour alerter librement. Son geste est sans précédent dans l'histoire de l'informatique.
+
+\section{Yoshua Bengio — Prix Turing 2018}
+
+\begin{quoteauthor}
+\textit{« Le public doit avoir une voix beaucoup plus forte dans les décisions qui façonneront notre avenir collectif. »}\\[4pt]
+\textbf{— Appel international pour des garde-fous IA, 2024}
+\end{quoteauthor}
+
+Bengio, directeur de l'Institut Mila (Montréal), préside le Comité International d'Experts sur l'IA issu du Sommet de Bletchley Park.
+
+\section{Sam Altman — CEO OpenAI}
+
+\begin{quoteauthor}
+\textit{« L'extinction par l'IA est un risque inacceptable. Nous ne pouvons pas nous permettre de continuer à accélérer sans avoir résolu les questions fondamentales d'alignement et de sécurité. »}\\[4pt]
+\textbf{— Déclaration publique, septembre 2026}
+\end{quoteauthor}
+
+\section{Dario Amodei — CEO Anthropic}
+
+\begin{quoteauthor}
+\textit{« Accélérer sans aligner est la définition même de l'imprudence. »}\\[4pt]
+\textbf{— ABC News, 2025}
+\end{quoteauthor}
+
+\section{Elon Musk — Fondateur xAI}
+
+\begin{quoteauthor}
+\textit{« L'IAG représente un risque significativement supérieur à celui des armes nucléaires. »}\\[4pt]
+\textbf{— Benzinga, septembre 2026}
+\end{quoteauthor}
+
+\section{Les institutions internationales}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{4cm}p{2cm}X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Institution / Événement} & \textcolor{white}{Date} & \textcolor{white}{Message clé} \\
+\midrule
+\textbf{Sommet IA Paris} & Fév. 2025 & 130+ États signataires, appel à la lutte contre les biais \\
+\rowcolor{light}
+\textbf{Bletchley Park Summit} & Nov. 2023 & 28 États + UE, déclaration sur les risques \\
+\textbf{Lettre FLI} & Mars 2023 & 1 800+ signataires, moratoire 6 mois \\
+\rowcolor{light}
+\textbf{Résolution ONU A/78/L.49} & Mars 2024 & Première résolution ONU sur la gouvernance IA \\
+\textbf{EU AI Act} & Août 2024 & Sanctions jusqu'à 35 M€ / 7 \% du CA mondial \\
+\rowcolor{light}
+\textbf{RGPD art. 22} & En vigueur & Droit à l'explication algorithmique \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{ideabox}
+Ce consensus n'est pas anodin. Il traverse les clivages politiques, les frontières disciplinaires et les intérêts industriels.
+\end{ideabox}
+
+\clearpage
+
+% ============================================================
+% PARTIE II
+% ============================================================
+\part{Notre mission, notre vision, nos valeurs}
+\label{part:mission}
+
+\chapter{Mission et vision}
+
+\section{Mission}
+
+\begin{ctabox}
+\begin{center}
+{\Large\textbf{\faBullseye\ \ Notre mission}}\\[8pt]
+{\large Rendre l'IA \textbf{équitable, transparente et responsable pour tous}, en fournissant les outils, les référentiels et les connaissances nécessaires à l'identification, la documentation et la correction des biais algorithmiques.}
+\end{center}
+\end{ctabox}
+
+\section{Vision 2030}
+
+\begin{ctabox}
+\begin{center}
+{\Large\textbf{\faBinoculars\ \ Notre vision}}\\[8pt]
+{\large Un monde où \textbf{aucun système d'IA ne peut être déployé dans un secteur critique sans certification d'équité algorithmique}, de la même façon qu'aucun médicament ne peut être mis sur le marché sans essais cliniques rigoureux.}
+\end{center}
+\end{ctabox}
+
+\section{Valeurs fondatrices}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}p{0.8cm}>{\bfseries}p{3.5cm}X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{} & \textcolor{white}{Valeur} & \textcolor{white}{Engagement} \\
+\midrule
+\faBalanceScale & Équité algorithmique & Aucun groupe ne doit être systématiquement désavantagé \\
+\rowcolor{light}
+\faSearch & Transparence radicale & Les mécanismes de décision doivent être explicables \\
+\faShieldAlt & Indépendance & Aucune dépendance envers les acteurs que nous évaluons \\
+\rowcolor{light}
+\faGlobe & Inclusivité & Voix du Sud Global, des minorités, des communautés marginalisées \\
+\faMicroscope & Rigueur scientifique & Toute affirmation est étayée par des preuves vérifiables \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\clearpage
+
+% ============================================================
+% PARTIE III
+% ============================================================
+\part{Notre réponse}
+\label{part:base}
+
+\chapter{La Base IBI}
+
+\section{Qu'est-ce que la Base IBI ?}
+
+La \textbf{Base IBI} est la première base de données structurée au monde dédiée à la \textbf{cartographie exhaustive des biais dans l'intelligence artificielle}. Elle couvre :
+\begin{itemize}[leftmargin=1.5em]
+  \item les \textbf{types de biais} (taxonomie à 9 familles, 205+ types)
+  \item les \textbf{secteurs impactés} (santé, justice, finance, RH, éducation, défense…)
+  \item les \textbf{cas documentés} (50+ incidents réels avec analyse forensique)
+  \item les \textbf{réglementations applicables} (63 cadres juridiques)
+  \item les \textbf{mécanismes de mitigation} (80+ techniques et outils)
+\end{itemize}
+
+\section{Chiffres clés}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{5cm}>{\Large}cX@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Indicateur} & \textcolor{white}{Valeur} & \textcolor{white}{Détail} \\
+\midrule
+Biais documentés & \textbf{205+} & Types et sous-types catégorisés et décrits \\
+\rowcolor{light}
+Réglementations couvertes & \textbf{63} & EU AI Act, RGPD, NIS2, NIST AI RMF, ISO/IEC 42001… \\
+Familles de biais & \textbf{9} & Taxonomie originale IBI \\
+\rowcolor{light}
+Secteurs couverts & \textbf{12+} & Santé, Justice, Finance, RH, Éducation, Défense… \\
+Cas documentés & \textbf{50+} & Incidents réels avec analyse cause-effet-impact \\
+\rowcolor{light}
+Mécanismes de mitigation & \textbf{80+} & Techniques, procédures et outils de correction \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Les 9 familles de biais}
+
+\begin{enumerate}[leftmargin=1.5em]
+  \item \textbf{Biais de données} — sous-représentation ou sur-représentation dans les données d'entraînement
+  \item \textbf{Biais d'annotation} — préjugés humains lors de l'étiquetage
+  \item \textbf{Biais d'agrégation} — modèle entraîné sur une population hétérogène
+  \item \textbf{Biais historique} — reproduction de discriminations passées
+  \item \textbf{Biais de mesure} — proxys inadéquats (ex. code postal pour revenu)
+  \item \textbf{Biais d'évaluation} — métriques masquant les disparités par sous-groupe
+  \item \textbf{Biais de déploiement} — écart entre population d'entraînement et population réelle
+  \item \textbf{Biais d'interaction} — comportements utilisateurs (RLHF, feedback)
+  \item \textbf{Biais réglementaire} — lacunes normatives permettant des discriminations implicites
+\end{enumerate}
+
+\section{Accessibilité}
+
+La Base IBI sera accessible via :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3.5cm}X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Canal} & \textcolor{white}{Description} \\
+\midrule
+\textbf{API REST v1.0} & Accès programmatique gratuit pour les ONG, la société civile et les chercheurs \\
+\rowcolor{light}
+\textbf{Interface web} & Recherche, filtres, export PDF, accessible sans compétence technique \\
+\textbf{Intégration AEXIA\textsuperscript{TM}} & Connexion native avec les niveaux de maturité AEXIA-O et AEXIA-S \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\clearpage
+
+% ============================================================
+% PARTIE IV
+% ============================================================
+\part{Gouvernance et engagements}
+\label{part:gouvernance}
+
+\chapter{Notre gouvernance}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{4.5cm}X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Instance} & \textcolor{white}{Rôle} \\
+\midrule
+\textbf{Assemblée générale} & Décisions stratégiques, élection du Conseil d'administration \\
+\rowcolor{light}
+\textbf{Conseil d'administration} & Pilotage opérationnel, 5 à 9 membres élus \\
+\textbf{Conseil scientifique} & Validation méthodologique, 7 à 12 experts internationaux \\
+\rowcolor{light}
+\textbf{Comité d'éthique} & Veille éthique, saisine citoyenne, 5 à 7 membres indépendants \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\vspace{0.5cm}
+
+\textbf{Principes de gouvernance} :
+\begin{itemize}[leftmargin=1.5em]
+  \item Indépendance totale vis-à-vis des acteurs évalués
+  \item Publication annuelle des comptes et des financements
+  \item Renouvellement régulier des instances
+  \item Représentation équilibrée Nord/Sud, hommes/femmes, disciplines
+\end{itemize}
+
+\chapter{Rejoindre l'initiative}
+
+\section{Quatre publics, quatre contributions}
+
+IA BIAIS INITIATIVE s'adresse à \textbf{quatre publics complémentaires} :
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{4cm}X X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Public} & \textcolor{white}{Contribution} & \textcolor{white}{Bénéfice} \\
+\midrule
+\textbf{Chercheurs \& académiques} & Documentation, publications, revue par les pairs & Co-autoriat, visibilité, accès API prioritaire \\
+\rowcolor{light}
+\textbf{Entreprises \& praticiens} \newline \footnotesize (CDO, DPO, DSI, Data Scientists) & Retours terrain, cas d'usage réels, audits & Outil d'audit gratuit, certification partenaire \\
+\textbf{ONG \& société civile} & Collecte de cas, plaidoyer, sensibilisation & Ressources gratuites, plateforme de visibilité \\
+\rowcolor{light}
+\textbf{Régulateurs \& institutions} & Validation réglementaire, orientation stratégique & Influence sur les standards, consultation directe \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{Comment nous rejoindre}
+
+\begin{ctabox}
+\begin{center}
+{\Large\textbf{3 étapes pour rejoindre l'initiative}}\\[10pt]
+\begin{tabular}{@{}c@{}}
+\textbf{1. Manifestez votre intérêt} \quad $\rightarrow$ \quad contact@ia-biais-initiative.org\\[8pt]
+\textbf{2. Signez la Charte d'engagement} \quad $\rightarrow$ \quad 2 pages\\[8pt]
+\textbf{3. Contribuez activement} \quad $\rightarrow$ \quad cas, données, expertise, relais
+\end{tabular}
+\end{center}
+\end{ctabox}
+
+\vspace{0.5cm}
+
+\section{Feuille de route 2026-2028}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}p{3cm}p{2cm}X@{}}
+\toprule
+\rowcolor{navy}
+\textcolor{white}{Phase} & \textcolor{white}{Période} & \textcolor{white}{Jalons clés} \\
+\midrule
+\textbf{Phase 0}\newline Fondation & T4 2026 & White Paper, création association, lancement site, connexion AEXIA\textsuperscript{TM} \\
+\rowcolor{light}
+\textbf{Phase 1}\newline Lancement & T1-T2 2027 & API Base IBI (beta), 3 partenariats académiques, 1 000 abonnés \\
+\textbf{Phase 2}\newline Développement & T3-T4 2027 & 1er rapport annuel, formation certifiante, 5 000 utilisateurs API \\
+\rowcolor{light}
+\textbf{Phase 3}\newline Institutionnalisation & 2028 & Statut ONG, partenariats UE/UA, 1er Bias Summit Paris \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\chapter{Conclusion}
+
+Les leaders mondiaux de l'IA — de Sam Altman à Geoffrey Hinton, de Dario Amodei à Yoshua Bengio — s'accordent sur un point : \textbf{l'IA non maîtrisée représente un risque majeur pour l'humanité}. Les biais algorithmiques sont l'une des manifestations les plus concrètes, les plus immédiates et les plus injustes de ce risque.
+
+\vspace{0.3cm}
+
+IA BIAIS INITIATIVE ne prétend pas résoudre seule ce problème planétaire. Elle s'engage à être \textbf{la ressource de référence}, \textbf{l'espace de convergence} et \textbf{le catalyseur d'action} pour toutes celles et ceux qui refusent que l'IA reproduise — et amplifie — les injustices du monde.
+
+\vspace{0.8cm}
+
+\begin{ctabox}
+\begin{center}
+{\Large\itshape « L'IA est l'outil le plus puissant jamais créé par l'humanité.\\
+La question n'est pas de savoir si nous allons l'utiliser —\\
+elle est de savoir si nous allons le faire avec équité, transparence et responsabilité. »}\\[10pt]
+{\large — \textbf{SIDIBE Mohamadou}, Fondateur}
+\end{center}
+\end{ctabox}
+
+\clearpage
+
+% ------------------------------------------------------------
+% PAGE FINALE
+% ------------------------------------------------------------
+\backmatter
+
+\chapter*{À propos du fondateur}
+\addcontentsline{toc}{chapter}{À propos du fondateur}
+
+\begin{center}
+
+\begin{tikzpicture}
+  \fill[purple] (0,0) rectangle (3,0.4);
+  \fill[cyan]   (3,0) rectangle (6,0.4);
+  \fill[orange] (6,0) rectangle (9,0.4);
+  \fill[red]    (9,0) rectangle (12,0.4);
+  \fill[green]  (12,0) rectangle (15,0.4);
+\end{tikzpicture}
+
+\vspace{0.5cm}
+
+{\Large\textbf{Mohamadou SIDIBE}}
+
+\vspace{0.3cm}
+
+{\normalsize Expert en Gouvernance des Données \& IA}\\
+{\normalsize Chief Data Officer · Polytechnique ExED 2026}\\[4pt]
+{\normalsize\textbf{Fondateur, IA BIAIS INITIATIVE}}\\[2pt]
+{\normalsize Auteur du framework AEXIA\textsuperscript{TM} v3.0}
+
+\vspace{0.5cm}
+
+{\small\texttt{contact@ia-biais-initiative.org}}\\[2pt]
+{\small\href{https://ia-biais-initiative.org}{ia-biais-initiative.org}}
+
+\vspace{0.5cm}
+
+\begin{tikzpicture}
+  \fill[purple] (0,0) rectangle (3,0.4);
+  \fill[cyan]   (3,0) rectangle (6,0.4);
+  \fill[orange] (6,0) rectangle (9,0.4);
+  \fill[red]    (9,0) rectangle (12,0.4);
+  \fill[green]  (12,0) rectangle (15,0.4);
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+{\small\textcolor{gray}{
+  \textbf{IA BIAIS INITIATIVE} · Version 1.0 · Octobre 2026\\
+  Licence CC BY 4.0 · Réutilisation libre avec attribution\\
+  DOI du framework AEXIA\textsuperscript{TM} : \href{https://doi.org/10.5281/zenodo.23126471}{10.5281/zenodo.23126471}
+}}
+\end{center}
+
+\end{document}

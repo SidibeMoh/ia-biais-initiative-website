@@ -1,0 +1,19 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90" width="100%" height="100%">
+  <defs>
+    <linearGradient id="eg5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A2BCC"/>
+      <stop offset="100%" stop-color="#7B3FE4"/>
+    </linearGradient>
+    <radialGradient id="ig5" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#9B47FF"/>
+      <stop offset="100%" stop-color="#1A2BCC"/>
+    </radialGradient>
+  </defs>
+  <!-- Forme de l'œil -->
+  <path d="M 5,45 C 14,18 76,18 85,45 C 76,72 14,72 5,45 Z" fill="none" stroke="url(#eg5)" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Iris -->
+  <circle cx="45" cy="45" r="26" fill="url(#ig5)"/>
+  <!-- Pupille -->
+  <circle cx="45" cy="45" r="5.5" fill="white" opacity="0.95"/>
+  <circle cx="45" cy="45" r="2.8" fill="#6B1EE8"/>
+</svg>
