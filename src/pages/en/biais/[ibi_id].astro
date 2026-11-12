@@ -25,6 +25,15 @@ const formatDate = (iso) => {
 const regs = (b.biais_reglementations || []).map(br => br.reglementations).filter(Boolean);
 const groupedRegs = regs.reduce((acc, reg) => {
   let jur = reg.juridiction || "International";
+  if (jur === "UE") jur = "🇪🇺 Europe";
+  else if (jur === "USA") jur = "🇺🇸 United States";
+  else if (jur === "France") jur = "🇫🇷 France";
+  else if (jur === "ONU" || jur === "ISO") jur = "🌍 International";
+  else jur = "🌐 " + jur;
+  if (!acc[jur]) acc[jur] = [];
+  acc[jur].push(reg);
+  return acc;
+}, {});
   if (jur === "UE") jur = "&#x1F1EA;&#x1F1FA; Europe";
   else if (jur === "USA") jur = "&#x1F1FA;&#x1F1F8; United States";
   else if (jur === "France") jur = "&#x1F1EB;&#x1F1F7; France";
