@@ -36,11 +36,11 @@ const formatDate = (iso) => {
 const regs = (b.biais_reglementations || []).map(br => br.reglementations).filter(Boolean);
 const groupedRegs = regs.reduce((acc, reg) => {
   let jur = reg.juridiction || "International";
-  if (jur === "UE") jur = "ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚ÂªÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Âº Europe";
-  else if (jur === "USA") jur = "ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚ÂºÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â¸ United States";
-  else if (jur === "France") jur = "ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â«ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â· France";
-  else if (jur === "ONU" || jur === "ISO") jur = "ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â International";
-  else jur = "ÃƒÂ°Ã…Â¸Ã…â€™Ã‚Â " + jur;
+  if (jur === "UE") jur = "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚ÂªÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Âº Europe";
+  else if (jur === "USA") jur = "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚ÂºÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¸ United States";
+  else if (jur === "France") jur = "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â· France";
+  else if (jur === "ONU" || jur === "ISO") jur = "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã¢â‚¬â„¢Ãƒâ€šÃ‚Â International";
+  else jur = "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã¢â‚¬â„¢Ãƒâ€šÃ‚Â " + jur;
   if (!acc[jur]) acc[jur] = [];
   acc[jur].push(reg);
   return acc;
@@ -51,9 +51,9 @@ const groupedRegs = regs.reduce((acc, reg) => {
   <div class="bg-ibi-arctic border-b border-ibi-border">
     <div class="max-w-7xl mx-auto px-6 py-4 text-sm">
       <a href="/en/" class="text-ibi-fg3 hover:text-ibi-primary">Home</a>
-      <span class="text-ibi-fg3 mx-2">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span>
+      <span class="text-ibi-fg3 mx-2">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Âº</span>
       <a href="/en/biais" class="text-ibi-fg3 hover:text-ibi-primary">Biases</a>
-      <span class="text-ibi-fg3 mx-2">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âº</span>
+      <span class="text-ibi-fg3 mx-2">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Âº</span>
       <span class="text-ibi-fg font-display font-semibold">{b.ibi_id}</span>
     </div>
   </div>
@@ -74,8 +74,8 @@ const groupedRegs = regs.reduce((acc, reg) => {
             <h1 class="font-display font-extrabold text-3xl md:text-5xl leading-tight mb-3">{b.nom_en || b.nom_fr}</h1>
             <p class="text-lg md:text-xl text-ibi-fg3 italic mb-8">{b.nom_fr}</p>
             <div class="flex flex-wrap gap-3">
-              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">ÃƒÂ¢Ã¢â‚¬Â Ã‚Â BÃƒÂ¢Ã¢â‚¬Â Ã‚Â Back to list</a>
-              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">View on API ÃƒÂ¢Ã¢â‚¬Â Ã¢â‚¬â€</a>
+              <a href="/en/biais" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg border border-ibi-border text-white hover:bg-white/5">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Ãƒâ€šÃ‚Â BÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Ãƒâ€šÃ‚Â Back to list</a>
+              <a href={`https://api.ai-biais-initiative.org/biais?ibi_id=eq.${b.ibi_id}`} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-display font-semibold rounded-lg gradient-ibi text-white hover:opacity-90">View on API ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â</a>
             </div>
           </div>
           <div class="bg-ibi-marine rounded-2xl border border-ibi-border p-8 text-center">
@@ -96,11 +96,11 @@ const groupedRegs = regs.reduce((acc, reg) => {
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â«ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â· DÃƒÆ’Ã‚Â©finition (FR)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â«ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â· DÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©finition (FR)</div>
           <p class="text-ibi-fg leading-relaxed">{b.definition_fr || "-"}</p>
         </div>
         <div class="bg-white rounded-xl border border-ibi-border p-8">
-          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â¬ÃƒÂ°Ã…Â¸Ã¢â‚¬Â¡Ã‚Â§ Definition (EN)</div>
+          <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-ibi-primary mb-3">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡Ãƒâ€šÃ‚Â§ Definition (EN)</div>
           <p class="text-ibi-fg leading-relaxed italic">{b.definition_en || "-"}</p>
         </div>
       </div>
@@ -138,7 +138,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-8">
         <div class="flex items-start gap-4">
-          <div class="text-3xl shrink-0">ÃƒÂ°Ã…Â¸Ã¢â‚¬â„¢Ã‚Â¡</div>
+          <div class="text-3xl shrink-0">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢Ãƒâ€šÃ‚Â¡</div>
           <div>
             <div class="text-xs font-display font-semibold tracking-[0.14em] uppercase text-amber-700 mb-2">Concrete Example</div>
             <p class="text-ibi-fg leading-relaxed">{b.exemple_concret || "No example documented for this bias."}</p>
@@ -151,7 +151,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
       <div class="max-w-7xl mx-auto px-6">
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â  Detection Metrics</h2>
+            <h2 class="font-display font-bold text-xl mb-6">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒâ€¦Ã‚Â  Detection Metrics</h2>
             <div class="flex flex-wrap gap-2">
               {b.metriques_detection && b.metriques_detection.length > 0 ? (
                 b.metriques_detection.map(m => <span class="text-xs font-mono px-3 py-1.5 rounded bg-ibi-arctic text-ibi-primary border border-ibi-border">{m}</span>)
@@ -161,7 +161,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
             </div>
           </div>
           <div class="bg-white rounded-xl border border-ibi-border p-8">
-            <h2 class="font-display font-bold text-xl mb-6">ÃƒÂ¢Ã…Â¡Ã¢â€žÂ¢ÃƒÂ¯Ã‚Â¸Ã‚Â Alert Thresholds</h2>
+            <h2 class="font-display font-bold text-xl mb-6">ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡ÃƒÂ¢Ã¢â‚¬Å¾Ã‚Â¢ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â Alert Thresholds</h2>
             <div class="space-y-3">
               {b.seuils_alerte && Object.keys(b.seuils_alerte).length > 0 ? (
                 Object.entries(b.seuils_alerte).map(([k, v]) => (
@@ -182,24 +182,25 @@ const groupedRegs = regs.reduce((acc, reg) => {
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã…Â¡</span> <span>Sources &amp; Scientific References</span>
+            <span>ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒâ€¦Ã‚Â¡</span> <span>Sources &amp; Scientific References</span>
           </h3>
           <ul class="space-y-3 text-sm text-ibi-fg2">
             {b.biais_sources && b.biais_sources.length > 0 ? (
               b.biais_sources.map(bs => {
                 const s = bs.sources;
                 if (!s) return null;
-                let link = '#';
+                let link = "#";
                 if (s.doi) {
-                  link = https://doi.org/${s.doi};
+                  link = "https://doi.org/" + s.doi;
                 } else if (s.url) {
-                  link = s.url.startsWith('http') ? s.url : https://${s.url};
+                  link = s.url.startsWith("http") ? s.url : "https://" + s.url;
+                };
                 }
                 const auteurs = s.auteurs && Array.isArray(s.auteurs) ? s.auteurs.join(', ') : '';
                 const annee = s.annee ? `(${s.annee})` : '';
                 return (
                   <li class="flex items-start gap-2">
-                    <span class="text-ibi-primary mt-1">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢</span>
+                    <span class="text-ibi-primary mt-1">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¢</span>
                     <div>
                       <a href={link} target="_blank" rel="noopener" class="font-semibold hover:text-ibi-primary transition-colors">{s.titre}</a>
                       {auteurs && <span class="text-xs block text-ibi-fg3 mt-0.5">{auteurs} {annee}</span>}
@@ -217,12 +218,12 @@ const groupedRegs = regs.reduce((acc, reg) => {
     <div class="mt-8 mb-8 max-w-4xl mx-auto">
         <section class="bg-white rounded-xl border border-ibi-border p-6 shadow-sm">
           <h3 class="font-display font-bold text-xl mb-4 flex items-center gap-2 text-ibi-fg">
-            <span>ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂºÃ‚Â¡ÃƒÂ¯Ã‚Â¸Ã‚Â</span> <span>Impact & Mitigation</span>
+            <span>ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â</span> <span>Impact & Mitigation</span>
           </h3>
 
           {b.incidents_biais && b.incidents_biais.length > 0 && (
             <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">ÃƒÂ¢Ã…Â¡Ã‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Real documented incidents</h4>
+              <h4 class="font-semibold text-red-700 mb-2 flex items-center gap-2">ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â Real documented incidents</h4>
               <ul class="list-disc list-inside space-y-2 text-sm text-red-900">
                 {b.incidents_biais.map(ib => {
                   const inc = ib.incidents;
@@ -234,7 +235,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
           )}
 
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÂ°Ã…Â¸Ã…Â½Ã‚Â¯ Vulnerable groups impacted</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â¯ Vulnerable groups impacted</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_groupes && b.biais_groupes.length > 0 ? (
                 b.biais_groupes.map(bg => {
@@ -249,7 +250,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
           </div>
 
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÂ°Ã…Â¸Ã¢â‚¬ÂºÃ‚Â ÃƒÂ¯Ã‚Â¸Ã‚Â Mitigation methodologies</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â Mitigation methodologies</h4>
             <ul class="list-disc list-inside space-y-1 text-sm text-ibi-fg2">
               {b.biais_methodologies && b.biais_methodologies.length > 0 ? (
                 b.biais_methodologies.map(bm => {
@@ -264,7 +265,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
           </div>
 
           <div class="mb-6">
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÂ°Ã…Â¸Ã‚ÂÃ‚Â¢ Sectors concerned</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â¢ Sectors concerned</h4>
             <div class="flex flex-wrap gap-2">
               {b.biais_secteurs && b.biais_secteurs.length > 0 ? (
                 b.biais_secteurs.map(bs => {
@@ -279,7 +280,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
           </div>
 
           <div>
-            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÂ¢Ã…Â¡Ã¢â‚¬â€œÃƒÂ¯Ã‚Â¸Ã‚Â Applicable regulations</h4>
+            <h4 class="font-semibold text-ibi-fg2 mb-2">ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â Applicable regulations</h4>
             <div class="space-y-4 text-sm text-ibi-fg2">
               {Object.keys(groupedRegs).length > 0 ? (
                 Object.entries(groupedRegs).map(([jur, items]) => (
@@ -288,7 +289,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
                     <ul class="space-y-2">
                       {items.map(item => (
                         <li class="flex items-start gap-2">
-                          <span class="text-ibi-primary mt-1">ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¢</span>
+                          <span class="text-ibi-primary mt-1">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¢</span>
                           <div><span class="font-semibold">{item.code}</span> : {item.texte}</div>
                         </li>
                       ))}
@@ -305,7 +306,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
 
     <section class="max-w-7xl mx-auto px-6 py-16">
       <div class="bg-white rounded-xl border border-ibi-border p-8">
-        <h2 class="font-display font-bold text-xl mb-6">ÃƒÂ°Ã…Â¸Ã¢â‚¬Å“Ã¢â‚¬Â¹ Metadata</h2>
+        <h2 class="font-display font-bold text-xl mb-6">ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ Metadata</h2>
         <div class="grid md:grid-cols-3 gap-6 text-sm">
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Contributor</div><div class="text-ibi-fg font-medium">{b.contributeur || "-"}</div></div>
           <div><div class="text-xs text-ibi-fg3 uppercase tracking-wider mb-1">Institution</div><div class="text-ibi-fg font-medium">{b.institution || "-"}</div></div>
@@ -322,7 +323,7 @@ const groupedRegs = regs.reduce((acc, reg) => {
         <h2 class="font-display font-bold text-2xl md:text-3xl mb-4">Explore other biases</h2>
         <p class="text-white/90 max-w-2xl mx-auto mb-8">250 documented biases, classified by the TriAxis taxonomy.</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">ÃƒÂ¢Ã¢â‚¬Â Ã‚Â BÃƒÂ¢Ã¢â‚¬Â Ã‚Â Back to list</a>
+          <a href="/en/biais" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg bg-white text-ibi-primary hover:bg-white/95">ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Ãƒâ€šÃ‚Â BÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Ãƒâ€šÃ‚Â Back to list</a>
           <a href="/en/methodologie" class="inline-flex items-center gap-2 px-6 py-3 font-display font-semibold rounded-lg border-2 border-white/30 text-white hover:bg-white/10">Understand TriAxis</a>
         </div>
       </div>
