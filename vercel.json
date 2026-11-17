@@ -1,15 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "ai-biais-initiative.org"
-        }
-      ],
-      "destination": "https://www.ai-biais-initiative.org/:path*",
-      "permanent": true
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
