@@ -1,3 +1,25 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json"
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "ai-biais-initiative.org"
+        }
+      ],
+      "destination": "https://www.ai-biais-initiative.org/$1",
+      "permanent": true
+    },
+    {
+      "source": "/iais",
+      "destination": "/fr/biais",
+      "permanent": true
+    },
+    {
+      "source": "/reglementations",
+      "destination": "/fr/reglementations",
+      "permanent": true
+    }
+  ]
 }
