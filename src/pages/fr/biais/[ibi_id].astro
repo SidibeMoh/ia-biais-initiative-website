@@ -228,8 +228,8 @@ const getLink = (s) => {
           <div class="mb-6">
             <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3AF; Groupes vuln&eacute;rables impact&eacute;s</h4>
             <div class="flex flex-wrap gap-2">
-              {b.biais_groupes && b.biais_groupes.length > 0 ? (
-                b.biais_groupes.map(bg => {
+              {b.biais_groupes && b.biais_groupes.filter(bg => bg.statut_verification === 'verifie').length > 0 ? (
+                b.biais_groupes.filter(bg => bg.statut_verification === 'verifie').map(bg => {
                   const g = bg.groupes_impactes;
                   if (!g) return null;
                   return <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">{g.nom_fr || g.code}</span>;
@@ -256,8 +256,8 @@ const getLink = (s) => {
           <div class="mb-6">
             <h4 class="font-semibold text-ibi-fg2 mb-2">&#x1F3E2; Secteurs concern&eacute;s</h4>
             <div class="flex flex-wrap gap-2">
-              {b.biais_secteurs && b.biais_secteurs.length > 0 ? (
-                b.biais_secteurs.map(bs => {
+              {b.biais_secteurs && b.biais_secteurs.filter(bs => bs.statut_verification === 'verifie').length > 0 ? (
+                b.biais_secteurs.filter(bs => bs.statut_verification === 'verifie').map(bs => {
                   const s = bs.secteurs;
                   if (!s) return null;
                   return <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-ibi-arctic text-ibi-primary border border-ibi-border">{s.nom_fr} (Risque: {bs.niveau_risque}/5)</span>;
