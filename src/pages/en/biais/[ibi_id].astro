@@ -5,7 +5,7 @@ export const prerender = true;
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("https://api.ai-biais-initiative.org/biais?select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(sources(*)),biais_reglementations(reglementations(*)),biais_secteurs(secteurs(*)),biais_methodologies(methodologies(*)),biais_groupes(groupes_impactes(*)),incidents_biais(incidents(*))");
+    const res = await fetch("https://api.ai-biais-initiative.org/biais?select=*,axe_o:axe_o_id(*),axe_l:axe_l_id(*),axe_s:axe_s_id(*),biais_sources(*,sources(*)),biais_reglementations(*,reglementations(*)),biais_secteurs(*,secteurs(*)),biais_methodologies(*,methodologies(*)),biais_groupes(*,groupes_impactes(*)),incidents_biais(*,incidents(*))");
     if (!res.ok) return [];
     const biais = await res.json();
     return biais.map((b) => ({ params: { ibi_id: b.ibi_id }, props: { b } }));
